@@ -4,6 +4,7 @@
 
 body {
   margin: 0;
+  background-color: 0a9396;
 }
 
 /* h2 {
@@ -14,16 +15,16 @@ body {
 
 header {
   display: flex;
-  align-items: baseline;
+  align-items: center;
+  /* align-items: baseline; */
   gap: 10px;
   flex-direction: row;
-  background-color: rgb(115, 115, 192);
-  padding: 10px;
+  background-color: #0a9396;
+  /* padding: 10px; */
   margin: 0;
-  border: 1px solid black;
 
   & input {
-    background-color: brown;
+    background-color: #94d2bd;
     height: 25px;
   }
 
@@ -31,7 +32,24 @@ header {
     background-color: rgb(159, 170, 170);
   }
 
+  & h2 {
+    text-align: center;
+  }
+
+  & h4 {
+    text-align: end;
+  }
+
 }
+
+.logo-header {
+  padding: 15px;
+  height: 70px;
+  width: 70px;
+}
+
+/* 0a9396 */
+/* 94d2bd */
 
 footer {
   position: fixed;
@@ -39,5 +57,5 @@ footer {
   bottom: 0;
   width: 100%;
   text-align: center;
-  background-color: rgb(170, 170, 230);
+  background-color: #0a9396;
 }

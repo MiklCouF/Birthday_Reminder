@@ -1,12 +1,22 @@
+import Login from "./Login";
+import logo_header from "../assets/img/Logo_header.svg"
+
 function Header() {
+
+    // fetch("https://nominis.cef.fr/json/saintdujour.php")
+    //     .then(response => response.json())
+    //     .then(data => console.log(response))
+    //     .catch(error => console.error(error));
+
 
     return (
 
-        <header className="header">
-            <input type="text" id="username" name="username" />
-            <input type="password" id="pass" name="password" minlength="8" required />
-            <input className="connect" type="submit" value="Se connecter" />
+        <header>
+            <img src={logo_header} alt="Gateau d'anniversaire" className="logo-header" />
+            <p>test css</p>
+            <Login />
             <h2>Header</h2>
+            <h4>fin</h4>
         </header>
 
     )
