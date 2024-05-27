@@ -1,15 +1,16 @@
 import Header from './components/Header'
 import Footer from './components/Footer'
-import Login from './components/Login'
-import './App.css'
+import Body from './pages/Body'
+import './styles/App.css'
+import './styles/components.css'
+
 
 function App() {
 
   return (
     <>
       <Header />
-      <Login />
-      <h1>App</h1>
+      <Body />
       <Footer />
     </>
   )

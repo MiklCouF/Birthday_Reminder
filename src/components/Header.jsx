@@ -13,8 +13,6 @@ function Header() {
 
         <header>
             <img src={logo_header} alt="Gateau d'anniversaire" className="logo-header" />
-            <p>test css</p>
-            <Login />
             <h2>Header</h2>
             <h4>fin</h4>
         </header>
