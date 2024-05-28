@@ -56,6 +56,8 @@ header {
   height: 100dvh;
   background-color: bisque;
   justify-content: space-evenly;
+  flex-direction: row;
+
 
   & h6 {
     padding: 0%;

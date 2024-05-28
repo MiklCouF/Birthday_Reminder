@@ -1,11 +1,5 @@
-.body-components {
-    width: 60dvw;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-}
-
 .inscription-login {
+    z-index: 2;
     color: aliceblue;
     display: flex;
     flex-direction: column;
@@ -41,6 +35,9 @@
     display: flex;
     flex-direction: column;
     background-color: #0a9396;
+    /* Temporaire  */
+    background-image: url(../assets/img/tempoCalendar1.jpg);
+    /* temporaire */
     height: 60dvh;
     width: 25dvw;
     padding-top: 20px;
