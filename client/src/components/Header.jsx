@@ -1,5 +1,5 @@
 // import Login from "./Login";
-import logo_header from "../assets/img/Logo_header.svg"
+import logo_header from "../assets/Logo_header.svg"
 
 function Header({ setConnect }) {
 
