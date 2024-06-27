@@ -1,7 +1,8 @@
 // import Login from "./Login";
 import logoHeader from "../assets/Logo_header.svg";
 
-function Header(setConnect) {
+// eslint-disable-next-line react/prop-types
+function Header({ setchangePage }) {
   // fetch("https://nominis.cef.fr/json/saintdujour.php")
   //     .then(response => response.json())
   //     .then(data => console.log(response))
@@ -12,7 +13,7 @@ function Header(setConnect) {
   // }
 
   const changeLoginScreen = () => {
-    setConnect((prevPage) => (prevPage === "page1" ? "page2" : "page1"));
+    setchangePage((prevPage) => (prevPage === "page1" ? "page2" : "page1"));
   };
 
   const today = new Date();
