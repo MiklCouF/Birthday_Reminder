@@ -1,0 +1,17 @@
+.calendar-core {
+  color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  /* Temporaire  */
+  background-image: url(./src/assets/tempoCalendar1.jpg);
+  background-image: element();
+  /* temporaire */
+  height: 60dvh;
+  width: 25dvw;
+  padding-top: 20px;
+  margin-top: 50px;
+  border-radius: 24px;
+  gap: 15px;
+  align-items: center;
+  box-shadow: rgba(255, 255, 255, 0.889) 0px 1px 14px;
+}
