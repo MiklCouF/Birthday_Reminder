@@ -1,24 +1,22 @@
-import Login from "./Login"
-import Inscription from "./Inscription"
+import Login from "./Login";
+import Register from "./Register";
 
 function CardLoginSubscribe() {
-    const [SwitchSubscribe, setSwitchSubscribe] = useState(true);
-    const renderSubscribeLogin = () => {
-        switch(SwitchSubscribe){
-            case 'viewLogin':
-                return
-        }
-
-    }
-
-    return (
-        <>
-            <div className="inscription-login">
-                <Login />
-                <Inscription />
-            </div>
-        </>
-    )
+  // navlink pour register et ternaire pour login ou register
+  return (
+    <>
+      <div className="add-data-core">
+        {/* <div className="inscription-login"> */}
+        <Login />
+      </div>
+      {/* </div> */}
+      <div className="add-data-core">
+        {/* <div className="inscription-login"> */}
+        <Register />
+      </div>
+      {/* </div> */}
+    </>
+  );
 }
 
-export default CardLoginSubscribe
+export default CardLoginSubscribe;
