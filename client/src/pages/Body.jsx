@@ -5,7 +5,7 @@ import AddData from "../components/AddData";
 import Calendar from "../components/Calendar";
 import CardLoginSubscribe from "../components/CardLoginSubscribe";
 
-function Body({ Connect }) {
+function Body({ changePage }) {
   // State for animate card login/subscribe
   //    const [isFlipped, setIsFlipped] = useState(false);
   //    const handleFlip = () => {
@@ -15,7 +15,7 @@ function Body({ Connect }) {
   //    const [Connect, setConnect] = useState(true);
 
   // faire un onclick sur le titre dans le footer pour changer le state de coonect
-  return Connect === "page1" ? (
+  return changePage === "page1" ? (
     <div className="Full-body">
       <AddData />
       <Calendar />

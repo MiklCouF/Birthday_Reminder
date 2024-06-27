@@ -5,12 +5,12 @@ import "./styles/global.css";
 import "./styles/App.css";
 
 function App() {
-  const [Connect, setConnect] = useState("page1");
+  const [changePage, setchangePage] = useState("page1");
 
   return (
     <>
-      <Header setConnect={setConnect} />
-      <Body Connect={Connect} />
+      <Header setchangePage={setchangePage} />
+      <Body changePage={changePage} />
     </>
   );
 }
