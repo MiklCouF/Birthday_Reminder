@@ -6,12 +6,7 @@ import ConnexionPage from "./pages/ConnexionPage";
 import RegisterPage from "./pages/RegisterPage";
 import CguPage from "./pages/CguPage";
 import HomePage from "./pages/HomePage";
-import SearchPage from "./pages/SearchPage";
-import FavoritesPage from "./pages/FavoritesPage";
-import RecipeCreationPage from "./pages/RecipeCreationPage";
 import ProfilePage from "./pages/ProfilePage";
-import SetProfilePage from "./pages/SetProfilePage";
-import RecipePage from "./pages/RecipePage";
 import AdminPage from "./pages/AdminPage";
 
 const router = createBrowserRouter([

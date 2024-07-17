@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */ // TODO: Asking what missing
-
 // import { Connect } from "vite";
 import AddData from "../components/AddData";
 import Calendar from "../components/Calendar";

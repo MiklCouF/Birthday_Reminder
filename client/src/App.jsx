@@ -2,7 +2,6 @@ import { useState } from "react";
 import Header from "./components/Header";
 import Body from "./pages/Body";
 import "./styles/global.css";
-import "./styles/App.css";
 
 function App() {
   const [changePage, setchangePage] = useState("page1");
