@@ -2,9 +2,7 @@ create table user (
     id int primary key auto_increment NOT NULL,
     pseudo varchar(55) NOT NULL UNIQUE,
     email varchar(80) NOT NULL UNIQUE,
-    password varchar(50) NOT NULL,
-    birthday DATE,
-    is_admin bool NOT NULL default 0
+    password varchar(50) NOT NULL
 );
 
 create table friend (
@@ -16,60 +14,39 @@ create table friend (
     foreign key (user_id) references user (id)
 );
 
-create table marriage (
-    user_id int NOT NULL,
-    foreign key (user_id) references user (id),
-    friend_id int NOT NULL,
-    foreign key (friend_id) references friend (id),
-    friend_id int NOT NULL UNIQUE,
-    foreign key (friend_id) references friend (id),
-    marriage_date DATE NOT NULL
-);
-
 -- table user
 INSERT INTO
     user (
         pseudo,
         email,
-        password,
-        birthday,
-        is_admin
+        password
     )
 VALUES (
         'Alice',
         'alice.smith@example.com',
         'password123',
-        '1989-12-09',
-        'http://example.com/photos/alice.jpg',
-        TRUE
     ),
     (
         'Bob',
         'bob.johnson@example.com',
-        'securepassword',
-        'http://example.com/photos/bob.jpg',
-        FALSE
+        'securepassword'
     ),
     (
         'Charlie',
         'charlie.brown@example.com',
         'mypassword',
-        'http://example.com/photos/charlie.jpg',
-        TRUE
+
+
     ),
     (
         'Diana',
         'diana.prince@example.com',
-        'dianaPW',
-        'http://example.com/photos/diana.jpg',
-        FALSE
+        'dianaPW'
     ),
     (
         'Eva',
         'eva.green@example.com',
-        'evaPassword',
-        'http://example.com/photos/eva.jpg',
-        FALSE
+        'evaPassword'
     );
 
 -- table friend
