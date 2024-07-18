@@ -1,12 +1,14 @@
 
 
 .add-data-core {
-  width: 400px;
-  height: fit-content;
+  /* width: 400px; */
+  /* height: fit-content; */
   color: aliceblue;
   display: flex;
   flex-direction: column;
   padding: 40px;
+  padding-left: 60px;
+  padding-right: 60px;
   margin-top: 50px;
   border-radius: 24px;
   gap: 15px;
@@ -24,7 +26,6 @@
 
 .card-core {
   background-color: var(--gold-bg-color);
-  width: 80%;
   padding: 40px;
   height: fit-content;
   border-radius: 12px;

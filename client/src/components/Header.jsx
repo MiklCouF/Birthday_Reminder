@@ -8,10 +8,6 @@ function Header({ setchangePage, setMonth }) {
   };
 
   const today = new Date();
-  // const day = today.getDate();
-  // const month = today.getMonth() + 1;
-  // const year = today.getFullYear();
-  // const formattedDate = day + '/' + month + '/' + year;
   const daysOfWeek = [
     "Dimanche",
     "Lundi",
@@ -37,8 +33,8 @@ function Header({ setchangePage, setMonth }) {
   ];
   const dayOfWeek = daysOfWeek[today.getDay()];
   const day = today.getDate();
-  const month = monthsOfYear[today.getMonth()];
-  setMonth(month);
+  const currentMonth = monthsOfYear[today.getMonth()];
+  setMonth(currentMonth);
   return (
     <>
     <header>
@@ -47,7 +43,7 @@ function Header({ setchangePage, setMonth }) {
         alt="Gateau d'anniversaire"
         className="logo-header"
       />
-      <h1>{`${dayOfWeek} ${day} ${month}`}</h1>
+      <h1>{`${dayOfWeek} ${day} ${currentMonth}`}</h1>
       <button type="button" onClick={changeLoginScreen}>
         <h2 className="tempo">Visiter</h2>
       </button>
