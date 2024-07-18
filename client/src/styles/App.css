@@ -12,7 +12,7 @@ body {
 
 header {
   display: flex;
-  height: 10vh;
+  height: 12vh;
   justify-content: space-between;
   align-items: center;
   gap: 10px;
@@ -20,15 +20,27 @@ header {
   background-color: var(--gold-bg-color);
   padding: 0 25px;
   box-shadow: var(--gold-bg-color) 0 0px 10px 8px ;
+  
+/* background-image: url("../assets/guirlande1.png");
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-position: 20px -50px; */
 
-  & h2 {
-    text-align: center;
-    color: var(--blue-font-color);
-  }
+& h2 {
+  text-align: center;
+  color: var(--blue-font-color);
+}
 
-  & h4 {
-    text-align: end;
-  }
+& h4 {
+  text-align: end;
+}
+}
+
+.img-fanion {
+  position: absolute;
+  display: flex;
+  left: 0;
+  top: 65px;
 }
 
 .logo-header {

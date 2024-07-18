@@ -1,16 +1,7 @@
-// import Login from "./Login";
 import logoHeader from "../assets/Logo_header.svg";
+import fanion from "../assets/guirlande4.png";
 
-// eslint-disable-next-line react/prop-types
 function Header({ setchangePage }) {
-  // fetch("https://nominis.cef.fr/json/saintdujour.php")
-  //     .then(response => response.json())
-  //     .then(data => console.log(response))
-  //     .catch(error => console.error(error));
-
-  // function changeLoginScreen() {
-  //     setConnect(false);
-  // }
 
   const changeLoginScreen = () => {
     setchangePage((prevPage) => (prevPage === "page1" ? "page2" : "page1"));
@@ -49,6 +40,7 @@ function Header({ setchangePage }) {
   const month = monthsOfYear[today.getMonth()];
 
   return (
+    <>
     <header>
       <img
         src={logoHeader}
@@ -60,6 +52,8 @@ function Header({ setchangePage }) {
         <h2 className="tempo">Visiter</h2>
       </button>
     </header>
+      <img className="img-fanion" src={fanion} />
+    </>
   );
 }
 export default Header;
