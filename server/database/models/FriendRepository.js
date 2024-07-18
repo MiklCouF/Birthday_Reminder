@@ -41,6 +41,15 @@ class CategoryRepository extends AbstractRepository {
     return rows;
   }
 
+  async readMonth() {
+    // Execute the SQL SELECT query to retrieve all Categorys from the "Category" table
+    const [rows] = await this.database.query(`select * from ${this.table} WHERE MONTH(birthday) = MONTH(CURDATE()) ORDER BY birthday` );
+
+    // Return the array of Categorys
+    return rows;
+  }
+
+
   // The U of CRUD - Update operation
   // TODO: Implement the update operation to modify an existing Category
 

@@ -15,6 +15,21 @@ const browse = async (req, res, next) => {
   }
 };
 
+// The B of BREAD - readMonth
+const ReadMonthFriend = async (req, res, next) => {
+  try {
+    // Fetch all items from the database
+    const friends = await tables.friend.readMonth();
+
+    // Respond with the items in JSON format
+    res.json(friends);
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
+
 // The R of BREAD - Read operation
 const read = async (req, res, next) => {
   try {
@@ -60,6 +75,7 @@ const add = async (req, res, next) => {
 // Ready to export the controller functions
 module.exports = {
   browse,
+  ReadMonthFriend,
   read,
   // edit,
   add,

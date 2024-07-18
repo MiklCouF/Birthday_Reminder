@@ -1,7 +1,7 @@
-function MonthBirthday() {
+function MonthBirthday({ month }) {
   return (
     <div className="add-data-core">
-      <p>Les anniversaire du mois</p>
+      <h2>{month}</h2>
 <div className="card-core">
   <p>Prénom:</p>
  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A quam repellendus nemo eligendi reiciendis voluptates saepe officiis consequuntur earum veritatis et iusto, deleniti quibusdam distinctio consequatur cumque fugiat nostrum suscipit!</p>

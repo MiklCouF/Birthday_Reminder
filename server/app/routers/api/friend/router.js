@@ -12,6 +12,9 @@ const { browse, read, add } = require("../../../controllers/friendActions");
 // Route to get a list of friends
 router.get("/", browse);
 
+// Route to get the list of friends birthday, for the current month
+router.get("/month", ReadMonthFriend);
+
 // Route to get a specific friend by ID
 router.get("/:id", read);
 

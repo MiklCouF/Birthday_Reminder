@@ -1,7 +1,7 @@
 import logoHeader from "../assets/Logo_header.svg";
 import fanion from "../assets/guirlande4.png";
 
-function Header({ setchangePage }) {
+function Header({ setchangePage, setMonth }) {
 
   const changeLoginScreen = () => {
     setchangePage((prevPage) => (prevPage === "page1" ? "page2" : "page1"));
@@ -38,7 +38,7 @@ function Header({ setchangePage }) {
   const dayOfWeek = daysOfWeek[today.getDay()];
   const day = today.getDate();
   const month = monthsOfYear[today.getMonth()];
-
+  setMonth(month);
   return (
     <>
     <header>

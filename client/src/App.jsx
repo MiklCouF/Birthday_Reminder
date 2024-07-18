@@ -5,11 +5,12 @@ import "./styles/global.css";
 
 function App() {
   const [changePage, setchangePage] = useState("page1");
+  const [month, setMonth] = useState("");
 
   return (
     <>
-      <Header setchangePage={setchangePage} />
-      <Body changePage={changePage} />
+      <Header setchangePage={setchangePage} setMonth={setMonth} />
+      <Body changePage={changePage} month={month} />
     </>
   );
 }
