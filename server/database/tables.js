@@ -1,19 +1,12 @@
 // Import the repository modules responsible for handling data operations on the tables
 const UserRepository = require("./models/UserRepository");
-const ToolRepository = require("./models/ToolRepository");
-const RecipeRepository = require("./models/RecipeRepository");
-const IngredientRepository = require("./models/IngredientRepository");
-const CategoryRepository = require("./models/CategoryRepository");
-const CommentRepository = require("./models/CommentRepository");
+const FriendRepository = require("./models/FriendRepository");
+
 
 // Create an empty object to hold data repositories for different tables
 const tables = {
   user: new UserRepository(),
-  tool : new ToolRepository(),
-  recipe : new RecipeRepository(),
-  ingredient : new IngredientRepository(),
-  category : new CategoryRepository(),
-  comment : new CommentRepository(),
+  Friend : new FriendRepository(),
   
 };
 

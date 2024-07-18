@@ -16,37 +16,11 @@ create table friend (
 
 -- table user
 INSERT INTO
-    user (
-        pseudo,
-        email,
-        password
-    )
+    user (pseudo, email, password)
 VALUES (
         'Alice',
-        'alice.smith@example.com',
-        'password123',
-    ),
-    (
-        'Bob',
-        'bob.johnson@example.com',
-        'securepassword'
-    ),
-    (
-        'Charlie',
-        'charlie.brown@example.com',
-        'mypassword',
-
-
-    ),
-    (
-        'Diana',
-        'diana.prince@example.com',
-        'dianaPW'
-    ),
-    (
-        'Eva',
-        'eva.green@example.com',
-        'evaPassword'
+        'test@example.com',
+        'azerty',
     );
 
 -- table friend
@@ -59,6 +33,35 @@ VALUES (
         '1989-12-09'
     ),
     ('Bob', 'Johnson', '1989-1-29'),
+    ('Henri', 'Motte', '1989-7-11'),
+    (
+        'Pascal',
+        'Filoma',
+        '1989-7-9'
+    ),
+    (
+        'Gabriel',
+        'Lefetch',
+        '1989-7-21'
+    ),
+    (
+        'Jean-claude',
+        'dutruc',
+        '1989-7-16'
+    ),
+    (
+        'Pauline',
+        'ricola',
+        '1989-7-30'
+    ),
+    (
+        'Stéphanie',
+        'orutune',
+        '1989-8-12'
+    ),
+    ('Bob', 'Johnson', '1989-8-18'),
+    ('Bob', 'Johnson', '1989-8-2'),
+    ('Bob', 'Johnson', '1989-8-28'),
     (
         'Charlie',
         'Brown',
