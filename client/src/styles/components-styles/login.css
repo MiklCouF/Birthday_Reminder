@@ -1,47 +1,39 @@
-.login-core {
-  background-color: var(--gold-bg-color);
-  padding-top: 25px;
-
-  width: 70%;
-  height: 210px;
-  border-radius: 12px;
-  align-items: center;
-
-  & input {
-    margin: 10px;
-  }
-}
 
 
 .add-data-core {
   width: 400px;
-  height: auto;
+  height: fit-content;
   color: aliceblue;
   display: flex;
   flex-direction: column;
-  padding-top: 20px;
+  padding: 40px;
   margin-top: 50px;
   border-radius: 24px;
   gap: 15px;
   align-items: center;
   box-shadow: rgba(255, 255, 255, 0.889) 0px 1px 14px;
+  
+  & input {
+    margin: 10px;
+  }
 }
 
 .connect {
-  margin-top: 10px;
+  margin-top: 1000px;
 }
 
-.subscribe-core {
+.card-core {
   background-color: var(--gold-bg-color);
   width: 80%;
-  height: 410px;
+  padding: 40px;
+  height: fit-content;
   border-radius: 12px;
-  /* width: 85dvw; */
+    align-items: center;
 
-  & p,
-  input {
+  & input {
     flex-direction: row;
     /* background-color: black; */
+    
   }
 }
 

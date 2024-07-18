@@ -2,6 +2,8 @@
 import AddData from "../components/AddData";
 import Calendar from "../components/Calendar";
 import CardLoginSubscribe from "../components/CardLoginSubscribe";
+import MonthBirthday from "../components/MonthBirthday"
+
 
 function Body({ changePage }) {
   // State for animate card login/subscribe
@@ -16,22 +18,12 @@ function Body({ changePage }) {
   return changePage === "page1" ? (
     <div className="Full-body">
       <AddData />
+      <MonthBirthday />
       <Calendar />
     </div>
   ) : (
     <div className="Full-body">
       <CardLoginSubscribe />
-
-      {/* <div class="content">
-                    <div class="front">
-
-                        <p>login etait la avant</p>
-                    </div>
-                    <div class="back">
-                        <p>ici était register avant</p>
-                    </div>
-                </div>
-            </div> */}
     </div>
   );
 }

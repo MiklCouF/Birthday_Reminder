@@ -6,15 +6,11 @@ function CardLoginSubscribe() {
   return (
     <>
       <div className="add-data-core">
-        {/* <div className="inscription-login"> */}
         <Login />
       </div>
-      {/* </div> */}
       <div className="add-data-core">
-        {/* <div className="inscription-login"> */}
         <Register />
       </div>
-      {/* </div> */}
     </>
   );
 }

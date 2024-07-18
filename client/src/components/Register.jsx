@@ -2,7 +2,7 @@ function Register() {
   return (
     <>
       <h2>Inscription</h2>
-      <div className="subscribe-core">
+      <div className="card-core">
         <p>Prénom:</p>
         <input
           type="text"

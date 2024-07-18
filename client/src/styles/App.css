@@ -12,12 +12,14 @@ body {
 
 header {
   display: flex;
+  height: 10vh;
   justify-content: space-between;
   align-items: center;
   gap: 10px;
   flex-direction: row;
   background-color: var(--gold-bg-color);
-  padding: 5px 25px;
+  padding: 0 25px;
+  box-shadow: var(--gold-bg-color) 0 0px 10px 8px ;
 
   & h2 {
     text-align: center;
@@ -37,12 +39,9 @@ header {
 
 .Full-body {
   display: flex;
-
-  width: 100dvw;
-  height: fit-content;
-  background-color: var(--blue-bg-color);
+  height: 80vh;
+  align-items: center;
   justify-content: space-evenly;
-  flex-direction: row;
 
   & h6 {
     padding: 0%;

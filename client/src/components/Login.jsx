@@ -2,7 +2,7 @@ function login() {
   return (
     <>
       <h2>Connexion</h2>
-      <div className="login-core">
+      <div className="card-core">
         <p>Courriel</p>
         <input
           type="text"
