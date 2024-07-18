@@ -7,7 +7,7 @@ const router = express.Router();
 /* ************************************************************************* */
 
 // Import friend-related actions
-const { browse, read, add } = require("../../../controllers/friendActions");
+const { browse, read, add, ReadMonthFriend } = require("../../../controllers/friendActions");
 
 // Route to get a list of friends
 router.get("/", browse);

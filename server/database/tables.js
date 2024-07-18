@@ -6,7 +6,7 @@ const FriendRepository = require("./models/FriendRepository");
 // Create an empty object to hold data repositories for different tables
 const tables = {
   user: new UserRepository(),
-  Friend : new FriendRepository(),
+  friend : new FriendRepository(),
   
 };
 
