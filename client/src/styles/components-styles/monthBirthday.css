@@ -1,3 +1,14 @@
 .monthMap {
     display:flex;
 }
+
+.table-current-month {
+    color: aliceblue;
+    text-align: left;
+    & tr {
+        text-align: left;
+        /* gap: 15px; */
+        /* padding: 20px; */
+        /* display: flex; */
+    }
+}

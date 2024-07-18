@@ -12,7 +12,7 @@ class friendRepository extends AbstractRepository {
   async create(friend) {
     // Execute the SQL INSERT query to add a new friend to the "friend" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (name) values (?)`,
+      `INSERT into ${this.table} (name) VALUES (?)`,
       [friend.name]
     );
 
@@ -25,7 +25,7 @@ class friendRepository extends AbstractRepository {
   async read(id) {
     // Execute the SQL SELECT query to retrieve a specific friend by its ID
     const [rows] = await this.database.query(
-      `select * from ${this.table} where id = ?`,
+      `SELECT * FROM ${this.table} WHERE id = ?`,
       [id]
     );
 
@@ -34,21 +34,29 @@ class friendRepository extends AbstractRepository {
   }
 
   async readAll() {
-    // Execute the SQL SELECT query to retrieve all friends from the "friend" table
-    const [rows] = await this.database.query(`select * from ${this.table}`);
+    // Execute the SQL SELECT query to retrieve all friends FROM the "friend" table
+    const [rows] = await this.database.query(`SELECT * FROM ${this.table}`);
 
     // Return the array of friends
     return rows;
   }
 
   async readMonth() {
-    // Execute the SQL SELECT query to retrieve all friends from the "friend" table
-    const [rows] = await this.database.query(`select * from ${this.table} WHERE MONTH(birthday) = MONTH(CURDATE()) ORDER BY birthday` );
+    // Execute the SQL SELECT query to retrieve all friends FROM the "friend" table
+    const [rows] = await this.database.query(`SELECT id, firstname, lastname, YEAR(CURDATE()) - YEAR(birthday) AS age_this_year, CASE DAYOFWEEK(DATE_FORMAT(birthday, CONCAT(YEAR(CURDATE()), '-%m-%d')))
+    WHEN 1 THEN 'Dimanche'
+    WHEN 2 THEN 'Lundi'
+    WHEN 3 THEN 'Mardi'
+    WHEN 4 THEN 'Mercredi'
+    WHEN 5 THEN 'Jeudi'
+    WHEN 6 THEN 'Vendredi'
+    WHEN 7 THEN 'Samedi'
+  END AS birth_day_of_week_this_year, DAY(birthday) AS birth_day FROM ${this.table} WHERE MONTH(birthday) = MONTH(CURDATE()) ORDER BY birthday`);
+    // const [rows] = await this.database.query(`SELECT * FROM ${this.table} WHERE MONTH(birthday) = MONTH(CURDATE()) ORDER BY birthday` );
 
-    // Return the array of friends
+    // Return the array of friendss
     return rows;
   }
-
 
   // The U of CRUD - Update operation
   // TODO: Implement the update operation to modify an existing friend
