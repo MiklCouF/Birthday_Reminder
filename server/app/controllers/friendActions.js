@@ -64,9 +64,10 @@ const add = async (req, res, next) => {
     // Respond with HTTP 201 (Created) and the ID of the newly inserted item
     res.status(201).json({ insertId });
   } catch (err) {
-    // Pass any errors to the error-handling middleware
-    next(err);
-  }
+    res.status(405).send({
+      msg: "Erreur, le proche n'a pas était enregistrée dans la base de données"
+  })
+}
 };
 
 // The D of BREAD - Destroy (Delete) operation

@@ -12,7 +12,7 @@ function Body({ changePage, month }) {
     <div className="Full-body">
       <AddData />
       <MonthBirthday month={month} />
-      <Calendar />
+      {/* <Calendar /> */}
     </div>
   ) : (
     <div className="Full-body">

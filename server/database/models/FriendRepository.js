@@ -10,15 +10,23 @@ class friendRepository extends AbstractRepository {
   // The C of CRUD - Create operation
 
   async create(friend) {
-    // Execute the SQL INSERT query to add a new friend to the "friend" table
-    const [result] = await this.database.query(
-      `INSERT into ${this.table} (name) VALUES (?)`,
-      [friend.name]
-    );
 
-    // Return the ID of the newly inserted friend
-    return result.insertId;
-  }
+      // Ensure the friend object has the required properties
+      if (!friend.firstname || !friend.lastname || !friend.birthday) {
+        throw new Error("Friend object is missing required properties");
+      }
+    
+      // Use parameterized query to prevent SQL injection
+      const query = `INSERT INTO ${this.table} (firstname, lastname, birthday) VALUES (?, ?, ?)`;
+      const values = [friend.firstname, friend.lastname, friend.birthday];
+    
+      // Execute the SQL INSERT query to add a new friend to the "friend" table
+      const [result] = await this.database.query(query, values);
+    
+          // Return the ID of the newly inserted friend
+
+      return result.insertId;
+    }
 
   // The Rs of CRUD - Read operations
 
@@ -51,7 +59,7 @@ class friendRepository extends AbstractRepository {
     WHEN 5 THEN 'Jeudi'
     WHEN 6 THEN 'Vendredi'
     WHEN 7 THEN 'Samedi'
-  END AS birth_day_of_week_this_year, DAY(birthday) AS birth_day FROM ${this.table} WHERE MONTH(birthday) = MONTH(CURDATE()) ORDER BY birthday`);
+  END AS birth_day_of_week_this_year, DAY(birthday) AS birth_day FROM ${this.table} WHERE MONTH(birthday) = MONTH(CURDATE()) ORDER BY birth_day`);
     // const [rows] = await this.database.query(`SELECT * FROM ${this.table} WHERE MONTH(birthday) = MONTH(CURDATE()) ORDER BY birthday` );
 
     // Return the array of friendss
