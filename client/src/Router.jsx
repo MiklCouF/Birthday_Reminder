@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-import Body from "./pages/Body";
+import User from "./pages/User";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 
@@ -9,57 +9,20 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <Login />,
+    errorElement: <h1>404 Not Found</h1>,
     children: [
       {
-        path: "welcome",
-        element: <Body />,
+        path: "",
+        element: <Login />,
       },
       {
-        path: "login",
-        element: <ConnexionPage />,
+        path: "user",
+        element: <User />,
       },
       {
         path: "register",
         element: <Register />,
       },
-
-      // {
-      //   path: "cgu",
-      //   element: <CguPage />,
-      // },
-      // {
-      //   path: "home",
-      //   element: <HomePage />,
-      // },
-      // {
-      //   path: "search",
-      //   element: <SearchPage />,
-      // },
-      // {
-      //   path: "favorites",
-      //   element: <FavoritesPage />,
-      // },
-      // {
-      //   path: "creation-recipe",
-      //   element: <RecipeCreationPage />,
-      // },
-      // {
-      //   path: "profile",
-      //   element: <ProfilePage />,
-      // },
-      // {
-      //   path: "set-profile",
-      //   element: <SetProfilePage />,
-      // },
-      // {
-      //   path: "recipe/:id",
-      //   element: <RecipePage />,
-      // },
-      // {
-      //   path: "admin",
-      //   element: <AdminPage />,
-      // },
     ],
   },
 ]);
