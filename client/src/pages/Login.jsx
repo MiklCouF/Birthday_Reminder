@@ -1,6 +1,6 @@
 function login() {
   return (
-    <>
+    <body>
       <h2>Connexion</h2>
       <div className="card-core">
         <p>Courriel</p>
@@ -30,7 +30,7 @@ function login() {
       </div>
       <p>Pas encore de compte ? S'inscrire</p>
       {/* <a>Pas encore de compte ? S'inscrire</a> */}
-    </>
+    </body>
   );
 }
 

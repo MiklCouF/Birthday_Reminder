@@ -1,65 +1,65 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-import WelcomePage from "./pages/WelcomePage";
-import ErrorPage from "./pages/ErrorPage";
-import RegisterPage from "./pages/RegisterPage";
+import Body from "./pages/Body";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <ErrorPage />,
+    errorElement: <Login />,
     children: [
       {
         path: "welcome",
-        element: <WelcomePage />,
+        element: <Body />,
       },
       {
-        path: "connexion",
+        path: "login",
         element: <ConnexionPage />,
       },
       {
         path: "register",
-        element: <RegisterPage />,
+        element: <Register />,
       },
 
-      {
-        path: "cgu",
-        element: <CguPage />,
-      },
-      {
-        path: "home",
-        element: <HomePage />,
-      },
-      {
-        path: "search",
-        element: <SearchPage />,
-      },
-      {
-        path: "favorites",
-        element: <FavoritesPage />,
-      },
-      {
-        path: "creation-recipe",
-        element: <RecipeCreationPage />,
-      },
-      {
-        path: "profile",
-        element: <ProfilePage />,
-      },
-      {
-        path: "set-profile",
-        element: <SetProfilePage />,
-      },
-      {
-        path: "recipe/:id",
-        element: <RecipePage />,
-      },
-      {
-        path: "admin",
-        element: <AdminPage />,
-      },
+      // {
+      //   path: "cgu",
+      //   element: <CguPage />,
+      // },
+      // {
+      //   path: "home",
+      //   element: <HomePage />,
+      // },
+      // {
+      //   path: "search",
+      //   element: <SearchPage />,
+      // },
+      // {
+      //   path: "favorites",
+      //   element: <FavoritesPage />,
+      // },
+      // {
+      //   path: "creation-recipe",
+      //   element: <RecipeCreationPage />,
+      // },
+      // {
+      //   path: "profile",
+      //   element: <ProfilePage />,
+      // },
+      // {
+      //   path: "set-profile",
+      //   element: <SetProfilePage />,
+      // },
+      // {
+      //   path: "recipe/:id",
+      //   element: <RecipePage />,
+      // },
+      // {
+      //   path: "admin",
+      //   element: <AdminPage />,
+      // },
     ],
   },
 ]);

@@ -1,6 +1,6 @@
 function Register() {
   return (
-    <>
+    <body>
       <h2>Inscription</h2>
       <div className="card-core">
         <p>Prénom:</p>
@@ -39,7 +39,7 @@ function Register() {
           value="S'inscrire"
         />
       </div>
-    </>
+    </body>
   );
 }
 
