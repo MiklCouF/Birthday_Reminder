@@ -29,16 +29,8 @@ const [monthBirthday, setMonthBirthday] = useState({data: []});
       el.birth_day
   ) : [];
 
-  // const formatDate = (dateString) => {
-  //   const date = new Date(dateString);
-  //   const day = String(date.getDate()).padStart(2, '0');
-  //   const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
-  //   const year = date.getFullYear();
-  //   return `${day}/${month}/${year}`;
-  // };
-
   return (
-    <div className="add-data-core">
+    <div className="add-data-core-user">
       <h2>{month}</h2>
 <div className="card-core">
   <table className="table-current-month">
@@ -52,7 +44,7 @@ const [monthBirthday, setMonthBirthday] = useState({data: []});
              <td>
                {el.age_this_year} ans,
           </td>
-          <td>
+          <td className="last-row-table">
            le {el.birth_day_of_week_this_year} {el.birth_day} {month}
           </td>
       </tr>
@@ -68,3 +60,14 @@ const [monthBirthday, setMonthBirthday] = useState({data: []});
 }
 
 export default MonthBirthday;
+
+
+{/* <tr>
+<td className="monthMap, last-row-table" key={el.id}>
+  {el.firstname} {el.lastname} 
+  </td>
+<td className="last-row-table">
+aura {el.age_this_year} ans,
+le {el.birth_day_of_week_this_year} {el.birth_day} {month}
+</td>
+</tr> */}

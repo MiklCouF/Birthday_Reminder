@@ -1,0 +1,47 @@
+header {
+    display: flex;
+    height: 12vh;
+    width: 100vw;
+    padding: 0 25px;
+    gap: 10px;
+    
+    align-items: center;
+    flex-direction: row;
+    overflow: hidden;
+    
+    color: var(--light-font-color);
+    justify-content: space-between;
+    
+    background-color: var(--gold-bg-color);
+    box-shadow: var(--gold-bg-color) 0 0px 10px 8px ;
+    position: sticky;
+  /* background-image: url("../assets/guirlande1.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 20px -50px; */
+  
+  & h2 {
+    text-align: center;
+    color: var(--blue-font-color);
+  }
+  
+  & h4 {
+    text-align: end;
+  }
+  }
+  
+  .img-fanion {
+    position: absolute;
+    display: flex;
+    left: 0;
+    top: 64px;
+  width: 100%;
+  }
+  
+  .logo-header {
+    padding: 15px;
+    height: 70px;
+    width: 70px;
+  }
+  
+  

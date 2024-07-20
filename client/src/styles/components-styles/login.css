@@ -18,18 +18,19 @@
   & input {
     margin: 10px;
   }
-}
-
-.connect {
-  margin-top: 1000px;
+  & a {
+    color: white; 
+  }
 }
 
 .card-core {
   background-color: var(--gold-bg-color);
   padding: 40px;
-  height: fit-content;
+  /* height: fit-content; */
+  /* height: 15px; */
   border-radius: 12px;
     align-items: center;
+    /* height: fit-content; */
 
   & input {
     flex-direction: row;

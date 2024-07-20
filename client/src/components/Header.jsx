@@ -1,11 +1,13 @@
+import { NavLink } from "react-router-dom";
 import logoHeader from "../assets/Logo_header.svg";
 import fanion from "../assets/guirlande4.png";
 
-function Header({ setchangePage, setMonth }) {
+function Header() {
+// function Header({ setchangePage, setMonth }) {
 
-  const changeLoginScreen = () => {
-    setchangePage((prevPage) => (prevPage === "page1" ? "page2" : "page1"));
-  };
+  // const changeLoginScreen = () => {
+    // setchangePage((prevPage) => (prevPage === "page1" ? "page2" : "page1"));
+  // };
 
   const today = new Date();
   const daysOfWeek = [
@@ -34,19 +36,21 @@ function Header({ setchangePage, setMonth }) {
   const dayOfWeek = daysOfWeek[today.getDay()];
   const day = today.getDate();
   const currentMonth = monthsOfYear[today.getMonth()];
-  setMonth(currentMonth);
+  // setMonth(currentMonth);
   return (
     <>
     <header>
+    <NavLink to="/" className="url">
       <img
         src={logoHeader}
         alt="Gateau d'anniversaire"
         className="logo-header"
-      />
-      <h1>{`${dayOfWeek} ${day} ${currentMonth}`}</h1>
-      <button type="button" onClick={changeLoginScreen}>
-        <h2 className="tempo">Visiter</h2>
-      </button>
+        />
+        </NavLink>
+      <h2>{`${dayOfWeek} ${day} ${currentMonth}`}</h2>
+      <NavLink to="/user" className="url">
+         <h2>Visiter</h2>
+        </NavLink>
     </header>
       <img className="img-fanion" src={fanion} />
     </>

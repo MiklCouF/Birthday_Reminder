@@ -1,64 +1,27 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-import WelcomePage from "./pages/WelcomePage";
-import ErrorPage from "./pages/ErrorPage";
-import RegisterPage from "./pages/RegisterPage";
+import User from "./pages/User";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <ErrorPage />,
+    errorElement: <div className="quatre-cent-quatre"><h1>404 Not Found</h1></div>,
     children: [
       {
-        path: "welcome",
-        element: <WelcomePage />,
+        path: "",
+        element: <Login />,
       },
       {
-        path: "connexion",
-        element: <ConnexionPage />,
+        path: "user",
+        element: <User />,
       },
       {
         path: "register",
-        element: <RegisterPage />,
-      },
-
-      {
-        path: "cgu",
-        element: <CguPage />,
-      },
-      {
-        path: "home",
-        element: <HomePage />,
-      },
-      {
-        path: "search",
-        element: <SearchPage />,
-      },
-      {
-        path: "favorites",
-        element: <FavoritesPage />,
-      },
-      {
-        path: "creation-recipe",
-        element: <RecipeCreationPage />,
-      },
-      {
-        path: "profile",
-        element: <ProfilePage />,
-      },
-      {
-        path: "set-profile",
-        element: <SetProfilePage />,
-      },
-      {
-        path: "recipe/:id",
-        element: <RecipePage />,
-      },
-      {
-        path: "admin",
-        element: <AdminPage />,
+        element: <Register />,
       },
     ],
   },

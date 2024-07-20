@@ -1,0 +1,16 @@
+  main {
+    margin: 0;
+    background-color: var(--blue-bg-color);
+    color: var(--blue-font-color);
+    display: flex;
+    height: 88vh;
+    /* height: 100%; */
+    align-items: center;
+    justify-content: space-evenly;
+  
+    & h6 {
+      padding: 0%;
+      margin: 0%;
+    }
+  }
+  

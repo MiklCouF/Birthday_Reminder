@@ -1,14 +1,18 @@
+import { NavLink } from "react-router-dom";
+
+
 function login() {
   return (
-    <>
-      <h2>Connexion</h2>
+    <main>
+      <div className="add-data-core">
+      <h4>Connexion</h4>
       <div className="card-core">
         <p>Courriel</p>
         <input
           type="text"
           id="username"
           name="username"
-          placeholder="Utilisateur"
+          placeholder="adresse@courriel.com"
         />
 
         <p>Mot de passe </p>
@@ -28,9 +32,16 @@ function login() {
           value="Se connecter"
         />
       </div>
-      <p>Pas encore de compte ? S'inscrire</p>
-      {/* <a>Pas encore de compte ? S'inscrire</a> */}
-    </>
+      <p>
+            Tu n’as pas de compte ?{" "}
+            <br/>
+            <br/>
+            <NavLink to="/register" className="url">
+              Inscris-toi
+            </NavLink>
+            </p>
+            </div>
+    </main>
   );
 }
 
