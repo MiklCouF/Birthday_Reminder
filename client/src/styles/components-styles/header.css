@@ -8,6 +8,7 @@ header {
     background-color: var(--gold-bg-color);
     padding: 0 25px;
     box-shadow: var(--gold-bg-color) 0 0px 10px 8px ;
+    color: var(--light-font-color);
     
   /* background-image: url("../assets/guirlande1.png");
   background-repeat: no-repeat;

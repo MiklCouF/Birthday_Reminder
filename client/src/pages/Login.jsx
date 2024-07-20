@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 function login() {
   return (
     <main>
+      <div className="add-data-core">
       <h2>Connexion</h2>
       <div className="card-core">
         <p>Courriel</p>
@@ -11,7 +12,7 @@ function login() {
           type="text"
           id="username"
           name="username"
-          placeholder="Utilisateur"
+          placeholder="adresse@courriel.com"
         />
 
         <p>Mot de passe </p>
@@ -33,10 +34,13 @@ function login() {
       </div>
       <p>
             Tu n’as pas de compte ?{" "}
+            <br/>
+            <br/>
             <NavLink to="/register" className="url">
               Inscris-toi
             </NavLink>
             </p>
+            </div>
     </main>
   );
 }

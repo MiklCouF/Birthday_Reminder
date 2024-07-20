@@ -38,13 +38,13 @@ function Register() {
           id="subscribe"
           value="S'inscrire"
         />
-      </div>
       <p>
         Tu as déjà un compte ?{" "}
         <NavLink to="/connexion" className="url">
           Connecte-toi
         </NavLink>
         </p>
+      </div>
     </main>
   );
 }
