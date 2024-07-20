@@ -1,6 +1,10 @@
+import { NavLink } from "react-router-dom";
+
+
 function Register() {
   return (
     <main>
+            <div className="add-data-core">
       <h2>Inscription</h2>
       <div className="card-core">
         <p>Prénom:</p>
@@ -38,9 +42,12 @@ function Register() {
           id="subscribe"
           value="S'inscrire"
         />
+      </div>
       <p>
         Tu as déjà un compte ?{" "}
-        <NavLink to="/connexion" className="url">
+        <br />
+        <br />
+        <NavLink to="/" className="url">
           Connecte-toi
         </NavLink>
         </p>

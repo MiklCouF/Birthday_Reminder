@@ -3,6 +3,7 @@
 @import "./components-styles/calendar.css";
 @import "./components-styles/header.css";
 @import "./pages-styles/body.css";
+@import "./pages-styles/user.css";
 @import "./app.css";
 
 
@@ -17,7 +18,7 @@
   --blue-font-color:  #146B96;
 
   --first-font: Inter;
-
+font-family: var(--first-font);
   /* --font-size-h1: 24px;
   --font-size-h2: 20px;
   --font-size-h3: 16px;
@@ -26,6 +27,9 @@
   /* Element color */
   --blue-bg-color: #146B96;
   --gold-bg-color: #BBA637;
+
+  /* Remplacer par Vert Pastel et Blanc créme? */
+  /* --gold-bg-color: #3cb371; */
 }
 
 * {

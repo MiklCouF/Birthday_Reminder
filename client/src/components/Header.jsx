@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import logoHeader from "../assets/Logo_header.svg";
 import fanion from "../assets/guirlande4.png";
 
@@ -39,13 +40,17 @@ function Header() {
   return (
     <>
     <header>
+    <NavLink to="/" className="url">
       <img
         src={logoHeader}
         alt="Gateau d'anniversaire"
         className="logo-header"
-      />
-      <h1>{`${dayOfWeek} ${day} ${currentMonth}`}</h1>
-        <h2>Visiter</h2>
+        />
+        </NavLink>
+      <h2>{`${dayOfWeek} ${day} ${currentMonth}`}</h2>
+      <NavLink to="/user" className="url">
+         <h2>Visiter</h2>
+        </NavLink>
     </header>
       <img className="img-fanion" src={fanion} />
     </>

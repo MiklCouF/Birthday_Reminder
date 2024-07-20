@@ -5,7 +5,7 @@ function login() {
   return (
     <main>
       <div className="add-data-core">
-      <h2>Connexion</h2>
+      <h4>Connexion</h4>
       <div className="card-core">
         <p>Courriel</p>
         <input

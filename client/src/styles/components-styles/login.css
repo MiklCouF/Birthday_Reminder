@@ -23,10 +23,6 @@
   }
 }
 
-.connect {
-  /* margin-top: 1000px; */
-}
-
 .card-core {
   background-color: var(--gold-bg-color);
   padding: 40px;

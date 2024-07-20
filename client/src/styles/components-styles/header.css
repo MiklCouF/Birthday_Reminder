@@ -1,15 +1,20 @@
 header {
     display: flex;
     height: 12vh;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    flex-direction: row;
-    background-color: var(--gold-bg-color);
+    width: 100vw;
     padding: 0 25px;
-    box-shadow: var(--gold-bg-color) 0 0px 10px 8px ;
-    color: var(--light-font-color);
+    gap: 10px;
     
+    align-items: center;
+    flex-direction: row;
+    overflow: hidden;
+    
+    color: var(--light-font-color);
+    justify-content: space-between;
+    
+    background-color: var(--gold-bg-color);
+    box-shadow: var(--gold-bg-color) 0 0px 10px 8px ;
+    position: sticky;
   /* background-image: url("../assets/guirlande1.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -29,7 +34,8 @@ header {
     position: absolute;
     display: flex;
     left: 0;
-    top: 65px;
+    top: 64px;
+  width: 100%;
   }
   
   .logo-header {
