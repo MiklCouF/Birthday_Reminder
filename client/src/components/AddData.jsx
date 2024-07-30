@@ -30,7 +30,7 @@ function AddData() {
   return (
 
 <div className="add-data-core">
-<p>Ajouter un la date d'anniversaire d'un proche</p>
+<p>Ajouter la date d'anniversaire d'un proche</p>
 <div className="card-core">
 <form onSubmit={handleSubmit}>
   <p>Prénom:</p>

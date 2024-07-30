@@ -1,8 +1,9 @@
+import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import logoHeader from "../assets/Logo_header.svg";
 import fanion from "../assets/guirlande4.png";
 
-function Header() {
+function Header({ setMonth }) {
 // function Header({ setchangePage, setMonth }) {
 
   // const changeLoginScreen = () => {
@@ -36,7 +37,11 @@ function Header() {
   const dayOfWeek = daysOfWeek[today.getDay()];
   const day = today.getDate();
   const currentMonth = monthsOfYear[today.getMonth()];
-  // setMonth(currentMonth);
+  
+ useEffect(() => {
+  setMonth(currentMonth);
+}, [currentMonth, setMonth]);
+
   return (
     <>
     <header>

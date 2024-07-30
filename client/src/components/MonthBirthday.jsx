@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import { useOutletContext } from "react-router-dom";
 
-function MonthBirthday({ month }) {
+function MonthBirthday() {
+
+const { month } = useOutletContext();
 const [monthBirthday, setMonthBirthday] = useState({data: []});
 
-  useEffect(() => {
+useEffect(() => {
      fetch(`${import.meta.env.VITE_API_URL}/api/friend/month`)
       .then((response) => response.json())
       .then((data) => {
