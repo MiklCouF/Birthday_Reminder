@@ -34,7 +34,7 @@ useEffect(() => {
 
   return (
     <div className="add-data-core-user">
-      <h2>{month}</h2>
+      <h2>{month.charAt(0).toUpperCase() + month.slice(1)}</h2>
 <div className="card-core">
   <table className="table-current-month">
       {monthBirthdayReady.length > 0 ? (
