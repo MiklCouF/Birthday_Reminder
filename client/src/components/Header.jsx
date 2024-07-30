@@ -4,11 +4,6 @@ import logoHeader from "../assets/Logo_header.svg";
 import fanion from "../assets/guirlande4.png";
 
 function Header({ setMonth }) {
-// function Header({ setchangePage, setMonth }) {
-
-  // const changeLoginScreen = () => {
-    // setchangePage((prevPage) => (prevPage === "page1" ? "page2" : "page1"));
-  // };
 
   const today = new Date();
   const daysOfWeek = [

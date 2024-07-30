@@ -12,3 +12,7 @@
         /* display: flex; */
     }
 }
+
+.current-month-props {
+    padding-bottom: 10px;
+}
