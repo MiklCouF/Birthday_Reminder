@@ -7,9 +7,6 @@
     text-align: left;
     & tr {
         text-align: left;
-        /* gap: 15px; */
-        /* padding: 20px; */
-        /* display: flex; */
     }
 }
 

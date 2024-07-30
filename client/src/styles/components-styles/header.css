@@ -15,10 +15,6 @@ header {
     background-color: var(--gold-bg-color);
     box-shadow: var(--gold-bg-color) 0 0px 10px 8px ;
     position: sticky;
-  /* background-image: url("../assets/guirlande1.png");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: 20px -50px; */
   
   & h2 {
     text-align: center;
@@ -44,4 +40,25 @@ header {
     width: 70px;
   }
   
-  
+  @media (max-width: 600px) {
+
+    header {
+      display: flex;
+      width: 100vw;
+      height: 60px;
+      padding: 0%;
+padding-right: 15px;
+      /* align-items: center; */
+      /* flex-direction: row; */
+      overflow: hidden;
+      /* justify-content: space-between; */
+      box-shadow: var(--gold-bg-color) 0 0px 10px 8px ;
+      & h2 {
+       font-size: 1rem;
+      }
+    }
+    .img-fanion {
+      top: 58px;
+width: 100%;
+    }
+  }
