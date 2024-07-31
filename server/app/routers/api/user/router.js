@@ -7,7 +7,7 @@ const router = express.Router();
 /* ************************************************************************* */
 
 // Import user-related actions
-const { read, add } = require("../../../controllers/userActions");
+const { read, add, edit } = require("../../../controllers/userActions");
 const { credentialsValidation } = require("../../../services/credentialValidation");
 const { hashPassword } = require("../../../controllers/authActions");
 
