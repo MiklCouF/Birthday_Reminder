@@ -12,6 +12,11 @@ const userRouter = require("./user/router");
 
 router.use("/user", userRouter);
 
+const { login } = require("../../controllers/authActions")
+const { credentialsValidation } = require("../../services/credentialValidation");
+
+router.post("/login", credentialsValidation, login);
+
 const friendRouter = require("./friend/router");
 
 router.use("/friend", friendRouter);

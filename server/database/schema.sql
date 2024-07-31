@@ -1,8 +1,8 @@
 create table user (
     id int primary key auto_increment NOT NULL,
-    pseudo varchar(55) NOT NULL UNIQUE,
+    pseudo varchar(55) NOT NULL,
     email varchar(80) NOT NULL UNIQUE,
-    password varchar(50) NOT NULL
+    password varchar(80) NOT NULL
 );
 
 create table friend (
