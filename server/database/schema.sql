@@ -1,6 +1,6 @@
 create table user (
     id int primary key auto_increment NOT NULL,
-    pseudo varchar(55) NOT NULL,
+    firstname varchar(55) NOT NULL,
     email varchar(80) NOT NULL UNIQUE,
     password varchar(80) NOT NULL
 );
@@ -14,7 +14,7 @@ create table friend (
 
 -- table user
 INSERT INTO
-    user (pseudo, email, password)
+    user (firstname, email, password)
 VALUES (
         'Alice',
         'test@example.com',

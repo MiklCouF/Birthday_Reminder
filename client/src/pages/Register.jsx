@@ -18,7 +18,7 @@ function Register() {
         <p>Courriel</p>
         <input
           type="email"
-          id="username"
+          id="email"
           name="email"
           placeholder="dupond@exemple.fr"
         />
