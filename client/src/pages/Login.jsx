@@ -33,11 +33,11 @@ function login() {
         />
       </div>
       <p>
-            Tu n’as pas de compte ?{" "}
+            Vous n'avez pas de compte ?{" "}
             <br/>
             <br/>
             <NavLink to="/register" className="url">
-              Inscris-toi
+              S'inscrire
             </NavLink>
             </p>
             </div>

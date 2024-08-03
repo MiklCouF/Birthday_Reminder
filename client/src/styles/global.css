@@ -4,6 +4,7 @@
 @import "./components-styles/header.css";
 @import "./pages-styles/body.css";
 @import "./pages-styles/user.css";
+@import "./components-styles/user-form.css";
 @import "./app.css";
 
 

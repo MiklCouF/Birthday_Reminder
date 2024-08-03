@@ -60,12 +60,16 @@ const add = async (req, res, next) => {
   const user = req.body;
 
   try {
+
     // Insert the item into the database
     const insertId = await tables.user.create(user);
-
+    
     // Respond with HTTP 201 (Created) and the ID of the newly inserted item
     res.status(201).json({ insertId });
+    console.log('%c⧭', 'color: #807160', "try dans add de userActions");
   } catch (err) {
+
+    console.log('%c⧭', 'color: #007300', "erreur dans add de userAction");
     // Pass any errors to the error-handling middleware
     next(err);
   }

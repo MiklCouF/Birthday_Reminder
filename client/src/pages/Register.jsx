@@ -3,7 +3,6 @@ import { useRef, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 function Register() {
   const passwordRef = useRef();
   const passwordConfirmationRef = useRef();
@@ -11,15 +10,16 @@ function Register() {
   const navigate = useNavigate();
   const [ErrorForm, setErrorForm] = useState("");
   const [ErrorFormNone, setErrorFormNone] = useState(
-    "error-form-register-none"
+    "error-form-register-none",
   );
 
   function handleSubmit(event) {
     event.preventDefault();
     const password1 = passwordRef.current.value;
-    const password2 = passwordConfirmationRef.current.value;
+    //  const password2 = passwordConfirmationRef.current.value;
 
-    if (password1 === password2 && cguChecked) {
+    // if (password1 === password2 && cguChecked) {
+    if (password1) {
       const formData = new FormData(event.target);
       const data = Object.fromEntries(formData);
 
@@ -31,18 +31,16 @@ function Register() {
         body: JSON.stringify(data),
       }).then((res) => {
         if (res.ok) {
-          toast.success(
-            "Création de compte réussie"
-          );
+          toast.success("Création de compte réussie");
           setTimeout(() => {
-            navigate("/connexion");
+            navigate("/user");
           }, 4000);
         }
       });
     } else {
       setErrorFormNone("error-form-register");
       setErrorForm(
-        "Les deux mots de passe ne sont pas identiques ou les CGU ne sont pas cochées"
+        "Les deux mots de passe ne sont pas identiques ou les CGU ne sont pas cochées",
       );
     }
   }
@@ -50,82 +48,86 @@ function Register() {
   return (
     <main>
       <div className="add-data-core">
-      <h2>Inscription</h2>
+        <h2>Inscription</h2>
 
-      <form onSubmit={handleSubmit}>
-      <div className="card-core">
-        <p>Prénom:</p>
-        <input
-          type="text"
-          id="firstname"
-          name="firstname"
-          placeholder="Martin"
-        />
+        <form onSubmit={handleSubmit}>
+          <div className="card-core">
+            <p>Prénom:</p>
+            <input
+              type="text"
+              id="firstname"
+              name="firstname"
+              placeholder="Martin"
+              required
+            />
 
-        <p>Courriel</p>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="dupond@exemple.fr"
-        />
+            <p>Courriel</p>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="dupond@exemple.fr"
+              required
+            />
 
-        <p>Date de naissance</p>
-        <input type="date" id="dateSubscribe" name="dateSubscribe" />
+            <p>Date de naissance</p>
+            <input type="date" id="dateSubscribe" name="dateSubscribe" />
+            <br />
+            <label for="password">Mot de passe :</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}"
+              title="Le mot de passe doit contenir au moins 8 caractères, dont au moins une majuscule, une minuscule, un chiffre et un caractère spécial."
+              required
+              ref={passwordRef}
+            />
+            <br />
 
-        <p>Mot de passe </p>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Mot de passe"
-          aria-label="Mot de passe"
-          pattern="^(?=.?[A-Z])(?=.?[a-z])(?=.?[0-9])(?=.?[#?!@$%^&*-]).{8,}$"
-          required
-          ref={passwordRef}
-        />
-                <p>Confirmation mot de passe </p>
-          <input
-            type="password"
-            id="register-password-confirmation"
-            placeholder="Confirmation mot de passe"
-            aria-label="Confirmation mot de passe"
-            required
-            ref={passwordConfirmationRef}
-          />
-        <p className={ErrorFormNone}>{ErrorForm}</p>
-        <div className="cgu-container">
-          <input
-            type="checkbox"
-            id="cgu"
-            value="cgu"
-            checked={cguChecked}
-            onChange={(item) => setCguChecked(item.target.checked)}
-          />
-          <label htmlFor="cgu">
-            J'accepte les{" "}
-            <NavLink to="/cgu" className="cgu-link">
-              Conditions Générales d'Utilisation
-            </NavLink>{" "}
-            <br/>
-            et reconnais avoir été informé 
-            <br/>
-            que mes données personnelles seront
-            utilisées.
-          </label>
-        </div>
-        <button type="submit" value="Inscription">
-          Inscription
-        </button>
-      </div>
-      </form>
-      <p>
-        Tu as déjà un compte ?{" "}
-        <br />
-        <br />
-        <NavLink to="/" className="url">
-          Connecte-toi
-        </NavLink>
+            <label for="register-password-confirmation">
+              Confirmation mot de passe :
+            </label>
+            <input
+              type="password"
+              id="register-password-confirmation"
+              placeholder="Confirmation mot de passe"
+              required
+              ref={passwordConfirmationRef}
+            />
+
+            <p className={ErrorFormNone}>{ErrorForm}</p>
+            <div className="cgu-container">
+              <input
+                type="checkbox"
+                id="cgu"
+                value="cgu"
+                checked={cguChecked}
+                onChange={(item) => setCguChecked(item.target.checked)}
+              />
+              <label htmlFor="cgu">
+                J'accepte les{" "}
+                <NavLink to="/cgu" className="cgu-link">
+                  Conditions Générales d'Utilisation
+                </NavLink>{" "}
+                <br />
+                et reconnais avoir été informé
+                <br />
+                que mes données personnelles seront utilisées.
+              </label>
+            </div>
+            <button type="submit" value="Inscription">
+              Inscription
+            </button>
+          </div>
+        </form>
+        <p>
+          Avez-vous déjà un compte ?
+          <br />
+          <br />
+          <NavLink to="/" className="url">
+            Se connecter
+          </NavLink>
         </p>
       </div>
       <ToastContainer position="bottom-right" />

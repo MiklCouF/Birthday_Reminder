@@ -13,10 +13,14 @@ const hashPassword = (req, res, next) => {
   argon2
     .hash(req.body.password, hashingOptions)
     .then((hashedPassword) => {
+
+      console.log('%c⧭', 'color: #731d1d', "authAction, HashPassword argon");
       req.body.password = hashedPassword;
       next();
     })
     .catch((err) => {
+      
+      console.log('%c⧭', 'color: #b90a04', "ici c'est erreur de hashPassword");
       console.error(err.message);
       res.sendStatus(500);
     });
