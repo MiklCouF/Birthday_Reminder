@@ -52,7 +52,8 @@ function Register() {
 
         <form onSubmit={handleSubmit}>
           <div className="card-core">
-            <p>Prénom:</p>
+            <span>
+            <label htmlFor="firstname">Prénom:</label>
             <input
               type="text"
               id="firstname"
@@ -60,8 +61,9 @@ function Register() {
               placeholder="Martin"
               required
             />
-
-            <p>Courriel</p>
+</span>
+<span>
+            <label htmlFor="email">Courriel</label>
             <input
               type="email"
               id="email"
@@ -69,11 +71,13 @@ function Register() {
               placeholder="dupond@exemple.fr"
               required
             />
-
-            <p>Date de naissance</p>
+</span>
+<span>
+            <label htmlFor="dateSubscribe">Date de naissance</label>
             <input type="date" id="dateSubscribe" name="dateSubscribe" />
-            <br />
-            <label for="password">Mot de passe :</label>
+            </span>
+            <span>
+            <label htmlFor="password">Mot de passe :</label>
             <input
               type="password"
               id="password"
@@ -83,9 +87,10 @@ function Register() {
               required
               ref={passwordRef}
             />
-            <br />
-
-            <label for="register-password-confirmation">
+</span>
+<span>
+  
+            <label htmlFor="register-password-confirmation">
               Confirmation mot de passe :
             </label>
             <input
@@ -95,7 +100,8 @@ function Register() {
               required
               ref={passwordConfirmationRef}
             />
-
+</span>
+  
             <p className={ErrorFormNone}>{ErrorForm}</p>
             <div className="cgu-container">
               <input
@@ -105,6 +111,7 @@ function Register() {
                 checked={cguChecked}
                 onChange={(item) => setCguChecked(item.target.checked)}
               />
+             
               <label htmlFor="cgu">
                 J'accepte les{" "}
                 <NavLink to="/cgu" className="cgu-link">
@@ -116,6 +123,7 @@ function Register() {
                 que mes données personnelles seront utilisées.
               </label>
             </div>
+            
             <button type="submit" value="Inscription">
               Inscription
             </button>

@@ -1,5 +1,3 @@
-
-
 .add-data-core {
   /* width: 400px; */
   /* height: fit-content; */
@@ -23,19 +21,29 @@
   }
 }
 
+form {
+  justify-content: first baseline;
+  
+}
+
 .card-core {
   background-color: var(--gold-bg-color);
+  display: flex;
+  flex-direction: column;
   padding: 40px;
   /* height: fit-content; */
-  /* height: 15px; */
   border-radius: 12px;
-    align-items: center;
-    /* height: fit-content; */
+  align-items: center;
 
   & input {
-    flex-direction: row;
+    /* flex-direction: row; */
     /* background-color: black; */
-    
+    padding-bottom: 3px;
+    margin-bottom: 30px;
   }
 }
 
+.align-label-input {
+  display: flex;
+  flex-direction: row;
+}

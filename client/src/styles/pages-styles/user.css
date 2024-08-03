@@ -12,6 +12,10 @@
     align-items: center;
     box-shadow: rgba(255, 255, 255, 0.889) 0px 1px 14px;
     
+    /* To change with justify-content space-evenly , in css > main, for only page user. */
+    margin-left: 100px;
+    /* end of the tempo fix */
+    
     & input {
       margin: 10px;
     }
