@@ -1,3 +1,11 @@
+.main-user {
+  flex-direction: column;
+}
+
+.component-user-page {
+  display: flex;
+  flex-direction: row;
+}
 
 .add-data-core-user {
     color: aliceblue;

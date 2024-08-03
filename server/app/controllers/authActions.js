@@ -66,25 +66,14 @@ const login = async (req, res, next) => {
     delete user.password;
 
     if (token)
-      res.status(200).send({
-        token,
-        user: {
-          id: user.id,
-          firstname: user.firstname,
-          email: user.email,
-        },
-      });
+      res.cookie('authtoken', token, {
+        httpOnly: true, // Accès uniquement par le back-end, pas par le JavaScript du navigateur
+        secure: false,   // true pour utiliser uniquement sur HTTPS
+        sameSite: 'strict', // Empêche l'envoi du cookie via des requêtes cross-site
+        maxAge: 24 * 60 * 60 * 1000 // Durée de vie du cookie (24h)
+    });
+    res.status(200).send('Cookie set');
 
-    // else throw new Error("Token not created");
-
-    // COOKIE credentials
-    // const cookie = new Cookies(req, res)
-    //    cookie.set('token', token, {
-    //    httpOnly: true,
-    //    secure: false,
-    //    expires: new Date(Date.now() + 4 * 60 * 60 * 1000),
-    //  })
-    //   res.status(200).send({ user });
   } catch (err) {
     next(err);
   }
