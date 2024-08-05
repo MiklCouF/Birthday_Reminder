@@ -64,7 +64,10 @@ const login = async (req, res, next) => {
     );
 
     delete user.password;
+    const id = user.id; // ID de l'utilisateur
+const firstname = user.firstname; // Le prénom de l'utilisateur
 
+    // initialisation du cookie pour le token JWT
     if (token)
       res.cookie('authtoken', token, {
         httpOnly: true, // Accès uniquement par le back-end, pas par le JavaScript du navigateur
@@ -72,6 +75,23 @@ const login = async (req, res, next) => {
         sameSite: 'strict', // Empêche l'envoi du cookie via des requêtes cross-site
         maxAge: 24 * 60 * 60 * 1000 // Durée de vie du cookie (24h)
     });
+
+    // Configurer un cookie pour le id
+res.cookie('id', id, {
+  httpOnly: false, // Accès depuis le JavaScript du navigateur
+  secure: false,   // true pour utiliser uniquement sur HTTPS
+  sameSite: 'strict', // Empêche l'envoi du cookie via des requêtes cross-site
+  maxAge: 24 * 60 * 60 * 1000 // Durée de vie du cookie (24h)
+});
+
+// Configurer un cookie pour le firstname
+res.cookie('firstname', firstname, {
+  httpOnly: false, // Accès depuis le JavaScript du navigateur
+  secure: false,   // true pour utiliser uniquement sur HTTPS
+  sameSite: 'strict', // Empêche l'envoi du cookie via des requêtes cross-site
+  maxAge: 24 * 60 * 60 * 1000 // Durée de vie du cookie (24h)
+});
+
     res.status(200).send('Cookie set');
 
   } catch (err) {
