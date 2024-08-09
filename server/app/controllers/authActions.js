@@ -40,7 +40,7 @@ function generateToken(user) {
 };
 
 const verifyPassword = async (password, hashedPasswordDB) => {
-
+// get the password from the front login, and the hash password from the DB for verify with argon2
   console.log('%c⧭', 'color: #731d6d', "ici on vérifie le mot de passe avec celui hashe", hashedPasswordDB, password );
   console.log('%c⧭', 'color: #e57373', await argon2.verify(hashedPasswordDB, password));
   console.log('%c⧭', 'color: #ff0303', await argon2.hash(password, hashingOptions));
@@ -57,6 +57,7 @@ const verifyPassword = async (password, hashedPasswordDB) => {
   }
 };
 
+// Primary function for verify if the email exist and the compare password from the front submit and hashed password from database
 const login = async (req, res, next) => {
   const email = req.body.email;
 const password = req.body.password;

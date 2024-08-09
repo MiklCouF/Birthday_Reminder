@@ -33,6 +33,7 @@ class UserRepository extends AbstractRepository {
     return rows[0];
   }
 
+  // get user data, select by the email
   async getUser(email) {
 
     console.log('%c⧭', 'color: #00258c', "requete sql, email :", email);
