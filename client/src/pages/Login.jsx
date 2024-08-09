@@ -37,12 +37,15 @@ function login() {
   };
 
   const handleFetch = async (data) => {
+
+    console.log('%c⧭', 'color: #33cc99', "cote front login, submit data", data);
     const response = await fetch(`${import.meta.env.VITE_API_URL}/api/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
+      // credentials: 'include',
     });
 
     if (!response.ok) {

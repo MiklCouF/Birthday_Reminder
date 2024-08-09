@@ -29,6 +29,7 @@ function Register() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
+        // credentials: 'include',
       }).then((res) => {
         if (res.ok) {
           toast.success("Création de compte réussie");

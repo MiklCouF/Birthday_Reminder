@@ -17,10 +17,10 @@ const browse = async (req, res, next) => {
 // The R of BREAD - Read operation
 const read = async (req, res, next) => {
   try {
-    // Fetch a specific item from the database based on the provided ID
+    // Fetch a specific user from the database based on the provided ID
     const user = await tables.user.read(req.params.id);
 
-    // If the item is not found, respond with HTTP 404 (Not Found)
+    // If the user is not found, respond with HTTP 404 (Not Found)
     // Otherwise, respond with the item in JSON format
     if (user == null) {
       res.sendStatus(404);
@@ -32,6 +32,28 @@ const read = async (req, res, next) => {
     next(err);
   }
 };
+
+// Read for Login
+
+const readByEmail = async (req, res, next) => {
+  try {
+    // Fetch a specific user from the database based on the provided email
+    const user = await tables.user.read(req.params.email);
+
+    // If the user is not found, respond with HTTP 404 (Not Found)
+    // Otherwise, respond with next, for authAction to creat token
+    if (user == null) {
+      res.sendStatus(404);
+    } else {
+      next();
+    }
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
+
 
 // The E of BREAD - Edit (Update) operation
 const edit = async (req, res) => {
@@ -69,7 +91,7 @@ const add = async (req, res, next) => {
     console.log('%c⧭', 'color: #807160', "try dans add de userActions");
   } catch (err) {
 
-    console.log('%c⧭', 'color: #007300', "erreur dans add de userAction");
+    console.log('%c⧭', 'color: #007300', "erreur dans add de userAction", err);
     // Pass any errors to the error-handling middleware
     next(err);
   }
@@ -84,5 +106,6 @@ module.exports = {
   read,
   edit,
   add,
+  readByEmail,
   // destroy,
 };

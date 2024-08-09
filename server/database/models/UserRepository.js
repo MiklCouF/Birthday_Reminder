@@ -33,7 +33,25 @@ class UserRepository extends AbstractRepository {
     return rows[0];
   }
 
+  async getUser(email) {
 
+    console.log('%c⧭', 'color: #00258c', "requete sql, email :", email);
+    const [rows] = await this.database.query(
+      `select * from ${this.table} where email = ?`,
+      [email]
+    );
+  const user = {
+    id: rows[0].id,
+    firstname: rows[0].firstname,
+    email: rows[0].email,
+    hashedPasswordDB: rows[0].password,
+  }
+
+  console.log('%c⧭', 'color: #7f2200', "reonse sql user:", user);
+  return user;
+}
+
+  
   // The U of CRUD - Update operation
   // TODO: Implement the update operation to modify an existing User
 

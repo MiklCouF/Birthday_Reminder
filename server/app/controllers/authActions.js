@@ -26,47 +26,69 @@ const hashPassword = (req, res, next) => {
     });
 };
 
-const verifyPassword = async (password, hashedPassword) => {
+
+function generateToken(user) {
+  return jwt.sign(
+    {
+      id: user.id,
+      firstname: user.firstname,
+      email: user.email,
+    },
+    process.env.APP_SECRET,
+    { expiresIn: "24h" }
+  );
+};
+
+const verifyPassword = async (password, hashedPasswordDB) => {
+
+  console.log('%c⧭', 'color: #731d6d', "ici on vérifie le mot de passe avec celui hashe", hashedPasswordDB, password );
+  console.log('%c⧭', 'color: #e57373', await argon2.verify(hashedPasswordDB, password));
+  console.log('%c⧭', 'color: #ff0303', await argon2.hash(password, hashingOptions));
   try {
-    return await argon2.verify(hashedPassword, password);
+   const valid = await argon2.verify(hashedPasswordDB, password)
+
+   console.log('%c⧭', 'color: #1d3f73', "valid de argon2verify", valid );
+   return valid
   } catch (err) {
-    console.error(err);
+    console.error("error sur argon2verify", err);
+    
+    console.log('%c⧭', 'color: #bfffc8', "error sur argon2verify", err);
     return false;
   }
 };
 
 const login = async (req, res, next) => {
+  const email = req.body.email;
+const password = req.body.password;
+
+  console.log('%c⧭', 'color: #364cd9', "password body", password);
+  console.log('%c⧭', 'color: #408059', "bienvenu dans login server");
   try {
-    const user = await tables.user.readByEmail(req.body.email);
+    console.log('%c⧭', 'color: #735656', "on arrive dans login, body:", "email :", email);
+    const user = await tables.user.getUser(email);
 
+    console.log('%c⧭', 'color: #00ff88', "reponse du server, voici user:", user);
     if (!user) {
+      
+      console.log('%c⧭', 'color: #ffcc00', "pas de user ici :", user);
       res.sendStatus(401);
       return;
     }
-
-    const isPasswordVerified = await verifyPassword(
-      req.body.password,
-      user.password
-    );
+    const hashedPasswordDB = user.hashedPasswordDB;
+    const isPasswordVerified = await verifyPassword(password, user.hashedPasswordDB);
     if (!isPasswordVerified) {
+
+      console.log('%c⧭', 'color: #997326', "password pas bon :", isPasswordVerified);
       res.sendStatus(401);
       return;
     }
 
-    const token = jwt.sign(
-      {
-        id: user.id,
-        firstname: user.firstname,
-        email: user.email,
-      },
-      process.env.APP_SECRET,
-      { expiresIn: "24h" }
-    );
-
-    delete user.password;
+    
     const id = user.id; // ID de l'utilisateur
-const firstname = user.firstname; // Le prénom de l'utilisateur
-
+    const firstname = user.firstname; // Le prénom de l'utilisateur
+    const token = generateToken(user);
+    delete user.password;
+    
     // initialisation du cookie pour le token JWT
     if (token)
       res.cookie('authtoken', token, {
@@ -95,6 +117,7 @@ res.cookie('firstname', firstname, {
     res.status(200).send('Cookie set');
 
   } catch (err) {
+    console.log('%c⧭', 'color: #99adcc', "oups, une erreur dans login catch :", err);
     next(err);
   }
 };
@@ -126,3 +149,4 @@ module.exports = {
   hashPassword,
   authorize,
 };
+

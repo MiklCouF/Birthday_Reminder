@@ -37,13 +37,14 @@ useEffect(() => {
       <h2 className="current-month-props">{month.charAt(0).toUpperCase() + month.slice(1)}</h2>
 <div className="card-core">
   <table className="table-current-month">
+    <tbody>
       {monthBirthdayReady.length > 0 ? (
         monthBirthdayReady.map((el) => (
-          <tr>
-          <td className="monthMap" key={el.id}>
+          <tr key={el.id}>
+          <td className="monthMap" >
             {el.firstname} {el.lastname} 
             </td>
-            <td><p>aura</p></td>
+            <td>aura</td>
              <td>
                {el.age_this_year} ans,
           </td>
@@ -53,9 +54,13 @@ useEffect(() => {
       </tr>
         ))
       ) : (
+        <tr>
+        <td>
         <p>Pas d'anniversaire ce mois-ci.</p>
+        </td>
+        </tr>
       )}
-      
+      </tbody>
   </table>
     </div>
  </div>
