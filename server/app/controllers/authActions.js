@@ -123,6 +123,8 @@ res.cookie('firstname', firstname, {
   }
 };
 
+
+// verify if the token of the user is still valid
 const authorize = (req, res, next) => {
   const authHeader = req.headers.authorization;
   if (!authHeader) {
