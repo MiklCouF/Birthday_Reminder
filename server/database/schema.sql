@@ -1,8 +1,9 @@
+-- Active: 1715766763921@@127.0.0.1@3306@reminder
 create table user (
     id int primary key auto_increment NOT NULL,
     firstname varchar(55) NOT NULL,
     email varchar(80) NOT NULL UNIQUE,
-    password varchar(80) NOT NULL
+    password varchar(250) NOT NULL
 );
 
 create table friend (

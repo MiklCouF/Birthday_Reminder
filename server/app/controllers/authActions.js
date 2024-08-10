@@ -14,13 +14,11 @@ const hashPassword = (req, res, next) => {
     .hash(req.body.password, hashingOptions)
     .then((hashedPassword) => {
 
-      console.log('%c⧭', 'color: #731d1d', "authAction, HashPassword argon");
       req.body.password = hashedPassword;
       next();
     })
     .catch((err) => {
       
-      console.log('%c⧭', 'color: #b90a04', "ici c'est erreur de hashPassword");
       console.error(err.message);
       res.sendStatus(500);
     });
@@ -41,9 +39,6 @@ function generateToken(user) {
 
 const verifyPassword = async (password, hashedPasswordDB) => {
 // get the password from the front login, and the hash password from the DB for verify with argon2
-  console.log('%c⧭', 'color: #731d6d', "ici on vérifie le mot de passe avec celui hashe", hashedPasswordDB, password );
-  console.log('%c⧭', 'color: #e57373', await argon2.verify(hashedPasswordDB, password));
-  console.log('%c⧭', 'color: #ff0303', await argon2.hash(password, hashingOptions));
   try {
    const valid = await argon2.verify(hashedPasswordDB, password)
 
@@ -51,8 +46,6 @@ const verifyPassword = async (password, hashedPasswordDB) => {
    return valid
   } catch (err) {
     console.error("error sur argon2verify", err);
-    
-    console.log('%c⧭', 'color: #bfffc8', "error sur argon2verify", err);
     return false;
   }
 };
