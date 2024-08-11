@@ -74,7 +74,8 @@ const password = req.body.password;
       res.sendStatus(401);
       return;
     }
-
+// TODO récupérer les donnée de la bdd pour transmettre l'id firstname, et token?
+// elle sont deja recu, voir console log
     
     const id = user.id; // ID de l'utilisateur
     const firstname = user.firstname; // Le prénom de l'utilisateur
