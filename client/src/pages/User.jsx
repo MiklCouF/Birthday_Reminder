@@ -2,10 +2,10 @@
 import AddData from "../components/AddData";
 import MonthBirthday from "../components/MonthBirthday";
 // temporaire, finira dans le header :
-import { useUser } from './UserContext';
+import { useUser } from '../context/UserProvider';
 
 function User() {
-  
+
 // temporaire, finira dans le header :
   const { user } = useUser();
 
