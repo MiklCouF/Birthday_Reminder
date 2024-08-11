@@ -1,14 +1,17 @@
 // import { useContext } from "react";
 import AddData from "../components/AddData";
 import MonthBirthday from "../components/MonthBirthday";
-
+// temporaire, finira dans le header :
+import { useUser } from './UserContext';
 
 function User() {
-  // const { user } = useContext(AuthContext);
+  
+// temporaire, finira dans le header :
+  const { user } = useUser();
 
     return (
       <main className="main-user">
-        {/* <h2> Bonjour {user?.firstname || "petit bouchon"}</h2> */}
+        <h1>Bienvenue, {user?.firstname}!</h1>
         <h2>cd</h2>
         <div className="component-user-page">
 <AddData />

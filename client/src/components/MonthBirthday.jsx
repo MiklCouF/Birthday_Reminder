@@ -68,14 +68,3 @@ useEffect(() => {
 }
 
 export default MonthBirthday;
-
-
-{/* <tr>
-<td className="monthMap, last-row-table" key={el.id}>
-  {el.firstname} {el.lastname} 
-  </td>
-<td className="last-row-table">
-aura {el.age_this_year} ans,
-le {el.birth_day_of_week_this_year} {el.birth_day} {month}
-</td>
-</tr> */}

@@ -1,9 +1,11 @@
 import { NavLink, useNavigate  } from "react-router-dom";
 import { useState } from "react";
 import { emailValidation, passwordValidation } from "../services/validation";
+import { useUser } from "../context/UserProvider";
 
 function login() {
 
+  const { setUser } = useUser();
   const [isEmail, setIsEmail] = useState(true);
   const [isPassword, setIsPassword] = useState(true);
   const navigate = useNavigate();
@@ -11,6 +13,17 @@ function login() {
   const [errorFormNone, setErrorFormNone] = useState(
     "error-form-register-none"
   );
+
+  function getCookie(name) {
+  //"document.cookie" contient tous les cookies du domaine actuel sous la forme d'une seule chaîne de caractères, avec chaque cookie séparé par un point-virgule (;)
+  // ajoute un point-virgule au début de la chaîne des cookies pour faciliter la recherche de cookies.
+    const value = `; ${document.cookie}`;
+  // divise la chaîne des cookies en deux parties : avant et après le cookie recherché (name)
+    const parts = value.split(`; ${name}=`);
+  //  Si le cookie existe (parts.length === 2), la fonction extrait la valeur après le signe = et avant le prochain point-virgule ou la fin de la chaîne.
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  // a fonction retourne la valeur du cookie, ou undefined si le cookie n'existe pas.
+  }
 
   const handleSubmit = async (event) => {
     try {
@@ -54,6 +67,10 @@ function login() {
       setErrorFormNone("error-form-register");
       setErrorForm("Identifiant ou mot de passe incorrect");
     } else {
+      const firstname = getCookie('firstname');
+      const authtoken = getCookie('authtoken');
+      const id = getCookie('id');
+      setUser({ firstname, authtoken, id });
         navigate("user");
     }
   };
