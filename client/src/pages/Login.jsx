@@ -54,8 +54,7 @@ function login() {
       setErrorFormNone("error-form-register");
       setErrorForm("Identifiant ou mot de passe incorrect");
     } else {
-     await response.json();
-        navigate("/user");
+        navigate("user");
     }
   };
 

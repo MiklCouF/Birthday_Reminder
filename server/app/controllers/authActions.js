@@ -68,11 +68,9 @@ const password = req.body.password;
       res.sendStatus(401);
       return;
     }
-    const hashedPasswordDB = user.hashedPasswordDB;
     const isPasswordVerified = await verifyPassword(password, user.hashedPasswordDB);
     if (!isPasswordVerified) {
 
-      console.log('%c⧭', 'color: #997326', "password pas bon :", isPasswordVerified);
       res.sendStatus(401);
       return;
     }
