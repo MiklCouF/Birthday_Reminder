@@ -58,7 +58,7 @@ function login() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-      // credentials: 'include',
+      credentials: 'include',
     });
 
     if (!response.ok) {
@@ -67,10 +67,20 @@ function login() {
       setErrorFormNone("error-form-register");
       setErrorForm("Identifiant ou mot de passe incorrect");
     } else {
+      // const firstname = cookies.firstname;
+      // const authtoken = cookies.authtoken;
+      // const id = cookies.id;
+
       const firstname = getCookie('firstname');
       const authtoken = getCookie('authtoken');
       const id = getCookie('id');
+
+
+      console.log('%c⧭', 'color: #ff6600', "apres cookie", firstname);
+
       setUser({ firstname, authtoken, id });
+
+        console.log('%c⧭', 'color: #cc0036', "on a recu kkchose?", firstname, id);
         navigate("user");
     }
   };

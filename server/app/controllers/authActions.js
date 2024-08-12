@@ -68,6 +68,7 @@ const password = req.body.password;
       res.sendStatus(401);
       return;
     }
+
     const isPasswordVerified = await verifyPassword(password, user.hashedPasswordDB);
     if (!isPasswordVerified) {
 
@@ -75,13 +76,13 @@ const password = req.body.password;
       return;
     }
 // TODO récupérer les donnée de la bdd pour transmettre l'id firstname, et token?
-// elle sont deja recu, voir console log
-    
+
     const id = user.id; // ID de l'utilisateur
     const firstname = user.firstname; // Le prénom de l'utilisateur
     const token = generateToken(user);
     delete user.password;
     
+    console.log('%c⧭', 'color: #d0bfff', "voyons user", id, firstname, token);
     // initialisation du cookie pour le token JWT
     if (token)
       res.cookie('authtoken', token, {
