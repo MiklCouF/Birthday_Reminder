@@ -19,8 +19,8 @@ function User() {
       <main className="main-user">
         <h1>Bienvenue, {user.firstname}!</h1>
         <div className="component-user-page">
-<AddData />
-<MonthBirthday />
+<AddData user={user} />
+<MonthBirthday user={user} />
 
         </div>
       </main>

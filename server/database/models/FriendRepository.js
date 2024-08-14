@@ -12,13 +12,13 @@ class friendRepository extends AbstractRepository {
   async create(friend) {
 
       // Ensure the friend object has the required properties
-      if (!friend.firstname || !friend.lastname || !friend.birthday) {
+      if (!friend.firstname || !friend.lastname || !friend.birthday || !friend.userId ) {
         throw new Error("Friend object is missing required properties");
       }
     
       // Use parameterized query to prevent SQL injection
-      const query = `INSERT INTO ${this.table} (firstname, lastname, birthday) VALUES (?, ?, ?)`;
-      const values = [friend.firstname, friend.lastname, friend.birthday];
+      const query = `INSERT INTO ${this.table} (firstname, lastname, birthday, user_id) VALUES (?, ?, ?, ?)`;
+      const values = [friend.firstname, friend.lastname, friend.birthday, friend.userId];
     
       // Execute the SQL INSERT query to add a new friend to the "friend" table
       const [result] = await this.database.query(query, values);

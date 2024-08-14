@@ -1,4 +1,4 @@
-function AddData() {
+function AddData({ user }) {
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -33,6 +33,7 @@ function AddData() {
 <p>Ajouter la date d'anniversaire d'un proche</p>
 <div className="card-core">
 <form onSubmit={handleSubmit}>
+<input type="hidden" name="userId" value={user.id} />
   <p>Prénom:</p>
   <input
     type="text"

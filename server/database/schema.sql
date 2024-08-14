@@ -10,7 +10,9 @@ create table friend (
     id int primary key auto_increment NOT NULL,
     firstname varchar(55) NOT NULL,
     lastname varchar(55) NOT NULL,
-    birthday DATE NOT NULL
+    birthday DATE NOT NULL,
+    user_id int not null,
+    foreign key (user_id) references user (id)
 );
 
 -- table user
