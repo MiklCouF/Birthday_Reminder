@@ -1,11 +1,23 @@
-import React, { createContext, useState, useMemo, useContext } from 'react';
+import React, { createContext, useState, useMemo, useContext, useEffect } from 'react';
 
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() => {
+    // Charger l'utilisateur depuis localStorage si disponible
+    const savedUser = localStorage.getItem('user');
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
 
-  // Mémoriser la valeur du contexte utilisateur
+  useEffect(() => {
+    // Sauvegarder l'utilisateur dans localStorage à chaque modification
+    if (user) {
+      localStorage.setItem('user', JSON.stringify(user));
+    } else {
+      localStorage.removeItem('user');
+    }
+  }, [user]);
+
   const value = useMemo(() => ({ user, setUser }), [user]);
 
   return (

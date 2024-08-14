@@ -1,9 +1,9 @@
 // Load the express module to create a web application
 
 const express = require("express");
+const path = require("path");
 
 const app = express();
-const path = require("path");
 
 // Configure it
 

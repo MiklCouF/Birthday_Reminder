@@ -51,7 +51,6 @@ function login() {
 
   const handleFetch = async (data) => {
 
-    console.log('%c⧭', 'color: #33cc99', "cote front login, submit data", data);
     const response = await fetch(`${import.meta.env.VITE_API_URL}/api/login`, {
       method: "POST",
       headers: {
@@ -67,21 +66,12 @@ function login() {
       setErrorFormNone("error-form-register");
       setErrorForm("Identifiant ou mot de passe incorrect");
     } else {
-      // const firstname = cookies.firstname;
-      // const authtoken = cookies.authtoken;
-      // const id = cookies.id;
+      const firstname = getCookie("firstname");
+      const id = getCookie("id");
 
-      const firstname = getCookie('firstname');
-      const authtoken = getCookie('authtoken');
-      const id = getCookie('id');
-
-
-      console.log('%c⧭', 'color: #ff6600', "apres cookie", firstname);
-
-      setUser({ firstname, authtoken, id });
-
-        console.log('%c⧭', 'color: #cc0036', "on a recu kkchose?", firstname, id);
+      setUser({ firstname, id });
         navigate("user");
+
     }
   };
 
