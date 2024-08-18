@@ -3,9 +3,13 @@ const tables = require("../../database/tables");
 
 // The B of BREAD - Browse (Read All) operation
 const browse = async (req, res, next) => {
+  const userId = req.cookies.id;
+  if (!userId){
+    return res.status(401).json({ message: 'User not found, access denied' });
+}
   try {
     // Fetch all items from the database
-    const friends = await tables.friend.readAll();
+    const friends = await tables.friend.readAll(userId);
 
     // Respond with the items in JSON format
     res.json(friends);

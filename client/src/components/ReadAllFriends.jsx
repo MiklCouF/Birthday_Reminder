@@ -1,9 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-function ReadAllFriends() {
+function ReadAllFriends({ shouldRerender }) {
+    const [friendList, setfriendList] = useState({data: []});
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/api/friend/month`)
+        fetch(`${import.meta.env.VITE_API_URL}/api/friend/`,{
+            method: 'GET',
+            credentials: 'include', // Inclure les cookies
+          })
          .then((response) => response.json())
          .then((data) => {
            console.log('Fetched data:', data);
@@ -14,7 +18,7 @@ function ReadAllFriends() {
              error
            );
          });
-     }, []);
+     }, [[shouldRerender]]);
    
      const friendListData = friendList || [];
    
@@ -23,7 +27,7 @@ function ReadAllFriends() {
          el.id &&
          el.firstname &&
          el.lastname &&
-         el.birthday &&
+         el.formatted_birthday &&
          el.age_this_year
      ) : [];
     return (
@@ -37,12 +41,14 @@ function ReadAllFriends() {
               <td className="monthMap" >
                 {el.firstname} {el.lastname} 
                 </td>
-                <td>aura</td>
-                 <td>
-                   {el.age_this_year} ans,
+              <td className="padding-left-15">
+              née le
               </td>
-              <td className="last-row-table">
-              née le {el.birthday}
+              <td className="text-align-right">
+              {el.formatted_birthday}
+              </td>
+                 <td className="text-align-right">
+                   ( {el.age_this_year} ans )
               </td>
           </tr>
             ))

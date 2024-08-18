@@ -41,16 +41,17 @@ class friendRepository extends AbstractRepository {
     return rows[0];
   }
 
-  async readAll() {
+  async readAll(userId) {
     // Execute the SQL SELECT query to retrieve all friends FROM the "friend" table
-    const [rows] = await this.database.query(`SELECT * FROM ${this.table}`);
+    const [rows] = await this.database.query(`SELECT id, firstname, lastname, DATE_FORMAT(birthday, '%d-%m-%Y') AS formatted_birthday, YEAR(CURDATE()) - YEAR(birthday) AS age_this_year FROM ${this.table} WHERE user_id = ?`,
+      [userId]
+    );
 
     // Return the array of friends
     return rows;
   }
 
   async readMonth(userId) {
-    console.log("iiiiiiiiicccccccccciiiiiiiiii read", userId)
     // Execute the SQL SELECT query to retrieve all friends FROM the "friend" table
     const [rows] = await this.database.query(`SELECT id, firstname, lastname, YEAR(CURDATE()) - YEAR(birthday) AS age_this_year,
       CASE DAYOFWEEK(DATE_FORMAT(birthday, CONCAT(YEAR(CURDATE()), '-%m-%d')))

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 
-function MonthBirthday() {
+function MonthBirthday({ shouldRerender }) {
 
 const { month } = useOutletContext();
 const [monthBirthday, setMonthBirthday] = useState({data: []});
@@ -21,7 +21,7 @@ useEffect(() => {
           error
         );
       });
-  }, []);
+  }, [[shouldRerender]]);
 
   const monthBirthdayData = monthBirthday || [];
 
@@ -47,12 +47,21 @@ useEffect(() => {
           <td className="monthMap" >
             {el.firstname} {el.lastname} 
             </td>
-            <td>aura</td>
+            <td className="padding-left-15">aura</td>
              <td>
                {el.age_this_year} ans,
           </td>
-          <td className="last-row-table">
-           le {el.birth_day_of_week_this_year} {el.birth_day} {month}
+          <td>
+            le
+          </td>
+          <td className="text-align-right">
+          {el.birth_day_of_week_this_year}
+          </td>
+          <td className="text-align-right">
+          {el.birth_day}
+          </td>
+          <td>
+             {month}
           </td>
       </tr>
         ))

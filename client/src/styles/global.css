@@ -2,11 +2,11 @@
 @import "./components-styles/monthBirthday.css";
 @import "./components-styles/calendar.css";
 @import "./components-styles/header.css";
+@import "./components-styles/tables.css";
+@import "./components-styles/user-form.css";
 @import "./pages-styles/body.css";
 @import "./pages-styles/user.css";
-@import "./components-styles/user-form.css";
 @import "./app.css";
-
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 
