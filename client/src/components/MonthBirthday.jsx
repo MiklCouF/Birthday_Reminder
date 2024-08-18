@@ -7,7 +7,10 @@ const { month } = useOutletContext();
 const [monthBirthday, setMonthBirthday] = useState({data: []});
 
 useEffect(() => {
-     fetch(`${import.meta.env.VITE_API_URL}/api/friend/month`)
+     fetch(`${import.meta.env.VITE_API_URL}/api/friend/month`,{
+      method: 'GET',
+      credentials: 'include', // Inclure les cookies
+    })
       .then((response) => response.json())
       .then((data) => {
         console.log('Fetched data:', data);

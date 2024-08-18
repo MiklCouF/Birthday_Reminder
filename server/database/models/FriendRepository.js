@@ -49,9 +49,11 @@ class friendRepository extends AbstractRepository {
     return rows;
   }
 
-  async readMonth() {
+  async readMonth(userId) {
+    console.log("iiiiiiiiicccccccccciiiiiiiiii read", userId)
     // Execute the SQL SELECT query to retrieve all friends FROM the "friend" table
-    const [rows] = await this.database.query(`SELECT id, firstname, lastname, YEAR(CURDATE()) - YEAR(birthday) AS age_this_year, CASE DAYOFWEEK(DATE_FORMAT(birthday, CONCAT(YEAR(CURDATE()), '-%m-%d')))
+    const [rows] = await this.database.query(`SELECT id, firstname, lastname, YEAR(CURDATE()) - YEAR(birthday) AS age_this_year,
+      CASE DAYOFWEEK(DATE_FORMAT(birthday, CONCAT(YEAR(CURDATE()), '-%m-%d')))
     WHEN 1 THEN 'Dimanche'
     WHEN 2 THEN 'Lundi'
     WHEN 3 THEN 'Mardi'
@@ -59,10 +61,12 @@ class friendRepository extends AbstractRepository {
     WHEN 5 THEN 'Jeudi'
     WHEN 6 THEN 'Vendredi'
     WHEN 7 THEN 'Samedi'
-  END AS birth_day_of_week_this_year, DAY(birthday) AS birth_day FROM ${this.table} WHERE MONTH(birthday) = MONTH(CURDATE()) ORDER BY birth_day`);
-    // const [rows] = await this.database.query(`SELECT * FROM ${this.table} WHERE MONTH(birthday) = MONTH(CURDATE()) ORDER BY birthday` );
+  END AS birth_day_of_week_this_year, DAY(birthday) AS birth_day FROM ${this.table}
+  WHERE user_id = ? AND MONTH(birthday) = MONTH(CURDATE()) ORDER BY birth_day` ,
+  [userId]
+);
 
-    // Return the array of friendss
+    // Return the array of friends where birthday is during the current month
     return rows;
   }
 

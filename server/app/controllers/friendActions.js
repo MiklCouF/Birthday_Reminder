@@ -17,9 +17,13 @@ const browse = async (req, res, next) => {
 
 // The B of BREAD - readMonth
 const ReadMonthFriend = async (req, res, next) => {
+  const userId = req.cookies.id;
+  if (!userId){
+    return res.status(401).json({ message: 'User not found, access denied' });
+}
   try {
     // Fetch all items from the database
-    const friends = await tables.friend.readMonth();
+    const friends = await tables.friend.readMonth(userId);
 
     // Respond with the items in JSON format
     res.json(friends);

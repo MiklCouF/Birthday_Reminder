@@ -13,7 +13,7 @@ function User() {
 
     // console.log('%c⧭', 'color: #99614d', "firstname de user", user.firstname);
     if (!user) {
-      return <div>Chargement...</div>; // Ou rediriger vers une autre page
+      return <div>Vous n'êtes pas connecté</div>; // Ou rediriger vers une autre page
     }
     return (
       <main className="main-user">

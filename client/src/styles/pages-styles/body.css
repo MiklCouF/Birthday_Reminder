@@ -3,8 +3,7 @@
     background-color: var(--blue-bg-color);
     color: var(--light-font-color);
     display: flex;
-    height: 88vh;
-    /* height: 100%; */
+    height: 95vh;
     align-items: center;
     justify-content: center;
   
