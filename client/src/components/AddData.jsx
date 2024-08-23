@@ -1,76 +1,75 @@
-function AddData({ user }) {
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
+function AddData({ user, setShouldRerender, shouldRerender }) {
   function handleSubmit(event) {
     event.preventDefault();
 
-       const formData = new FormData(event.target);
-       const data = Object.fromEntries(formData);
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
 
-      fetch(`${import.meta.env.VITE_API_URL}/api/friend/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }).then((res) => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/friend/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => {
         if (res.ok) {
-          console.warn("Victoire !");        }
+          toast.success("La personne a bien été ajoutée");
+        } else {
+          toast.error("Erreur, la personne n'a pas été ajoutée");
+        }
       })
-      .catch((error) => {
-        console.error(
-          "Une erreur s'est produite lors de la récupération des données:",
-          error
-        );
+      .catch(() => {
+        toast.warn("Une erreur s'est produite lors de la tentative d'ajout");
       });
-    }
-// TODO dans le fetch > .then ((re) > 
-// TODO mettre une action qui refresh le composant "MonthBirthday" qui montre les anniversaires du moi
-// TODO et aussi un message de réussite de l'enregistrement
+
+    console.log("%c⧭", "color: #0088cc", "premier should", shouldRerender);
+    setShouldRerender(!shouldRerender);
+
+    console.log("%c⧭", "color: #00bf00", "deuxieme should", shouldRerender);
+  }
 
   return (
+    <div className="add-data-core-user">
+      <p>Ajouter la date d'anniversaire d'un proche</p>
+      <div className="card-core">
+        <form onSubmit={handleSubmit}>
+          <input type="hidden" name="userId" value={user.id} />
+          <p>Prénom:</p>
+          <input
+            type="text"
+            id="firstname"
+            name="firstname"
+            placeholder="Martin"
+            required
+          />
 
-<div className="add-data-core">
-<p>Ajouter la date d'anniversaire d'un proche</p>
-<div className="card-core">
-<form onSubmit={handleSubmit}>
-<input type="hidden" name="userId" value={user.id} />
-  <p>Prénom:</p>
-  <input
-    type="text"
-    id="firstname"
-    name="firstname"
-    placeholder="Martin"
-    required
-  />
+          <p>Nom:</p>
+          <input
+            type="text"
+            id="lastname"
+            name="lastname"
+            placeholder="Dubois"
+            required
+          />
 
-<p>Nom:</p>
-  <input
-    type="text"
-    id="lastname"
-    name="lastname"
-    placeholder="Dubois"
-    required
-  />
+          <p>Date de naissance</p>
+          <input type="date" id="dateSubscribe" name="birthday" required />
 
-  <p>Date de naissance</p>
-  <input 
-  type="date" 
-  id="dateSubscribe" 
-  name="birthday" 
-  required
-  />
-  
-  <button type="submit" 
-  value="Ajouter" 
-  id="subscribe"
-
-  className="subscribe">
-          Ajouter
-        </button>
-
-  </form>
-</div>
-</div>
+          <button
+            type="submit"
+            value="Ajouter"
+            id="subscribe"
+            className="subscribe"
+          >
+            Ajouter
+          </button>
+        </form>
+      </div>
+    </div>
   );
 }
 

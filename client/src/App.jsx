@@ -5,13 +5,13 @@ import "./styles/app.css";
 import "./styles/global.css";
 
 function App() {
-    const [month, setMonth] = useState(""); 
+  const [month, setMonth] = useState("");
   return (
-  <>
-  <Header setMonth={setMonth} />
-  <Outlet context={{ month, setMonth }} />
-</>
-);
+    <>
+      <Header setMonth={setMonth} />
+      <Outlet context={{ month, setMonth }} />
+    </>
+  );
 }
 
 export default App;

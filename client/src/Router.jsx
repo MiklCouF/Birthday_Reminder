@@ -1,15 +1,18 @@
-import { createBrowserRouter } from "react-router-dom"
+import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import User from "./pages/User";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <div className="quatre-cent-quatre"><h1>404 Not Found</h1></div>,
+    errorElement: (
+      <div className="quatre-cent-quatre">
+        <h1>404 Not Found</h1>
+      </div>
+    ),
     children: [
       {
         path: "",

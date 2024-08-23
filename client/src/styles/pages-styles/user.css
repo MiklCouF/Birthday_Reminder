@@ -1,45 +1,59 @@
 .main-user {
   flex-direction: column;
+  padding-top: 150px;
+  padding-bottom: 100px;
 }
 
 .component-user-page {
+  width: 100%;
   display: flex;
-  flex-direction: row;
+  /* Concaténation de flex-direction: row; et flex-wrap: wrap; */
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+@media (max-width: 800px) {
+  /* .component-user-page {
+    flex-flow: column wrap;
+  } */
+  .main-user {
+    flex-direction: column;
+    padding-top: 50px;
+    padding-bottom: 0;
+  }
+}
+.add-data-core-user {
+  height: fit-content;
+  background-color: var(--blue-bg-color);
+  color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  margin-top: 50px;
+  border-radius: 14px;
+  gap: 15px;
+  align-items: center;
+  box-shadow: rgba(255, 255, 255, 0.889) 0px 1px 14px;
+  justify-content: space-evenly;
+
+  /* To change with justify-content space-evenly , in css > main, for only page user. */
+  /* margin-left: 100px; */
+  /* end of the tempo fix */
+
+  & input {
+    margin: 10px;
+  }
+  & a {
+    color: white;
+  }
 }
 
-.add-data-core-user {
-    color: aliceblue;
-    display: flex;
-    flex-direction: column;
-    padding: 25px;
-    /* padding-left: 24px; */
-    /* padding-right: 60px; */
-    margin-top: 50px;
-    border-radius: 14px;
-    /* gap: 15px; */
-    align-items: center;
-    box-shadow: rgba(255, 255, 255, 0.889) 0px 1px 14px;
-    
-    /* To change with justify-content space-evenly , in css > main, for only page user. */
-    margin-left: 100px;
-    /* end of the tempo fix */
-    
-    & input {
-      margin: 10px;
-    }
-    & a {
-      color: white; 
-    }
+.card-core-user {
+  background-color: var(--gold-bg-color);
+  padding: 40px;
+  border-radius: 12px;
+  align-items: center;
+
+  & input {
+    flex-direction: row;
   }
-  
-  .card-core-user {
-    background-color: var(--gold-bg-color);
-    padding: 40px;
-    border-radius: 12px;
-      align-items: center;
-  
-    & input {
-      flex-direction: row;
-    }
-  }
-  
+}

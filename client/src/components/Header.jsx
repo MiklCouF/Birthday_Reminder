@@ -4,7 +4,6 @@ import logoHeader from "../assets/Logo_header.svg";
 import fanion from "../assets/guirlande4.png";
 
 function Header({ setMonth }) {
-
   const today = new Date();
   const daysOfWeek = [
     "Dimanche",
@@ -32,26 +31,26 @@ function Header({ setMonth }) {
   const dayOfWeek = daysOfWeek[today.getDay()];
   const day = today.getDate();
   const currentMonth = monthsOfYear[today.getMonth()];
-  
- useEffect(() => {
-  setMonth(currentMonth);
-}, [currentMonth, setMonth]);
+
+  useEffect(() => {
+    setMonth(currentMonth);
+  }, [currentMonth, setMonth]);
 
   return (
     <>
-    <header>
-    <NavLink to="/" className="url">
-      <img
-        src={logoHeader}
-        alt="Gateau d'anniversaire"
-        className="logo-header"
-        />
+      <header>
+        <NavLink to="/" className="url">
+          <img
+            src={logoHeader}
+            alt="Gateau d'anniversaire"
+            className="logo-header"
+          />
         </NavLink>
-      <h2>{`${dayOfWeek} ${day} ${currentMonth}`}</h2>
-      <NavLink to="/user" className="url">
-         <h2>Visiter</h2>
+        <h2>{`${dayOfWeek} ${day} ${currentMonth}`}</h2>
+        <NavLink to="/user" className="url">
+          <h2>Visiter</h2>
         </NavLink>
-    </header>
+      </header>
       <img className="img-fanion" src={fanion} />
     </>
   );

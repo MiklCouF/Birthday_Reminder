@@ -79,11 +79,13 @@ class friendRepository extends AbstractRepository {
   // }
 
   // The D of CRUD - Delete operation
-  // TODO: Implement the delete operation to remove an friend by its ID
-
-  // async delete(id) {
-  //   ...
-  // }
+  async delete(id) {
+    const [row] = await this.database.query(
+      `DELETE FROM ${this.table} WHERE id=?`,
+      [id]
+    );
+    return row.affectedRows;
+  }
 }
 
 module.exports = friendRepository;

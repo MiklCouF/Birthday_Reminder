@@ -3,39 +3,44 @@ import { useState } from "react";
 import AddData from "../components/AddData";
 import MonthBirthday from "../components/MonthBirthday";
 import ReadAllFriends from "../components/ReadAllFriends";
+import { ToastContainer } from "react-toastify";
+
 // temporaire, finira dans le header :
-import { useUser } from '../context/UserProvider';
+import { useUser } from "../context/UserProvider";
 
 function User() {
   // re-rendre un composant lors de l'ajout d'un friend
   const [shouldRerender, setShouldRerender] = useState(false);
-
-  const handleFormSubmit = () => {
-    // Inverser l'état pour déclencher le re-rendu de Component2
-    setShouldRerender(!shouldRerender);
-  };
+  console.log(
+    "%c⧭",
+    "color: #00a3cc",
+    "c'est le component user ici",
+    shouldRerender,
+  );
 
   // temporaire, finira dans le header :
   const { user } = useUser();
-
-    // console.log('%c⧭', 'color: #8c0038', "user entier", user);
-
-    // console.log('%c⧭', 'color: #99614d', "firstname de user", user.firstname);
-    if (!user) {
-      return <div>Vous n'êtes pas connecté</div>; // Ou rediriger vers une autre page
-    }
-    return (
-      <main className="main-user">
-        <h1>Bienvenue, {user.firstname}!</h1>
-        <div className="component-user-page">
-<AddData user={user} onFormSubmit={handleFormSubmit}/>
-<MonthBirthday user={user} shouldRerender={shouldRerender}/>
-<ReadAllFriends  shouldRerender={shouldRerender}/>
-
-        </div>
-      </main>
-    );
+  if (!user) {
+    return <div>Vous n'êtes pas connecté</div>; // Ou rediriger vers une autre page
   }
-  
-  export default User;
-  
+  return (
+    <main className="main-user">
+      <h3>Bienvenue, {user.firstname}!</h3>
+      <div className="component-user-page">
+        <AddData
+          user={user}
+          setShouldRerender={setShouldRerender}
+          shouldRerender={shouldRerender}
+        />
+        <MonthBirthday />
+        <ReadAllFriends
+          setShouldRerender={setShouldRerender}
+          shouldRerender={shouldRerender}
+        />
+      </div>
+      <ToastContainer position="bottom-right" />
+    </main>
+  );
+}
+
+export default User;

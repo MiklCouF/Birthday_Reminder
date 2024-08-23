@@ -1,64 +1,63 @@
 header {
-    display: flex;
-    height: 12vh;
-    width: 100vw;
-    padding: 0 25px;
-    gap: 10px;
-    
-    align-items: center;
-    flex-direction: row;
-    overflow: hidden;
-    
-    color: var(--light-font-color);
-    justify-content: space-between;
-    
-    background-color: var(--gold-bg-color);
-    box-shadow: var(--gold-bg-color) 0 0px 10px 8px ;
-    position: sticky;
-  
+  display: flex;
+  height: 12vh;
+  width: 100vw;
+  padding: 0 25px;
+  gap: 10px;
+
+  align-items: center;
+  flex-direction: row;
+  overflow: hidden;
+
+  color: var(--light-font-color);
+  justify-content: space-between;
+
+  background-color: var(--gold-bg-color);
+  box-shadow: var(--gold-bg-color) 0 0px 10px 8px;
+  position: sticky;
+
   & h2 {
     text-align: center;
     color: var(--blue-font-color);
   }
-  
+
   & h4 {
     text-align: end;
   }
-  }
-  
-  .img-fanion {
-    position: absolute;
-    display: flex;
-    left: 0;
-    top: 105px;
-  width: 100%;
-  }
-  
-  .logo-header {
-    padding: 15px;
-    height: 70px;
-    width: 70px;
-  }
-  
-  @media (max-width: 600px) {
+}
 
-    header {
-      display: flex;
-      width: 100vw;
-      height: 12vh;
-      padding: 0%;
-padding-right: 15px;
-      /* align-items: center; */
-      /* flex-direction: row; */
-      overflow: hidden;
-      /* justify-content: space-between; */
-      box-shadow: var(--gold-bg-color) 0 0px 10px 8px ;
-      & h2 {
-       font-size: 1rem;
-      }
-    }
-    .img-fanion {
-      top: 85px;
-width: 100%;
+.img-fanion {
+  position: absolute;
+  display: flex;
+  left: 0;
+  top: 105px;
+  width: 100%;
+}
+
+.logo-header {
+  padding: 15px;
+  height: 70px;
+  width: 70px;
+}
+
+@media (max-width: 600px) {
+  header {
+    display: flex;
+    width: 100vw;
+    height: 12vh;
+    padding: 0%;
+    padding-right: 15px;
+    /* align-items: center; */
+    /* flex-direction: row; */
+    overflow: hidden;
+    /* justify-content: space-between; */
+    box-shadow: var(--gold-bg-color) 0 0px 10px 8px;
+    & h2 {
+      font-size: 1rem;
     }
   }
+  .img-fanion {
+    top: 85px;
+    width: 100%;
+  }
+}

@@ -1,28 +1,27 @@
-import { NavLink, useNavigate  } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { emailValidation, passwordValidation } from "../services/validation";
 import { useUser } from "../context/UserProvider";
 
 function login() {
-
   const { setUser } = useUser();
   const [isEmail, setIsEmail] = useState(true);
   const [isPassword, setIsPassword] = useState(true);
   const navigate = useNavigate();
   const [errorForm, setErrorForm] = useState("");
   const [errorFormNone, setErrorFormNone] = useState(
-    "error-form-register-none"
+    "error-form-register-none",
   );
 
   function getCookie(name) {
-  //"document.cookie" contient tous les cookies du domaine actuel sous la forme d'une seule chaîne de caractères, avec chaque cookie séparé par un point-virgule (;)
-  // ajoute un point-virgule au début de la chaîne des cookies pour faciliter la recherche de cookies.
+    //"document.cookie" contient tous les cookies du domaine actuel sous la forme d'une seule chaîne de caractères, avec chaque cookie séparé par un point-virgule (;)
+    // ajoute un point-virgule au début de la chaîne des cookies pour faciliter la recherche de cookies.
     const value = `; ${document.cookie}`;
-  // divise la chaîne des cookies en deux parties : avant et après le cookie recherché (name)
+    // divise la chaîne des cookies en deux parties : avant et après le cookie recherché (name)
     const parts = value.split(`; ${name}=`);
-  //  Si le cookie existe (parts.length === 2), la fonction extrait la valeur après le signe = et avant le prochain point-virgule ou la fin de la chaîne.
-    if (parts.length === 2) return parts.pop().split(';').shift();
-  // a fonction retourne la valeur du cookie, ou undefined si le cookie n'existe pas.
+    //  Si le cookie existe (parts.length === 2), la fonction extrait la valeur après le signe = et avant le prochain point-virgule ou la fin de la chaîne.
+    if (parts.length === 2) return parts.pop().split(";").shift();
+    // a fonction retourne la valeur du cookie, ou undefined si le cookie n'existe pas.
   }
 
   const handleSubmit = async (event) => {
@@ -50,14 +49,13 @@ function login() {
   };
 
   const handleFetch = async (data) => {
-
     const response = await fetch(`${import.meta.env.VITE_API_URL}/api/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-      credentials: 'include',
+      // credentials: "include",
     });
 
     if (!response.ok) {
@@ -70,17 +68,15 @@ function login() {
       const id = getCookie("id");
 
       setUser({ firstname, id });
-        navigate("user");
-
+      navigate("user");
     }
   };
 
   return (
-    <main>
+    <main className="height-main-login">
       <div className="add-data-core">
         <h4>Connexion</h4>
         <form className="card-core" onSubmit={handleSubmit}>
-
           <label htmlFor="usernameemail">Courriel</label>
           <input
             type="email"
@@ -112,7 +108,7 @@ function login() {
           >
             Se connecter
           </button>
-          </form>
+        </form>
         <p>
           Vous n'avez pas de compte ? <br />
           <br />

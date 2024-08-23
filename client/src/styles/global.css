@@ -10,24 +10,23 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 
-
 :root {
   /* Font */
   --dark-font-color: black;
   --light-font-color: white;
-  --gold-font-color: #BBA637;
-  --blue-font-color:  #146B96;
+  --gold-font-color: #bba637;
+  --blue-font-color: #146b96;
 
   --first-font: Inter;
-font-family: var(--first-font);
+  font-family: var(--first-font);
   /* --font-size-h1: 24px;
   --font-size-h2: 20px;
   --font-size-h3: 16px;
   --font-size-text: 14px; */
 
   /* Element color */
-  --blue-bg-color: #146B96;
-  --gold-bg-color: #BBA637;
+  --blue-bg-color: #146b96;
+  --gold-bg-color: #bba637;
 
   /* Remplacer par Vert Pastel et Blanc créme? */
   /* --gold-bg-color: #3cb371; */

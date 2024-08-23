@@ -1,6 +1,6 @@
 .add-data-core {
-  /* width: 400px; */
-  /* height: fit-content; */
+  height: fit-content;
+  background-color: var(--blue-bg-color);
   color: aliceblue;
   display: flex;
   flex-direction: column;
@@ -12,18 +12,17 @@
   gap: 15px;
   align-items: center;
   box-shadow: rgba(255, 255, 255, 0.889) 0px 1px 14px;
-  
+
   & input {
     margin: 10px;
   }
   & a {
-    color: white; 
+    color: white;
   }
 }
 
 form {
   justify-content: first baseline;
-  
 }
 
 .card-core {
