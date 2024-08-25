@@ -3,6 +3,7 @@ import App from "./App";
 import User from "./pages/User";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Rgpd from "./pages/Rgpd";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <Register />,
+      },
+      {
+        path: "rgpd",
+        element: <Rgpd />,
       },
     ],
   },

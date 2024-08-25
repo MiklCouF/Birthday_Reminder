@@ -114,8 +114,8 @@ function Register() {
 
               <label htmlFor="cgu">
                 J'accepte les{" "}
-                <NavLink to="/cgu" className="cgu-link">
-                  Conditions Générales d'Utilisation
+                <NavLink to="/rgpd" className="cgu-link">
+                mentions légales
                 </NavLink>{" "}
                 <br />
                 et reconnais avoir été informé

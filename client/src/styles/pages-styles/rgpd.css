@@ -1,0 +1,31 @@
+.rgpd-core {
+  
+    display: flex;
+    flex-direction: column;
+    padding: 55px;
+
+    & a { 
+        /* position: absolute; */
+        /* right: 10px; */
+    background-color: aliceblue;
+    }
+    /* margin-top: 50px; */
+    /* border-radius: 14px; */
+    /* gap: 15px; */
+    /* align-items: center; */
+    /* box-shadow: rgba(255, 255, 255, 0.889) 0px 1px 14px; */
+    /* justify-content: space-evenly; */
+}
+.tempo-inutile {
+    background-color: var(--blue-bg-color);
+    color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    margin-top: 50px;
+    border-radius: 14px;
+    gap: 15px;
+    align-items: center;
+    box-shadow: rgba(255, 255, 255, 0.889) 0px 1px 14px;
+    justify-content: space-evenly;
+}
