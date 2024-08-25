@@ -4,8 +4,6 @@ import AddData from "../components/AddData";
 import MonthBirthday from "../components/MonthBirthday";
 import ReadAllFriends from "../components/ReadAllFriends";
 import { ToastContainer } from "react-toastify";
-
-// temporaire, finira dans le header :
 import { useUser } from "../context/UserProvider";
 
 function User() {
@@ -18,10 +16,9 @@ function User() {
     shouldRerender,
   );
 
-  // temporaire, finira dans le header :
   const { user } = useUser();
   if (!user) {
-    return <div>Vous n'êtes pas connecté</div>; // Ou rediriger vers une autre page
+    return <div className="error-connexion">Vous n'êtes pas connecté</div>; 
   }
   return (
     <main className="main-user">

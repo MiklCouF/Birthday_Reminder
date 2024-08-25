@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import logoHeader from "../assets/Logo_header.svg";
-import fanion from "../assets/guirlande4.png";
+import { useUser } from "../context/UserProvider";
 
 function Header({ setMonth }) {
   const today = new Date();
@@ -36,22 +35,32 @@ function Header({ setMonth }) {
     setMonth(currentMonth);
   }, [currentMonth, setMonth]);
 
+  const { user } = useUser();
+  const userConnected = user ? user.firstname : "Utilisateur";
   return (
     <>
       <header>
         <NavLink to="/" className="url">
           <img
-            src={logoHeader}
+            src="src/assets/Logo_header.svg"
             alt="Gateau d'anniversaire"
             className="logo-header"
           />
         </NavLink>
         <h2>{`${dayOfWeek} ${day} ${currentMonth}`}</h2>
-        <NavLink to="/user" className="url">
-          <h2>Visiter</h2>
+        <NavLink to="/" className="url">
+        <p>{userConnected}</p>
+          <img
+            src="src/assets/user_icon.svg"
+            alt="utilisateur"
+            className="logo-header"
+          />
         </NavLink>
       </header>
-      <img className="img-fanion" src={fanion} />
+      <img 
+      className="img-fanion" 
+      src="src/assets/guirlande4.png"
+      />
     </>
   );
 }

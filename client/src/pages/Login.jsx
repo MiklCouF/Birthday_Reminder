@@ -55,7 +55,7 @@ function login() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-      // credentials: "include",
+      credentials: "include",
     });
 
     if (!response.ok) {
@@ -67,6 +67,8 @@ function login() {
       const firstname = getCookie("firstname");
       const id = getCookie("id");
 
+      console.log('%c⧭', 'color: #cc0088', "direct le cookie", getCookie("firstname"));
+      console.log('%c⧭', 'color: #1d3f73', "firstname recu du cookie", firstname);
       setUser({ firstname, id });
       navigate("user");
     }
