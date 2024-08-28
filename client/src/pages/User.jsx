@@ -29,13 +29,15 @@ function User() {
           setShouldRerender={setShouldRerender}
           shouldRerender={shouldRerender}
         />
-        <MonthBirthday />
+        <MonthBirthday
+          shouldRerender={shouldRerender}
+        />
         <ReadAllFriends
           setShouldRerender={setShouldRerender}
           shouldRerender={shouldRerender}
         />
       </div>
-      <ToastContainer position="bottom-right" />
+      <ToastContainer position="bottom-center" />
     </main>
   );
 }

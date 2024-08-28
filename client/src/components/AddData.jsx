@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function AddData({ user, setShouldRerender, shouldRerender }) {
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
@@ -17,6 +17,7 @@ function AddData({ user, setShouldRerender, shouldRerender }) {
     })
       .then((res) => {
         if (res.ok) {
+          setShouldRerender(!shouldRerender);
           toast.success("La personne a bien été ajoutée");
         } else {
           toast.error("Erreur, la personne n'a pas été ajoutée");
@@ -25,11 +26,6 @@ function AddData({ user, setShouldRerender, shouldRerender }) {
       .catch(() => {
         toast.warn("Une erreur s'est produite lors de la tentative d'ajout");
       });
-
-    console.log("%c⧭", "color: #0088cc", "premier should", shouldRerender);
-    setShouldRerender(!shouldRerender);
-
-    console.log("%c⧭", "color: #00bf00", "deuxieme should", shouldRerender);
   }
 
   return (

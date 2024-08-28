@@ -4,15 +4,9 @@ import "react-toastify/dist/ReactToastify.css";
 import cancel from "../assets/cancel.png";
 
 function ReadAllFriends({ setShouldRerender, shouldRerender }) {
-  const [friendList, setfriendList] = useState({ data: [] });
+  const [friendList, setfriendList] = useState([]);
 
-  console.log("%c⧭", "color: #733d00", "ici c'est ReadAllFriends");
-  console.log(
-    "%c⧭",
-    "color: #917399",
-    "ici c'est shouldrerender",
-    shouldRerender,
-  );
+  console.log("%c⧭", "color: #733d00", "ici c'est ReadAllFriends", shouldRerender);
 
   // function pour supprimer un friend
   async function deleteSubmit(id) {
