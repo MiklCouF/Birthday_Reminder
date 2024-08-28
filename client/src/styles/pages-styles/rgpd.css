@@ -2,19 +2,12 @@
   
     display: flex;
     flex-direction: column;
-    padding: 55px;
-
     & a { 
-        /* position: absolute; */
-        /* right: 10px; */
-    background-color: aliceblue;
+        position: relative;
+        left: 40%;
+    margin-top: 80px;
     }
-    /* margin-top: 50px; */
-    /* border-radius: 14px; */
-    /* gap: 15px; */
-    /* align-items: center; */
-    /* box-shadow: rgba(255, 255, 255, 0.889) 0px 1px 14px; */
-    /* justify-content: space-evenly; */
+
 }
 .tempo-inutile {
     background-color: var(--blue-bg-color);
@@ -22,10 +15,23 @@
     display: flex;
     flex-direction: column;
     padding: 25px;
-    margin-top: 50px;
+    margin: 100px;
+    margin-top: 70px;
     border-radius: 14px;
     gap: 15px;
     align-items: center;
     box-shadow: rgba(255, 255, 255, 0.889) 0px 1px 14px;
     justify-content: space-evenly;
+}
+
+@media screen and (max-width: 600px) {
+    .tempo-inutile {
+        margin: 15px;
+        margin-top: 30px;
+
+    }
+    .rgpd-core > a {
+        margin-top: 40px;
+        }
+    
 }

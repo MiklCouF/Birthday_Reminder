@@ -16,10 +16,10 @@ function Register() {
   function handleSubmit(event) {
     event.preventDefault();
     const password1 = passwordRef.current.value;
-    //  const password2 = passwordConfirmationRef.current.value;
+     const password2 = passwordConfirmationRef.current.value;
 
-    // if (password1 === password2 && cguChecked) {
-    if (password1) {
+    if (password1 === password2 && cguChecked) {
+    // if (password1) {
       const formData = new FormData(event.target);
       const data = Object.fromEntries(formData);
 
@@ -47,7 +47,7 @@ function Register() {
   }
 
   return (
-    <main>
+    <main class="height-main-login">
       <div className="add-data-core">
         <h2>Inscription</h2>
 

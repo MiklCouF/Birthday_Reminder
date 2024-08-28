@@ -3,8 +3,9 @@ import { NavLink } from "react-router-dom";
 function Rgpd () {
     return (
             <main className="rgpd-core">
-                <NavLink to="/" className="url">Retour</NavLink>
+                <NavLink to="/register" className="url"> <img src="src/assets/arrow_back.svg" /> </NavLink>
         <div className="tempo-inutile">
+            <p>https://www.captaincontrat.com/contrats-commerciaux-cgv/cgv-cgu-cga/cgu-conditions-generales-utilisation</p>
             <h1>Mentions Légales</h1>
             <p>Insérez ici les mentions légales de votre site.</p>
 
