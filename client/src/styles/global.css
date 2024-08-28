@@ -4,12 +4,17 @@
 @import "./components-styles/header.css";
 @import "./components-styles/tables.css";
 @import "./components-styles/user-form.css";
+@import "./components-styles/ReadAllFriends.css";
+@import "./components-styles/add-data.css";
 @import "./pages-styles/body.css";
 @import "./pages-styles/user.css";
 @import "./pages-styles/rgpd.css";
 @import "./app.css";
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+
+
 
 :root {
   /* Font */

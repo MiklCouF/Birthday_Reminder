@@ -1,0 +1,9 @@
+.edit-icon {
+    margin-right: 0.5rem;
+    cursor: pointer;
+}
+
+.cancel-icon {
+    margin-left: 0.5rem;
+    cursor: pointer;
+}

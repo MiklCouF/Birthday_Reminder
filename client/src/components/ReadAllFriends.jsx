@@ -2,13 +2,37 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import cancel from "../assets/cancel.png";
+import edit from "../assets/edit.svg";
 
 function ReadAllFriends({ setShouldRerender, shouldRerender }) {
   const [friendList, setfriendList] = useState([]);
 
   console.log("%c⧭", "color: #733d00", "ici c'est ReadAllFriends", shouldRerender);
 
+  // **************************************************************************************
+  // function pour éditer un friend
+  // **************************************************************************************
+async function editSubmit(id) {
+  console.log("%c⧭", "color: #ffa640", "friendId", id);
+  // Effectue la requête fetch pour éditer le friend
+  fetch(`${import.meta.env.VITE_API_URL}/api/friend/${id}`, {
+    method: "PUT",
+    credentials: "include", // Inclure les cookies
+  })
+    .then((response) => {
+      if (response.ok) {
+        toast.success("La personne a bien été éditée");
+      } else {
+        toast.error("Erreur, la personne n'a pas été éditée");
+      }
+    })
+  }
+
+
+  // **************************************************************************************
   // function pour supprimer un friend
+  // **************************************************************************************
+
   async function deleteSubmit(id) {
     // preventDefault(id);
 
@@ -35,6 +59,7 @@ function ReadAllFriends({ setShouldRerender, shouldRerender }) {
     setShouldRerender(!shouldRerender);
     return null;
   }
+  // **************************************************************************************
 
   useEffect(
     function importAllFriend() {
@@ -77,6 +102,14 @@ function ReadAllFriends({ setShouldRerender, shouldRerender }) {
             {friendListReady.length > 0 ? (
               friendListReady.map((el) => (
                 <tr key={el.id}>
+                  <td>
+                    <img 
+                    className="edit-icon"
+                    src={edit} 
+                    alt="Edit"
+                    onClick={() => editSubmit(el.id)} // Passer l'ID à la fonction
+                    />
+                  </td>
                   <td className="monthMap">
                     {el.firstname} {el.lastname}
                   </td>
