@@ -73,9 +73,13 @@ class friendRepository extends AbstractRepository {
 
   // The U of CRUD - Update operation
   async update(body) {
+
+    console.log('%c⧭', 'color: #ffcc00', "back, body", body);
     const {id, firstname, lastname, birthday, user_id} = body;
+
+    console.log('%c⧭', 'color: #408059', "server, body", body);
     // Execute the SQL SELECT query to retrieve all users from "user" table
-    const [row] = await this.database.query(`UPDATE ${this.table} SET firstname = ?, lastname = ?, birthday = ?, WHERE id = ? AND user_id = ?`, [firstname, lastname, birthday, id, user_id]);
+    const [row] = await this.database.query(`UPDATE ${this.table} SET firstname = ?, lastname = ?, birthday = ? WHERE id = ? AND user_id = ? `, [firstname, lastname, birthday, id, user_id]);
 
     // Return the array of users
     return row.affectedRows;

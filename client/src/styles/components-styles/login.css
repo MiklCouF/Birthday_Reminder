@@ -46,3 +46,11 @@ form {
   display: flex;
   flex-direction: row;
 }
+
+.url-subscribe {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: aliceblue;
+  
+}

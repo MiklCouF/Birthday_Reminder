@@ -3,41 +3,64 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import cancel from "../assets/cancel.png";
 import edit from "../assets/edit.svg";
+import valid from "../assets/valid.svg";
 
 function ReadAllFriends({ setShouldRerender, shouldRerender }) {
-  const [friendList, setfriendList] = useState([]);
-
-  console.log("%c⧭", "color: #733d00", "ici c'est ReadAllFriends", shouldRerender);
-
-  // **************************************************************************************
-  // function pour éditer un friend
-  // **************************************************************************************
-async function editSubmit(id) {
-  console.log("%c⧭", "color: #ffa640", "friendId", id);
-  // Effectue la requête fetch pour éditer le friend
-  fetch(`${import.meta.env.VITE_API_URL}/api/friend/${id}`, {
-    method: "PUT",
-    credentials: "include", // Inclure les cookies
-  })
-    .then((response) => {
-      if (response.ok) {
-        toast.success("La personne a bien été éditée");
-      } else {
-        toast.error("Erreur, la personne n'a pas été éditée");
-      }
+ // État pour stocker la liste des amis
+ const [friendList, setfriendList] = useState([]);
+ // État pour stocker l'ID de l'ami en cours d'édition
+ const [editingFriendId, setEditingFriendId] = useState(null);
+ // État pour stocker les données de l'ami en cours d'édition
+ const [editedFriend, setEditedFriend] = useState({});
+ 
+ console.log("%c⧭", "color: #733d00", "ici c'est ReadAllFriends", shouldRerender);
+ 
+ // Fonction pour gérer le clic sur le bouton d'édition
+ const handleEditClick = (friend) => {
+  const { age_this_year, ...friendWithoutAge } = friend;
+   // Définir l'ID de l'ami en cours d'édition
+   setEditingFriendId(friend.id);
+   // Copier les données de l'ami dans l'état editedFriend sans age_this_year
+   setEditedFriend(friendWithoutAge);
+ };
+ 
+ // Fonction pour gérer les changements dans les champs de saisie
+ const handleInputChange = (e) => {
+   const { name, value } = e.target;
+   // Mettre à jour la propriété correspondante dans l'état editedFriend
+   setEditedFriend((prevEditedFriend) => {
+    const updatedFriend = { ...prevEditedFriend };
+    updatedFriend[name] = value;
+    return updatedFriend;
+  });
+ };
+ 
+ console.log('%c⧭', 'color: #99adcc', "editedFriend", editedFriend);
+ 
+ // Fonction pour soumettre les modifications de l'ami
+  async function editSubmit(id) {
+    console.log("%c⧭", "color: #ffa640", "friendId", id);
+    fetch(`${import.meta.env.VITE_API_URL}/api/friend/${id}`, {
+      method: "PUT",
+      credentials: "include", // Inclure les cookies
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(editedFriend)
     })
+      .then((response) => {
+        if (response.ok) {
+          toast.success("La personne a bien été éditée");
+          setEditingFriendId(null);
+          setShouldRerender(!shouldRerender);
+        } else {
+          toast.error("Erreur, la personne n'a pas été éditée");
+        }
+      })
   }
 
-
-  // **************************************************************************************
-  // function pour supprimer un friend
-  // **************************************************************************************
-
   async function deleteSubmit(id) {
-    // preventDefault(id);
-
     console.log("%c⧭", "color: #ffa640", "friendId", id);
-    // Effectue la requête fetch pour supprimer le friend
     fetch(`${import.meta.env.VITE_API_URL}/api/friend/${id}`, {
       method: "DELETE",
       credentials: "include", // Inclure les cookies
@@ -45,21 +68,18 @@ async function editSubmit(id) {
       .then((response) => {
         if (response.ok) {
           toast.success("La personne a bien été retirée de la base de données");
+          setShouldRerender(!shouldRerender);
         } else {
           toast.error("Erreur, la personne n'a pas été retirée");
         }
       })
-
       .catch((err) => {
         console.log(err);
         toast.warn(
           "Une erreur s'est produite lors de la tentative de suppression",
         );
       });
-    setShouldRerender(!shouldRerender);
-    return null;
   }
-  // **************************************************************************************
 
   useEffect(
     function importAllFriend() {
@@ -94,6 +114,8 @@ async function editSubmit(id) {
           el.age_this_year,
       )
     : [];
+
+
   return (
     <div className="add-data-core-user">
       <div className="card-core">
@@ -104,27 +126,64 @@ async function editSubmit(id) {
                 <tr key={el.id}>
                   <td>
                     <img 
-                    className="edit-icon"
-                    src={edit} 
-                    alt="Edit"
-                    onClick={() => editSubmit(el.id)} // Passer l'ID à la fonction
+                      className="edit-icon"
+                      src={edit} 
+                      alt="Edit"
+                      onClick={() => handleEditClick(el)} // Passer l'ID à la fonction
                     />
                   </td>
                   <td className="monthMap">
-                    {el.firstname} {el.lastname}
+                    {editingFriendId === el.id ? (
+                      <>
+                      <input
+                        type="text"
+                        name="firstname"
+                        value={editedFriend.firstname}
+                        onChange={handleInputChange}
+                      />
+                      <input
+                        type="text"
+                        name="lastname"
+                        value={editedFriend.lastname}
+                        onChange={handleInputChange}
+                      />
+                      </>
+                    ) : (
+                      `${el.firstname} ${el.lastname}`
+                    )}
                   </td>
                   <td className="padding-left-15">née le</td>
-                  <td className="text-align-right">{el.formatted_birthday}</td>
                   <td className="text-align-right">
-                    ( {el.age_this_year} ans )
+                    {editingFriendId === el.id ? (
+                      <input
+                        type="date"
+                        name="birthday"
+                        value={editedFriend.birthday}
+                        onChange={handleInputChange}
+                      />
+                    ) : (
+                      el.formatted_birthday
+                    )}
+                  </td>
+                  <td className="text-align-right">
+                     {el.age_this_year} ans
                   </td>
                   <td>
+                  {editingFriendId === el.id ? (
+                    <img
+                      className="valid-icon"
+                      src={valid}
+                      onClick={() => editSubmit(el.id)}
+                      alt="Edit"
+                      />
+                  ) : (
                     <img
                       className="cancel-icon"
                       src={cancel}
                       onClick={() => deleteSubmit(el.id)} // Passer l'ID à la fonction
                       alt="Delete"
                     />
+                    )}
                   </td>
                 </tr>
               ))
@@ -141,4 +200,5 @@ async function editSubmit(id) {
     </div>
   );
 }
+
 export default ReadAllFriends;

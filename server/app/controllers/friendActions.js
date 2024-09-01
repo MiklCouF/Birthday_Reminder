@@ -58,7 +58,37 @@ const read = async (req, res, next) => {
 };
 
 // The E of BREAD - Edit (Update) operation
-// This operation is not yet implemented
+const edit = async (req, res, next) => {
+  // Extract the item data from the request body
+  const friend = req.body;
+  // Extract user_id from cookies
+  const userId = req.cookies.id;
+
+  console.log('%c⧭', 'color: #735656', "userId", userId);
+  // Add user_id to the friend object
+  friend.user_id = userId;
+
+  if (!userId){
+    return res.status(401).json({ message: 'User not found, access denied' });
+}
+  try {
+    // Update the item in the database
+    const affectedRows = await tables.friend.update(friend);
+
+    // If the item is not found, respond with HTTP 404 (Not Found)
+    // Otherwise, respond with HTTP 200 (OK)
+    if (affectedRows === 0) {
+      res.sendStatus(404);
+    } else {
+      res.sendStatus(200);
+    }
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
+
 
 // The A of BREAD - Add (Create) operation
 const add = async (req, res, next) => {
@@ -99,7 +129,7 @@ module.exports = {
   browse,
   ReadMonthFriend,
   read,
-  // edit,
+  edit,
   add,
   destroy,
 };

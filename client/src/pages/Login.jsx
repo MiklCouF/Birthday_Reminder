@@ -114,7 +114,7 @@ function login() {
         <p>
           Vous n'avez pas de compte ? <br />
           <br />
-          <NavLink to="/register" className="url">
+          <NavLink to="/register" className="url-subscribe">
             S'inscrire
           </NavLink>
         </p>

@@ -7,7 +7,7 @@ const router = express.Router();
 /* ************************************************************************* */
 
 // Import friend-related actions
-const { browse, read, add, ReadMonthFriend, destroy } = require("../../../controllers/friendActions");
+const { browse, read, add, edit, ReadMonthFriend, destroy } = require("../../../controllers/friendActions");
 
 // Route to get a list of friends
 router.get("/", browse);
@@ -20,6 +20,9 @@ router.get("/:id", read);
 
 // Route to add a new friend
 router.post("/", add);
+
+// Route to update a specific friend by ID
+router.put("/:id", edit);
 
 // Route to delete a specific friend by ID
 router.delete("/:id", destroy)
