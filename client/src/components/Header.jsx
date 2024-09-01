@@ -36,7 +36,7 @@ function Header({ setMonth }) {
   }, [currentMonth, setMonth]);
 
   const { user } = useUser();
-  const userConnected = user ? user.firstname : "Utilisateur";
+  const userConnected = user ? user.firstname : "";
   return (
     <>
       <header>
