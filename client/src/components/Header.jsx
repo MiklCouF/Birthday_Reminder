@@ -36,7 +36,7 @@ function Header({ setMonth }) {
   }, [currentMonth, setMonth]);
 
   const { user } = useUser();
-  const userConnected = user ? user.firstname : "";
+  const userConnected = user ? user.firstname : "vous n'êtes pas connecté";
   return (
     <>
       <header>
@@ -48,7 +48,7 @@ function Header({ setMonth }) {
           />
         </NavLink>
         <h2>{`${dayOfWeek} ${day} ${currentMonth}`}</h2>
-        <NavLink to="/" className="url">
+        <NavLink to="/user" className="url">
         <p>{userConnected}</p>
           <img
             src="src/assets/user_icon.svg"

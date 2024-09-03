@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import cancel from "../assets/cancel.png";
 import edit from "../assets/edit.svg";
-import valid from "../assets/valid.svg";
+import valid from "../assets/check_green.svg";
 
 function ReadAllFriends({ setShouldRerender, shouldRerender }) {
  // État pour stocker la liste des amis
@@ -26,11 +26,15 @@ function ReadAllFriends({ setShouldRerender, shouldRerender }) {
  
  // Fonction pour gérer les changements dans les champs de saisie
  const handleInputChange = (e) => {
+  // Extraire le nom et la valeur du champ de saisie
    const { name, value } = e.target;
    // Mettre à jour la propriété correspondante dans l'état editedFriend
    setEditedFriend((prevEditedFriend) => {
+    // Créer une copie de l'objet editedFriend précédent
     const updatedFriend = { ...prevEditedFriend };
+    // Mettre à jour la propriété correspondante avec la nouvelle valeur
     updatedFriend[name] = value;
+    // Retourner l'objet mis à jour pour mettre à jour l'état
     return updatedFriend;
   });
  };

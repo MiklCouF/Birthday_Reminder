@@ -9,9 +9,6 @@ function Register() {
   const [cguChecked, setCguChecked] = useState(false);
   const navigate = useNavigate();
   const [ErrorForm, setErrorForm] = useState("");
-  const [ErrorFormNone, setErrorFormNone] = useState(
-    "error-form-register-none",
-  );
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -39,7 +36,6 @@ function Register() {
         }
       });
     } else {
-      setErrorFormNone("error-form-register");
       setErrorForm(
         "Les deux mots de passe ne sont pas identiques ou les CGU ne sont pas cochées",
       );
@@ -84,7 +80,7 @@ function Register() {
                 id="password"
                 name="password"
                 pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}"
-                title="Le mot de passe doit contenir au moins 8 caractères, dont au moins une majuscule, une minuscule, un chiffre et un caractère spécial."
+                title="Le mot de passe doit contenir au moins 8 caractères, dont au moins une majuscule, une minuscule, un chiffre et un caractère spécial"
                 required
                 ref={passwordRef}
               />
@@ -102,7 +98,7 @@ function Register() {
               />
             </span>
 
-            <p className={ErrorFormNone}>{ErrorForm}</p>
+            <p className="error-form-register">{ErrorForm}</p>
             <div className="cgu-container">
               <input
                 type="checkbox"
