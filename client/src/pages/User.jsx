@@ -9,12 +9,6 @@ import { useUser } from "../context/UserProvider";
 function User() {
   // re-rendre un composant lors de l'ajout d'un friend
   const [shouldRerender, setShouldRerender] = useState(false);
-  console.log(
-    "%c⧭",
-    "color: #00a3cc",
-    "c'est le component user ici",
-    shouldRerender,
-  );
 
   const { user } = useUser();
   if (!user) {
