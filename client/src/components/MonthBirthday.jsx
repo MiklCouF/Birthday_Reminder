@@ -5,7 +5,6 @@ function MonthBirthday({ shouldRerender }) {
   const { month } = useOutletContext();
   const [monthBirthday, setMonthBirthday] = useState({ data: [] });
 
-  console.log("%c⧭", "color: #aa00ff", "ici c'est montBirthday", shouldRerender);
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/friend/month`, {
       method: "GET",

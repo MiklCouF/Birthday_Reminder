@@ -43,7 +43,7 @@ class friendRepository extends AbstractRepository {
 
   async readAll(userId) {
     // Execute the SQL SELECT query to retrieve all friends FROM the "friend" table
-    const [rows] = await this.database.query(`SELECT id, firstname, lastname, DATE_FORMAT(birthday, '%d-%m-%Y') AS formatted_birthday, YEAR(CURDATE()) - YEAR(birthday) AS age_this_year FROM ${this.table} WHERE user_id = ?`,
+    const [rows] = await this.database.query(`SELECT id, firstname, lastname, DATE_FORMAT(birthday, '%d-%m-%Y') AS formatted_birthday, YEAR(CURDATE()) - YEAR(birthday) AS age_this_year FROM ${this.table} WHERE user_id = ? ORDER BY lastname`,
       [userId]
     );
 
@@ -74,10 +74,8 @@ class friendRepository extends AbstractRepository {
   // The U of CRUD - Update operation
   async update(body) {
 
-    console.log('%c⧭', 'color: #ffcc00', "back, body", body);
     const {id, firstname, lastname, birthday, user_id} = body;
 
-    console.log('%c⧭', 'color: #408059', "server, body", body);
     // Execute the SQL SELECT query to retrieve all users from "user" table
     const [row] = await this.database.query(`UPDATE ${this.table} SET firstname = ?, lastname = ?, birthday = ? WHERE id = ? AND user_id = ? `, [firstname, lastname, birthday, id, user_id]);
 

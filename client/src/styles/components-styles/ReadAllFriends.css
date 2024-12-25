@@ -12,3 +12,27 @@
     margin-left: 0.5rem;
     cursor: pointer;
 }
+
+.p-read-all-friends {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.inline {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: aliceblue;
+    color: black;
+    border-radius: 12px;
+}
+
+.search-bar {
+    border-radius: 12px;
+    border: 0cap;
+    padding: 5px;
+    margin: 10px;
+}

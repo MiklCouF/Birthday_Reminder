@@ -88,10 +88,7 @@ const add = async (req, res, next) => {
     
     // Respond with HTTP 201 (Created) and the ID of the newly inserted item
     res.status(201).json({ insertId });
-    console.log('%c⧭', 'color: #807160', "try dans add de userActions");
   } catch (err) {
-
-    console.log('%c⧭', 'color: #007300', "erreur dans add de userAction", err);
     // Pass any errors to the error-handling middleware
     next(err);
   }

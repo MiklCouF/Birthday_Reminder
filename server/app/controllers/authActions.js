@@ -41,8 +41,6 @@ const verifyPassword = async (password, hashedPasswordDB) => {
 // get the password from the front login, and the hash password from the DB for verify with argon2
   try {
    const valid = await argon2.verify(hashedPasswordDB, password)
-
-   console.log('%c⧭', 'color: #1d3f73', "valid de argon2verify", valid );
    return valid
   } catch (err) {
     console.error("error sur argon2verify", err);
@@ -55,17 +53,10 @@ const login = async (req, res, next) => {
   const email = req.body.email;
 const password = req.body.password;
 
-  console.log('%c⧭', 'color: #364cd9', "password body", password);
-  console.log('%c⧭', 'color: #408059', "bienvenu dans login server");
   try {
-    console.log('%c⧭', 'color: #735656', "on arrive dans login, body:", "email :", email);
     const user = await tables.user.getUser(email);
-
-    console.log('%c⧭', 'color: #00ff88', "reponse du server, voici user:", user);
     if (!user) {
-      
-      console.log('%c⧭', 'color: #ffcc00', "pas de user ici :", user);
-      res.sendStatus(401);
+            res.sendStatus(401);
       return;
     }
 
@@ -75,14 +66,12 @@ const password = req.body.password;
       res.sendStatus(401);
       return;
     }
-// TODO récupérer les donnée de la bdd pour transmettre l'id firstname, et token?
 
     const id = user.id; // ID de l'utilisateur
     const firstname = user.firstname; // Le prénom de l'utilisateur
     const token = generateToken(user);
     delete user.password;
     
-    console.log('%c⧭', 'color: #d0bfff', "voyons user", id, firstname, token);
     // initialisation du cookie pour le token JWT
     if (token)
       res.cookie('authtoken', token, {

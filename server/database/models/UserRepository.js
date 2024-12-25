@@ -36,7 +36,6 @@ class UserRepository extends AbstractRepository {
   // get user data, select by the email
   async getUser(email) {
 
-    console.log('%c⧭', 'color: #00258c', "requete sql, email :", email);
     const [rows] = await this.database.query(
       `select * from ${this.table} where email = ?`,
       [email]
@@ -48,7 +47,6 @@ class UserRepository extends AbstractRepository {
     hashedPasswordDB: rows[0].password,
   }
 
-  console.log('%c⧭', 'color: #7f2200', "reonse sql user:", user);
   return user;
 }
 

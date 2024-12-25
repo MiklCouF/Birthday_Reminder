@@ -4,15 +4,6 @@ import { useUser } from "../context/UserProvider";
 
 function Header({ setMonth }) {
   const today = new Date();
-  const daysOfWeek = [
-    "Dimanche",
-    "Lundi",
-    "Mardi",
-    "Mercredi",
-    "Jeudi",
-    "Vendredi",
-    "Samedi",
-  ];
   const monthsOfYear = [
     "janvier",
     "février",
@@ -26,6 +17,15 @@ function Header({ setMonth }) {
     "octobre",
     "novembre",
     "décembre",
+  ];
+  const daysOfWeek = [
+    "Dimanche",
+    "Lundi",
+    "Mardi",
+    "Mercredi",
+    "Jeudi",
+    "Vendredi",
+    "Samedi",
   ];
   const dayOfWeek = daysOfWeek[today.getDay()];
   const day = today.getDate();
