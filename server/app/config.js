@@ -118,23 +118,16 @@ app.get("*", (_, res) => {
 
 /* ************************************************************************* */
 
-// Middleware for Error Logging (Uncomment to enable)
-// Important: Error-handling middleware should be defined last, after other app.use() and routes calls.
-
-/*
-// Define a middleware function to log errors
-const logErrors = (err, req, res, next) => {
-  // Log the error to the console for debugging purposes
-  console.error(err);
-  console.error("on req:", req.method, req.path);
-
-  // Pass the error to the next middleware in the stack
-  next(err);
-};
-
-// Mount the logErrors middleware globally
-app.use(logErrors);
-*/
+require('./cron/birthdayCron');
+// const cron = require("node-cron");
+  // Ce fichier démarre la tâche cron
+// test cron job
+// cron.schedule("* * * * *", () => {
+//   console.log("running a task every minute");
+// });
+// cron.schedule('*/10 * * * * *', () => {
+//   console.log('Le cron fonctionne toutes les 10 secondes !');
+// });
 
 /* ************************************************************************* */
 
@@ -164,6 +157,28 @@ app.get('/send-email', (req, res) => {
       res.status(500).json({ message: 'Erreur lors de l\'envoi de l\'email', err });
     });
 });
+
+
+/* ************************************************************************* */
+
+// Middleware for Error Logging (Uncomment to enable)
+// Important: Error-handling middleware should be defined last, after other app.use() and routes calls.
+
+/*
+// Define a middleware function to log errors
+const logErrors = (err, req, res, next) => {
+  // Log the error to the console for debugging purposes
+  console.error(err);
+  console.error("on req:", req.method, req.path);
+
+  // Pass the error to the next middleware in the stack
+  next(err);
+};
+
+// Mount the logErrors middleware globally
+app.use(logErrors);
+*/
+
 
 
 /* ************************************************************************* */
