@@ -29,12 +29,15 @@ const app = express();
 const cors = require("cors");
 
 app.use(
-  cors({
-    // origin: '*',  Autoriser toutes les origines (à retirer en production)
-    // origin: [ process.env.CLIENT_URL, ], // keep this one, after checking the value in `server/.env`
+  cors(
+    {
+    origin: '*',  
+    // Autoriser toutes les origines (à retirer en production)
+    origin: [ process.env.CLIENT_URL, ], // keep this one, after checking the value in `server/.env`
     origin: process.env.CLIENT_URL,
     credentials: true
-  })
+  }
+)
 );
 
 /* ************************************************************************* */
@@ -118,7 +121,7 @@ app.get("*", (_, res) => {
 
 /* ************************************************************************* */
 
-require('./cron/birthdayCron');
+// require('./cron/birthdayCron');
 // const cron = require("node-cron");
   // Ce fichier démarre la tâche cron
 // test cron job
@@ -131,13 +134,13 @@ require('./cron/birthdayCron');
 
 /* ************************************************************************* */
 
-const { sendEmail } = require('./services/emailService');
+// const { sendEmail } = require('./services/emailService');
 
-// app.post('/send-email', (req, res) => {
-//   const { to, subject, text, html } = req.body;
+// app.get('/send-email', (req, res) => {
+//   console.log('send-email depuis config');
 
 //   // Appel de la fonction sendEmail du service
-//   sendEmail(to, subject, text, html)
+//   sendEmail()
 //     .then((info) => {
 //       res.status(200).json({ message: 'Email envoyé avec succès!', info });
 //     })

@@ -21,6 +21,19 @@ const friendRouter = require("./friend/router");
 
 router.use("/friend", friendRouter);
 
-/* ************************************************************************* */
+const settings = require("./settings/router");
 
+router.use("/settings", settings);
+
+const { sendEmail } = require("../../services/emailService");
+
+router.get('/send-email', (req, res) => {
+    sendEmail();
+    res.send('La fonction a été appelée avec succès !');});
+    /* ************************************************************************* */
+
+const test = require("./test/router");
+
+router.use("/test", test);
+    
 module.exports = router;

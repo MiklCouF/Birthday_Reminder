@@ -124,6 +124,38 @@ const deleteFriend = await tables.friend.delete(id);
     }
   };
 
+  // The N of BREAD - Notify operation
+
+  const daysBeforeBirthday = async (res, next) => {
+
+    try {
+      // Fetch all items from the database
+      const friends15DaysBirthday = await tables.friend.read15Days();
+      // Respond with the items in JSON format
+      res.json(friends15DaysBirthday);
+
+      
+    } catch (err) {
+      // Pass any errors to the error-handling middleware
+      next(err);
+    }
+  };
+
+    // The T of BREAD - Today birthday operation
+    const todayBirthday = async (res, next) => {
+      try {
+        // Fetch all items from the database
+        const friendsTodayBirthday = await tables.friend.readTodayBirthday();
+  
+        // Respond with the items in JSON format
+        res.json(friendsTodayBirthday);
+
+      } catch (err) {
+        // Pass any errors to the error-handling middleware
+        next(err);
+      }
+  };
+
 // Ready to export the controller functions
 module.exports = {
   browse,
@@ -132,4 +164,6 @@ module.exports = {
   edit,
   add,
   destroy,
+  daysBeforeBirthday,
+  todayBirthday,
 };
