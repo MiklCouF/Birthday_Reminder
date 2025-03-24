@@ -4,6 +4,8 @@ import "react-toastify/dist/ReactToastify.css";
 import cancel from "../assets/cancel.png";
 import edit from "../assets/edit.svg";
 import valid from "../assets/check_green.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 function ReadAllFriends({ setShouldRerender, shouldRerender }) {
   // État pour stocker la liste des amis
@@ -118,10 +120,21 @@ function ReadAllFriends({ setShouldRerender, shouldRerender }) {
       <div className="p-read-all-friends">
         <div className="inline">
           <img className="edit-icon" src={edit} />
+          <FontAwesomeIcon
+            icon={faPen}
+            size="md"
+            color="green"
+            style={{ cursor: "pointer" }}
+          />
           <p>Édition</p>
         </div>
         <div className="inline">
           <p>Supression</p>
+          <FontAwesomeIcon
+            icon={faTrash}
+            size="md"
+            style={{ color: "red", cursor: "pointer" }}
+          />
           <img className="cancel-icon" src={cancel} />
         </div>
       </div>

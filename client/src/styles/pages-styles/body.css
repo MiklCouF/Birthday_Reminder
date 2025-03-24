@@ -1,10 +1,8 @@
 main {
   margin: 0;
-  /* background-color: var(--blue-bg-color); */
   background-image: linear-gradient(0deg, #30cfd0 0%, #146b96 90%);
   color: var(--light-font-color);
   display: flex;
-  /* height: 95vh; */
   align-items: center;
   justify-content: center;
 

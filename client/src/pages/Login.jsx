@@ -10,7 +10,7 @@ function login() {
   const navigate = useNavigate();
   const [errorForm, setErrorForm] = useState("");
   const [errorFormNone, setErrorFormNone] = useState(
-    "error-form-register-none",
+    "error-form-register-none"
   );
 
   function getCookie(name) {
@@ -67,8 +67,18 @@ function login() {
       const firstname = getCookie("firstname");
       const id = getCookie("id");
 
-      console.log('%c⧭', 'color: #cc0088', "direct le cookie", getCookie("firstname"));
-      console.log('%c⧭', 'color: #1d3f73', "firstname recu du cookie", firstname);
+      console.log(
+        "%c⧭",
+        "color: #cc0088",
+        "direct le cookie",
+        getCookie("firstname")
+      );
+      console.log(
+        "%c⧭",
+        "color: #1d3f73",
+        "firstname recu du cookie",
+        firstname
+      );
       setUser({ firstname, id });
       navigate("user");
     }
@@ -97,7 +107,7 @@ function login() {
             minLength="8"
             placeholder="Mot de passe"
             onFocus={() => !isPassword && setIsPassword(true)}
-            pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}"
+            pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[?!@#$%^&*]).{8,}"
             required
           />
           <br />

@@ -33,6 +33,8 @@
     "validate-branch-name": "^1.3.0"
   },
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "argon2": "^0.40.3",
     "cookie-parser": "^1.4.6",
     "node-cron": "^3.0.3",
