@@ -37,8 +37,26 @@
 }
 
 .search-bar {
+    display: flex;
     border-radius: 12px;
     border: 0cap;
     padding: 5px;
-    margin: 10px;
+    background-color: rgb(247, 190, 190);
+    align-items: center;
+
+     & svg {
+    margin:5px;
+    } 
+
+    & input {
+        border: 0cap;
+        background-color: transparent;
+        color: gray;
+        width: 100%;
+        outline: none;
+
+        & ul {
+            list-style: none;
+        }
+    }
 }

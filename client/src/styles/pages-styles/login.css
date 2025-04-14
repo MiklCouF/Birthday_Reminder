@@ -1,3 +1,11 @@
+
+.main-login {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .add-data-core {
   height: fit-content;
   background-color: var(--blue-bg-color);
@@ -26,17 +34,16 @@ form {
 }
 
 .card-core {
-  background-color: var(--gold-bg-color);
+  background-color: var(--white-bg-color);
   display: flex;
   flex-direction: column;
+  margin-top: 12px;
   padding: 40px;
-  /* height: fit-content; */
   border-radius: 12px;
   align-items: center;
+  border: solid #dbd9d9 1px;
 
   & input {
-    /* flex-direction: row; */
-    /* background-color: black; */
     padding-bottom: 3px;
     margin-bottom: 30px;
   }

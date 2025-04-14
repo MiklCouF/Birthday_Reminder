@@ -1,23 +1,50 @@
 header {
   display: flex;
-  height: 12vh;
+  justify-content: flex-end;
+  align-items: center;
+  position: fixed;
+  height: 60px;
   width: 100vw;
   padding: 0 25px;
   gap: 10px;
-  align-items: center;
   flex-direction: row;
-  overflow: hidden;
-  color: var(--light-font-color);
-  justify-content: space-between;
-  background-color: var(--gold-bg-color);
-  box-shadow: var(--gold-bg-color) 0 0px 10px 8px;
-  position: sticky;
-  & h2 {
+  /* color: var(--light-font-color); */
+  color: black;
+
+  & h4 {
     text-align: center;
     color: var(--blue-font-color);
   }
+}
+
+.skewed-header {
+  background-color: var(--primary-bg-color);
+  height: 60px;
+  width: 30px;
+  /* background-color: red; */
+  position: absolute;
+  top: 0;
+  left: -15px;
+transform: skew(21deg);
+}
+
+.header-div {
+
+  background-color:  var(--primary-bg-color);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: fixed;
+  height: 60px;
+  padding: 0 25px;
+  gap: 10px;
+  flex-direction: row;
+  /* color: var(--light-font-color); */
+  color: black;
+
   & h4 {
-    text-align: end;
+    text-align: center;
+    color: var(--blue-font-color);
   }
 }
 
@@ -34,20 +61,6 @@ header {
   .url {
     font-size: larger;
   }
-}
-
-.img-fanion {
-  position: absolute;
-  display: flex;
-  left: 0;
-  width: 100%;
-  
-}
-
-.logo-header {
-  padding: 15px;
-  height: 70px;
-  width: 70px;
 }
 
 @media (max-width: 600px) {

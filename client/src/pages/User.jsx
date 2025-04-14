@@ -4,10 +4,12 @@ import AddData from "../components/AddData";
 import MonthBirthday from "../components/MonthBirthday";
 import ReadAllFriends from "../components/ReadAllFriends";
 import { ToastContainer } from "react-toastify";
-import { useUser } from "../context/UserProvider";
+// import { useUser } from "../context/UserProvider";
 import SettingsCard from "../components/SettingsCard";
+import { useOutletContext } from "react-router-dom";
 
 function User() {
+  const { openModal } = useOutletContext();
   // re-rendre un composant lors de l'ajout d'un friend
   const [shouldRerender, setShouldRerender] = useState(false);
   async function fetchtest() {
@@ -40,36 +42,45 @@ function User() {
         alert("Une erreur est survenue.");
       });
   }
+  const userString = localStorage.getItem("user");
+  const user = JSON.parse(userString);
 
-  const { user } = useUser();
-  if (!user) {
-    return <div className="error-connexion">Vous n'êtes pas connecté</div>;
-  }
   return (
     <main className="main-user">
       <h3>Bienvenue, {user.firstname}!</h3>
-      <div className="component-user-page">
-        <AddData
-          user={user}
-          setShouldRerender={setShouldRerender}
-          shouldRerender={shouldRerender}
-        />
-        <div>
+      <div className="main-container-user">
+        <div className="container-top-user">
+          <AddData
+            user={user}
+            setShouldRerender={setShouldRerender}
+            shouldRerender={shouldRerender}
+            className="component-user-page"
+          />
+          {/* <div>
           <button class="buttontempo" onClick={fetchtest}>
             test mail
           </button>
           <button class="buttontempo" onClick={fetchtest15}>
             test 15jr
           </button>
-        </div>
+        </div> */}
 
-        <MonthBirthday shouldRerender={shouldRerender} />
-        <ReadAllFriends
-          setShouldRerender={setShouldRerender}
-          shouldRerender={shouldRerender}
-        />
-        <SettingsCard />
+          <MonthBirthday
+            className="component-user-page"
+            shouldRerender={shouldRerender}
+          />
+        </div>
+        <div className="container-bottom-user">
+          <ReadAllFriends
+            setShouldRerender={setShouldRerender}
+            shouldRerender={shouldRerender}
+            className="component-user-page"
+            openModal={openModal}
+          />
+        </div>
       </div>
+      <SettingsCard className="component-user-page" />
+
       <ToastContainer position="bottom-center" />
     </main>
   );

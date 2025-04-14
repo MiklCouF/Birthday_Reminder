@@ -7,7 +7,7 @@ import valid from "../assets/check_green.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-function ReadAllFriends({ setShouldRerender, shouldRerender }) {
+function ReadAllFriends({ setShouldRerender, shouldRerender, openModal }) {
   // État pour stocker la liste des amis
   const [friendList, setfriendList] = useState([]);
   // État pour stocker l'ID de l'ami en cours d'édition
@@ -15,70 +15,29 @@ function ReadAllFriends({ setShouldRerender, shouldRerender }) {
   // État pour stocker les données de l'ami en cours d'édition
   const [editedFriend, setEditedFriend] = useState({});
 
-  // Fonction pour gérer le clic sur le bouton d'édition
-  const handleEditClick = (friend) => {
-    const { age_this_year, ...friendWithoutAge } = friend;
-    // Définir l'ID de l'ami en cours d'édition
-    setEditingFriendId(friend.id);
-    // Copier les données de l'ami dans l'état editedFriend sans age_this_year
-    setEditedFriend(friendWithoutAge);
-  };
+  // // Fonction pour gérer le clic sur le bouton d'édition
+  // const handleEditClick = (friend) => {
+  //   const { age_this_year, ...friendWithoutAge } = friend;
+  //   // Définir l'ID de l'ami en cours d'édition
+  //   setEditingFriendId(friend.id);
+  //   // Copier les données de l'ami dans l'état editedFriend sans age_this_year
+  //   setEditedFriend(friendWithoutAge);
+  // };
 
-  // Fonction pour gérer les changements dans les champs de saisie
-  const handleInputChange = (e) => {
-    // Extraire le nom et la valeur du champ de saisie
-    const { name, value } = e.target;
-    // Mettre à jour la propriété correspondante dans l'état editedFriend
-    setEditedFriend((prevEditedFriend) => {
-      // Créer une copie de l'objet editedFriend précédent
-      const updatedFriend = { ...prevEditedFriend };
-      // Mettre à jour la propriété correspondante avec la nouvelle valeur
-      updatedFriend[name] = value;
-      // Retourner l'objet mis à jour pour mettre à jour l'état
-      return updatedFriend;
-    });
-  };
-
-  // Fonction pour soumettre les modifications de l'ami
-  async function editSubmit(id) {
-    fetch(`${import.meta.env.VITE_API_URL}/api/friend/${id}`, {
-      method: "PUT",
-      credentials: "include", // Inclure les cookies
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(editedFriend),
-    }).then((response) => {
-      if (response.ok) {
-        toast.success("La personne a bien été éditée");
-        setEditingFriendId(null);
-        setShouldRerender(!shouldRerender);
-      } else {
-        toast.error("Erreur, la personne n'a pas été éditée");
-      }
-    });
-  }
-
-  async function deleteSubmit(id) {
-    fetch(`${import.meta.env.VITE_API_URL}/api/friend/${id}`, {
-      method: "DELETE",
-      credentials: "include", // Inclure les cookies
-    })
-      .then((response) => {
-        if (response.ok) {
-          toast.success("La personne a bien été retirée de la base de données");
-          setShouldRerender(!shouldRerender);
-        } else {
-          toast.error("Erreur, la personne n'a pas été retirée");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.warn(
-          "Une erreur s'est produite lors de la tentative de suppression"
-        );
-      });
-  }
+  // // Fonction pour gérer les changements dans les champs de saisie
+  // const handleInputChange = (e) => {
+  //   // Extraire le nom et la valeur du champ de saisie
+  //   const { name, value } = e.target;
+  //   // Mettre à jour la propriété correspondante dans l'état editedFriend
+  //   setEditedFriend((prevEditedFriend) => {
+  //     // Créer une copie de l'objet editedFriend précédent
+  //     const updatedFriend = { ...prevEditedFriend };
+  //     // Mettre à jour la propriété correspondante avec la nouvelle valeur
+  //     updatedFriend[name] = value;
+  //     // Retourner l'objet mis à jour pour mettre à jour l'état
+  //     return updatedFriend;
+  //   });
+  // };
 
   useEffect(
     function importAllFriend() {
@@ -114,31 +73,17 @@ function ReadAllFriends({ setShouldRerender, shouldRerender }) {
       )
     : [];
 
+  const handleEdit = (el) => {
+    console.log("log el", el);
+    const formEdit = friendList.find((friend) => friend.id === el.id);
+    openModal(formEdit);
+  };
+
   return (
     <div className="add-data-core-user">
       <h2>Liste de tous les proches</h2>
-      <div className="p-read-all-friends">
-        <div className="inline">
-          <img className="edit-icon" src={edit} />
-          <FontAwesomeIcon
-            icon={faPen}
-            size="md"
-            color="green"
-            style={{ cursor: "pointer" }}
-          />
-          <p>Édition</p>
-        </div>
-        <div className="inline">
-          <p>Supression</p>
-          <FontAwesomeIcon
-            icon={faTrash}
-            size="md"
-            style={{ color: "red", cursor: "pointer" }}
-          />
-          <img className="cancel-icon" src={cancel} />
-        </div>
-      </div>
       <div className="card-core">
+        <div className="p-read-all-friends"></div>
         <input
           className="search-bar"
           type="text"
@@ -150,69 +95,17 @@ function ReadAllFriends({ setShouldRerender, shouldRerender }) {
           <tbody>
             {friendListReady.length > 0 ? (
               friendListReady.map((el) => (
-                <tr key={el.id}>
-                  <td>
-                    <img
-                      className="edit-icon"
-                      src={edit}
-                      alt="Edit"
-                      onClick={() => handleEditClick(el)} // Passer l'ID à la fonction
-                    />
-                  </td>
+                <tr
+                  key={el.id}
+                  id={`friend-${el.id}`}
+                  onClick={() => handleEdit(el)}
+                >
                   <td className="monthMap">
-                    {editingFriendId === el.id ? (
-                      <>
-                        <input
-                          type="text"
-                          name="firstname"
-                          value={editedFriend.firstname}
-                          onChange={handleInputChange}
-                        />
-                        <input
-                          type="text"
-                          name="lastname"
-                          value={editedFriend.lastname}
-                          onChange={handleInputChange}
-                        />
-                      </>
-                    ) : (
-                      <>
-                        <td className="">{el.firstname}</td>
-                        <td className="">{el.lastname}</td>
-                      </>
-                    )}
+                    {el.firstname} {el.lastname}
                   </td>
                   <td className="padding-left-15">née le</td>
-                  <td className="text-align-right">
-                    {editingFriendId === el.id ? (
-                      <input
-                        type="date"
-                        name="birthday"
-                        value={editedFriend.birthday}
-                        onChange={handleInputChange}
-                      />
-                    ) : (
-                      el.formatted_birthday
-                    )}
-                  </td>
+                  <td className="text-align-right">{el.formatted_birthday}</td>
                   <td className="text-align-right">{el.age_this_year} ans</td>
-                  <td>
-                    {editingFriendId === el.id ? (
-                      <img
-                        className="valid-icon"
-                        src={valid}
-                        onClick={() => editSubmit(el.id)}
-                        alt="Edit"
-                      />
-                    ) : (
-                      <img
-                        className="cancel-icon"
-                        src={cancel}
-                        onClick={() => deleteSubmit(el.id)} // Passer l'ID à la fonction
-                        alt="Delete"
-                      />
-                    )}
-                  </td>
                 </tr>
               ))
             ) : (

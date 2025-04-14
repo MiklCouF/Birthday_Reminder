@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
+import fetchWithRedirect from "../utils/fetchWithRedirect"; // Assurez-vous que le chemin est correct
 
 function AddData({ user, setShouldRerender, shouldRerender }) {
   const [isChecked, setIsChecked] = useState(0);
@@ -12,8 +13,9 @@ function AddData({ user, setShouldRerender, shouldRerender }) {
     const data = Object.fromEntries(formData);
     console.log(data);
     console.log("formdata", formData);
-    fetch(`${import.meta.env.VITE_API_URL}/api/friend/`, {
+    fetchWithRedirect(`${import.meta.env.VITE_API_URL}/api/friend/`, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -50,60 +52,61 @@ function AddData({ user, setShouldRerender, shouldRerender }) {
   // }
 
   return (
-    <div className="add-data-core-user">
-      <p>Ajouter la date d'anniversaire d'un proche</p>
+    <>
+      <div className="add-data-core-user">
+        <h2>Ajout d'un proche</h2>
+        <div className="card-core">
+          <form onSubmit={handleSubmit}>
+            <input type="hidden" name="userId" value={user.id} />
+            <p>Prénom:</p>
+            <input
+              type="text"
+              id="firstname"
+              name="firstname"
+              placeholder="Martin"
+              required
+            />
 
-      <div className="card-core">
-        <form onSubmit={handleSubmit}>
-          <input type="hidden" name="userId" value={user.id} />
-          <p>Prénom:</p>
-          <input
-            type="text"
-            id="firstname"
-            name="firstname"
-            placeholder="Martin"
-            required
-          />
+            <p>Nom:</p>
+            <input
+              type="text"
+              id="lastname"
+              name="lastname"
+              placeholder="Dubois"
+              required
+            />
 
-          <p>Nom:</p>
-          <input
-            type="text"
-            id="lastname"
-            name="lastname"
-            placeholder="Dubois"
-            required
-          />
+            <p>Date de naissance</p>
+            <input type="date" id="dateSubscribe" name="birthday" required />
 
-          <p>Date de naissance</p>
-          <input type="date" id="dateSubscribe" name="birthday" required />
+            <div className="toggle-container">
+              <p>Reçevoir un premier rappel 15jours avant</p>
 
-          <div className="toggle-container">
-            <p>Reçevoir un premier rappel 15jours avant</p>
-
-            <label className="switch">
-              <input
-                type="checkbox"
-                checked={isChecked === 1}
-                onChange={() => setIsChecked(isChecked === 1 ? 0 : 1)}
-                value={isChecked}
-                id="reminder_15"
-                name="reminder_15"
-              />
-              <span className="slider"></span>
-            </label>
-            <span className="toggle-label">{isChecked ? "Oui" : "Non"}</span>
-          </div>
-          <button
-            type="submit"
-            value="Ajouter"
-            id="subscribe"
-            className="subscribe"
-          >
-            Ajouter
-          </button>
-        </form>
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  checked={isChecked === 1}
+                  onChange={() => setIsChecked(isChecked === 1 ? 0 : 1)}
+                  value={isChecked}
+                  id="reminder_15"
+                  name="reminder_15"
+                />
+                <span className="slider"></span>
+              </label>
+              <span className="toggle-label">{isChecked ? "Oui" : "Non"}</span>
+            </div>
+            <button
+              type="submit"
+              value="Ajouter"
+              id="subscribe"
+              className="subscribe"
+            >
+              Ajouter
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

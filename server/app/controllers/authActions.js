@@ -33,7 +33,7 @@ function generateToken(user) {
       email: user.email,
     },
     process.env.APP_SECRET,
-    { expiresIn: "24h" }
+    { expiresIn: "36h" }
   );
 };
 
@@ -105,33 +105,8 @@ res.cookie('firstname', firstname, {
   }
 };
 
-
-// verify if the token of the user is still valid
-const authorize = (req, res, next) => {
-  const authHeader = req.headers.authorization;
-  if (!authHeader) {
-    res.sendStatus(401);
-    return;
-  }
-
-  const [type, token] = authHeader.split(" ");
-  if (type !== "Bearer") {
-    res.sendStatus(401);
-    return;
-  }
-
-  jwt.verify(token, process.env.APP_SECRET, (err) => {
-    if (err) {
-      res.sendStatus(401);
-    } else {
-      next();
-    }
-  });
-};
-
 module.exports = {
   login,
   hashPassword,
-  authorize,
 };
 

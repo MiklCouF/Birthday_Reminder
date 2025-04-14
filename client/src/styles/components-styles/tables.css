@@ -1,3 +1,28 @@
+table {
+  width: 100%;
+  font-size: smaller;
+  border-collapse: collapse;
+
+}
+
+tr {
+  border-bottom: 1px solid #dbd9d9;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    background-color: #f4f2ee;
+    cursor: pointer;
+  }
+
+  & td {
+    padding: 10px;
+    text-align: center;
+    overflow-wrap: break-word;
+    width: 100%;
+  }
+}
+
 .text-align-right {
   text-align: right;
 }

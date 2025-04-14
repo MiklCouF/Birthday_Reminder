@@ -1,17 +1,4 @@
 main {
-  margin: 0;
-  background-image: linear-gradient(0deg, #30cfd0 0%, #146b96 90%);
+  background-color:  var(--primary-bg-color);
   color: var(--light-font-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  & h6 {
-    padding: 0%;
-    margin: 0%;
-  }
-}
-
-.height-main-login {
-    height: 88vh;
 }
