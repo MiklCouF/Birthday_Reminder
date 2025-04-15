@@ -1,10 +1,10 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
-const friendDataContext = createContext();
+const UserDataContext = createContext();
 
-export const usefriendData = () => useContext(friendDataContext);
+export const useUserData = () => useContext(UserDataContext);
 
-export const friendDataProvider = ({ children }) => {
+export const UserDataProvider = ({ children }) => {
   const [friendData, setFriendData] = useState(null);
   const [monthFriendData, setMonthFriendData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -16,12 +16,15 @@ export const friendDataProvider = ({ children }) => {
         method: "GET",
         credentials: "include",
       });
-      if (!res.ok) throw new Error("Fetch failed");
-
+      if (!res.ok) return;
       const data = await res.json();
+      console.log("Fetched friend data :", data);
       setFriendData(data);
     } catch (err) {
-      console.error("Erreur lors de la récupération des données utilisateur :", err);
+      console.error(
+        "Erreur lors de la récupération des données utilisateur :",
+        err
+      );
     } finally {
       setIsLoading(false);
     }
@@ -30,16 +33,22 @@ export const friendDataProvider = ({ children }) => {
   const fetchfriendMonthData = async () => {
     try {
       setIsLoading(true);
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/friend/month`, {
-        method: "GET",
-        credentials: "include",
-      });
-      if (!res.ok) throw new Error("Fetch failed");
-
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/friend/month`,
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
+      if (!res.ok) return;
       const data = await res.json();
+      console.log("Fetched month data :", data);
       setMonthFriendData(data);
     } catch (err) {
-      console.error("Erreur lors de la récupération des données utilisateur :", err);
+      console.error(
+        "Erreur lors de la récupération des données utilisateur :",
+        err
+      );
     } finally {
       setIsLoading(false);
     }
@@ -51,7 +60,7 @@ export const friendDataProvider = ({ children }) => {
   }, []);
 
   return (
-    <friendDataContext.Provider
+    <UserDataContext.Provider
       value={{
         friendData,
         setFriendData,
@@ -63,6 +72,6 @@ export const friendDataProvider = ({ children }) => {
       }}
     >
       {children}
-    </friendDataContext.Provider>
+    </UserDataContext.Provider>
   );
 };

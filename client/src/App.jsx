@@ -3,6 +3,7 @@ import { useState } from "react";
 import Header from "./components/Header";
 import ModalEdit from "./components/ModalEdit";
 import Footer from "./components/Footer";
+import { UserDataProvider } from "./context/UserDataContext.jsx";
 
 import "./styles/app.css";
 import "./styles/global.css";
@@ -26,15 +27,17 @@ function App() {
 
   return (
     <>
-      <Header setMonth={setMonth} />
-      <Outlet context={{ month, setMonth, openModal }} />
-      <ModalEdit
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        data={selectedData}
-        onSave={saveData}
-      />
-      <Footer />
+      <UserDataProvider>
+        <Header setMonth={setMonth} />
+        <Outlet context={{ month, setMonth, openModal }} />
+        <ModalEdit
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          data={selectedData}
+          onSave={saveData}
+        />
+        <Footer />
+      </UserDataProvider>
     </>
   );
 }
