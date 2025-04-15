@@ -82,6 +82,8 @@ function ReadAllFriends({ setShouldRerender, shouldRerender, openModal }) {
   return (
     <div className="add-data-core-user">
       <h2>Liste de tous les proches</h2>
+      <span class="loader"></span>
+      <span class="loader-delete">Deleting</span>
       <div className="card-core">
         <div className="p-read-all-friends"></div>
         <input
