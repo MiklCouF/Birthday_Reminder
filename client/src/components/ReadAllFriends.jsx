@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useUserData } from "../context/UserDataContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import cancel from "../assets/cancel.png";
@@ -8,57 +9,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 function ReadAllFriends({ setShouldRerender, shouldRerender, openModal }) {
-  // État pour stocker la liste des amis
-  const [friendList, setfriendList] = useState([]);
   // État pour stocker l'ID de l'ami en cours d'édition
   const [editingFriendId, setEditingFriendId] = useState(null);
   // État pour stocker les données de l'ami en cours d'édition
   const [editedFriend, setEditedFriend] = useState({});
 
-  // // Fonction pour gérer le clic sur le bouton d'édition
-  // const handleEditClick = (friend) => {
-  //   const { age_this_year, ...friendWithoutAge } = friend;
-  //   // Définir l'ID de l'ami en cours d'édition
-  //   setEditingFriendId(friend.id);
-  //   // Copier les données de l'ami dans l'état editedFriend sans age_this_year
-  //   setEditedFriend(friendWithoutAge);
-  // };
+  const [friendList, setFriendList] = useState([]);
+  const { friendData, isLoading } = useUserData();
 
-  // // Fonction pour gérer les changements dans les champs de saisie
-  // const handleInputChange = (e) => {
-  //   // Extraire le nom et la valeur du champ de saisie
-  //   const { name, value } = e.target;
-  //   // Mettre à jour la propriété correspondante dans l'état editedFriend
-  //   setEditedFriend((prevEditedFriend) => {
-  //     // Créer une copie de l'objet editedFriend précédent
-  //     const updatedFriend = { ...prevEditedFriend };
-  //     // Mettre à jour la propriété correspondante avec la nouvelle valeur
-  //     updatedFriend[name] = value;
-  //     // Retourner l'objet mis à jour pour mettre à jour l'état
-  //     return updatedFriend;
-  //   });
-  // };
+  useEffect(() => {
+    if (Array.isArray(friendData)) {
+      setFriendList(friendData);
+    }
+  }, [friendData]);
 
-  useEffect(
-    function importAllFriend() {
-      fetch(`${import.meta.env.VITE_API_URL}/api/friend/`, {
-        method: "GET",
-        credentials: "include", // Inclure les cookies
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("Fetched data:", data);
-          setfriendList(data);
-        })
-        .catch((error) => {
-          console.error(
-            "Une erreur s'est produite lors de la récupération des données:",
-            error
-          );
-        });
-    },
-    [shouldRerender]
-  );
+  if (isLoading) return <span className="loader"></span>;
 
   const friendListData = friendList || [];
 
