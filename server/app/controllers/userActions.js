@@ -53,6 +53,25 @@ const readByEmail = async (req, res, next) => {
   }
 };
 
+// Get email for send rimender
+
+const readEmailById = async (req, res, next) => {
+  try {
+    // Fetch a specific user from the database based on the provided email
+    const user = await tables.user.readEmailById(req.params.id);
+
+    // If the user is not found, respond with HTTP 404 (Not Found)
+    // Otherwise, respond with next, for authAction to creat token
+    if (user == null) {
+      res.sendStatus(404);
+    } else {
+      next();
+    }
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
 
 
 // The E of BREAD - Edit (Update) operation
@@ -88,10 +107,7 @@ const add = async (req, res, next) => {
     
     // Respond with HTTP 201 (Created) and the ID of the newly inserted item
     res.status(201).json({ insertId });
-    console.log('%c⧭', 'color: #807160', "try dans add de userActions");
   } catch (err) {
-
-    console.log('%c⧭', 'color: #007300', "erreur dans add de userAction", err);
     // Pass any errors to the error-handling middleware
     next(err);
   }
@@ -107,5 +123,6 @@ module.exports = {
   edit,
   add,
   readByEmail,
+  readEmailById,
   // destroy,
 };

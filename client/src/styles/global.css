@@ -1,4 +1,3 @@
-@import "./components-styles/login.css";
 @import "./components-styles/monthBirthday.css";
 @import "./components-styles/calendar.css";
 @import "./components-styles/header.css";
@@ -6,9 +5,12 @@
 @import "./components-styles/user-form.css";
 @import "./components-styles/ReadAllFriends.css";
 @import "./components-styles/add-data.css";
+@import "./components-styles/modal.css";
 @import "./pages-styles/body.css";
 @import "./pages-styles/user.css";
 @import "./pages-styles/rgpd.css";
+@import "./pages-styles/login.css";
+@import "./animations.css";
 @import "./app.css";
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
@@ -34,10 +36,9 @@ button {
 
   /* Element color */
   --blue-bg-color: #146b96;
-  --gold-bg-color: #bba637;
+  --primary-bg-color: #F4F2EE;
+  --white-bg-color: white;
 
-  /* Remplacer par Vert Pastel et Blanc créme? */
-  /* --gold-bg-color: #3cb371; */
 }
 
 * {

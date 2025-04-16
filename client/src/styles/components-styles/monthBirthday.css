@@ -1,20 +1,26 @@
 .monthMap {
   display: flex;
+  align-items: baseline;
+  max-width: 140px;
 }
 
 .table-current-month {
-  color: aliceblue;
   text-align: left;
+  overflow-wrap: break-word;
   & tr {
     text-align: left;
   }
 }
 
-.current-month-props {
-  padding-bottom: 10px;
-}
-
 .cancel-icon {
   height: 24px;
   width: auto;
+}
+
+.bg-grey {
+  background-color: #f4f2ee;
+}
+
+.bg-blue {
+  background-color: #e4fff7;
 }

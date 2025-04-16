@@ -29,12 +29,15 @@ const app = express();
 const cors = require("cors");
 
 app.use(
-  cors({
-    // origin: '*',  Autoriser toutes les origines (à retirer en production)
-    // origin: [ process.env.CLIENT_URL, ], // keep this one, after checking the value in `server/.env`
+  cors(
+    {
+    origin: '*',  
+    // Autoriser toutes les origines (à retirer en production)
+    origin: [ process.env.CLIENT_URL, ], // keep this one, after checking the value in `server/.env`
     origin: process.env.CLIENT_URL,
     credentials: true
-  })
+  }
+)
 );
 
 /* ************************************************************************* */
@@ -118,6 +121,49 @@ app.get("*", (_, res) => {
 
 /* ************************************************************************* */
 
+// require('./cron/birthdayCron');
+// const cron = require("node-cron");
+  // Ce fichier démarre la tâche cron
+// test cron job
+// cron.schedule("* * * * *", () => {
+//   console.log("running a task every minute");
+// });
+// cron.schedule('*/10 * * * * *', () => {
+//   console.log('Le cron fonctionne toutes les 10 secondes !');
+// });
+
+/* ************************************************************************* */
+
+// const { sendEmail } = require('./services/emailService');
+
+// app.get('/send-email', (req, res) => {
+//   console.log('send-email depuis config');
+
+//   // Appel de la fonction sendEmail du service
+//   sendEmail()
+//     .then((info) => {
+//       res.status(200).json({ message: 'Email envoyé avec succès!', info });
+//     })
+//     .catch((err) => {
+//       res.status(500).json({ message: 'Erreur lors de l\'envoi de l\'email', err });
+//     });
+// });
+
+// TESSSSSSSSSSSSSSSSSSSST 
+
+app.get('/send-email', (req, res) => {
+  sendEmail()
+    .then((info) => {
+      res.status(204).json({ message: 'Email envoyé avec succès !', info });
+    })
+    .catch((err) => {
+      res.status(500).json({ message: 'Erreur lors de l\'envoi de l\'email', err });
+    });
+});
+
+
+/* ************************************************************************* */
+
 // Middleware for Error Logging (Uncomment to enable)
 // Important: Error-handling middleware should be defined last, after other app.use() and routes calls.
 
@@ -135,6 +181,8 @@ const logErrors = (err, req, res, next) => {
 // Mount the logErrors middleware globally
 app.use(logErrors);
 */
+
+
 
 /* ************************************************************************* */
 

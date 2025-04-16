@@ -1,6 +1,9 @@
 .edit-icon {
     margin-right: 0.5rem;
     cursor: pointer;
+    & :hover {
+        color: #028a0b;
+    }
 }
 
 .cancel-icon {
@@ -11,4 +14,49 @@
 .valid-icon {
     margin-left: 0.5rem;
     cursor: pointer;
+    & :hover {
+        color: #028a0b;
+    }
+}
+
+.p-read-all-friends {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.inline {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: aliceblue;
+    color: black;
+    border-radius: 12px;
+}
+
+.search-bar {
+    display: flex;
+    border-radius: 12px;
+    border: 0cap;
+    padding: 5px;
+    background-color: rgb(247, 190, 190);
+    align-items: center;
+
+     & svg {
+    margin:5px;
+    } 
+
+    & input {
+        border: 0cap;
+        background-color: transparent;
+        color: gray;
+        width: 100%;
+        outline: none;
+
+        & ul {
+            list-style: none;
+        }
+    }
 }

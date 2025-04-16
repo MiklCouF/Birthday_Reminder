@@ -1,7 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-import User from "./pages/User";
+import ProtectedRoute from "./ProtectedRoute";
 import Login from "./pages/Login";
+import User from "./pages/User";
 import Register from "./pages/Register";
 import Rgpd from "./pages/Rgpd";
 
@@ -16,12 +17,16 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "",
-        element: <Login />,
+        index: true,
+        element: (
+          <ProtectedRoute>
+            <User />
+          </ProtectedRoute>
+        ),
       },
       {
-        path: "user",
-        element: <User />,
+        path: "login",
+        element: <Login />,
       },
       {
         path: "register",

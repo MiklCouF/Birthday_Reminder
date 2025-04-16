@@ -33,7 +33,7 @@ function generateToken(user) {
       email: user.email,
     },
     process.env.APP_SECRET,
-    { expiresIn: "24h" }
+    { expiresIn: "36h" }
   );
 };
 
@@ -41,8 +41,6 @@ const verifyPassword = async (password, hashedPasswordDB) => {
 // get the password from the front login, and the hash password from the DB for verify with argon2
   try {
    const valid = await argon2.verify(hashedPasswordDB, password)
-
-   console.log('%c⧭', 'color: #1d3f73', "valid de argon2verify", valid );
    return valid
   } catch (err) {
     console.error("error sur argon2verify", err);
@@ -55,17 +53,10 @@ const login = async (req, res, next) => {
   const email = req.body.email;
 const password = req.body.password;
 
-  console.log('%c⧭', 'color: #364cd9', "password body", password);
-  console.log('%c⧭', 'color: #408059', "bienvenu dans login server");
   try {
-    console.log('%c⧭', 'color: #735656', "on arrive dans login, body:", "email :", email);
     const user = await tables.user.getUser(email);
-
-    console.log('%c⧭', 'color: #00ff88', "reponse du server, voici user:", user);
     if (!user) {
-      
-      console.log('%c⧭', 'color: #ffcc00', "pas de user ici :", user);
-      res.sendStatus(401);
+            res.sendStatus(401);
       return;
     }
 
@@ -75,14 +66,12 @@ const password = req.body.password;
       res.sendStatus(401);
       return;
     }
-// TODO récupérer les donnée de la bdd pour transmettre l'id firstname, et token?
 
     const id = user.id; // ID de l'utilisateur
     const firstname = user.firstname; // Le prénom de l'utilisateur
     const token = generateToken(user);
     delete user.password;
     
-    console.log('%c⧭', 'color: #d0bfff', "voyons user", id, firstname, token);
     // initialisation du cookie pour le token JWT
     if (token)
       res.cookie('authtoken', token, {
@@ -116,33 +105,8 @@ res.cookie('firstname', firstname, {
   }
 };
 
-
-// verify if the token of the user is still valid
-const authorize = (req, res, next) => {
-  const authHeader = req.headers.authorization;
-  if (!authHeader) {
-    res.sendStatus(401);
-    return;
-  }
-
-  const [type, token] = authHeader.split(" ");
-  if (type !== "Bearer") {
-    res.sendStatus(401);
-    return;
-  }
-
-  jwt.verify(token, process.env.APP_SECRET, (err) => {
-    if (err) {
-      res.sendStatus(401);
-    } else {
-      next();
-    }
-  });
-};
-
 module.exports = {
   login,
   hashPassword,
-  authorize,
 };
 

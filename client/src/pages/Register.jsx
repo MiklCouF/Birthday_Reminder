@@ -13,14 +13,14 @@ function Register() {
   function handleSubmit(event) {
     event.preventDefault();
     const password1 = passwordRef.current.value;
-     const password2 = passwordConfirmationRef.current.value;
+    const password2 = passwordConfirmationRef.current.value;
 
     if (password1 === password2 && cguChecked) {
-    // if (password1) {
+      // if (password1) {
       const formData = new FormData(event.target);
       const data = Object.fromEntries(formData);
 
-      fetch(`${import.meta.env.VITE_API_URL}/api/user/`, {
+      fetch(`${import.meta.env.VITE_API_URL}/api/login/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -31,13 +31,13 @@ function Register() {
         if (res.ok) {
           toast.success("Création de compte réussie");
           setTimeout(() => {
-            navigate("/user");
+            navigate("/");
           }, 4000);
         }
       });
     } else {
       setErrorForm(
-        "Les deux mots de passe ne sont pas identiques ou les CGU ne sont pas cochées",
+        "Les deux mots de passe ne sont pas identiques ou les CGU ne sont pas cochées"
       );
     }
   }
@@ -111,7 +111,7 @@ function Register() {
               <label htmlFor="cgu">
                 J'accepte les{" "}
                 <NavLink to="/rgpd" className="cgu-link">
-                mentions légales
+                  mentions légales
                 </NavLink>{" "}
                 <br />
                 et reconnais avoir été informé
