@@ -20,11 +20,6 @@ function App() {
     setIsModalOpen(true);
   };
 
-  const saveData = (updatedData) => {
-    console.log("Données mises à jour :", updatedData);
-    // Envoyer les modifications à une API ou mettre à jour le state global
-  };
-
   return (
     <>
       <UserDataProvider>
@@ -34,7 +29,6 @@ function App() {
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
           data={selectedData}
-          onSave={saveData}
         />
         <Footer />
       </UserDataProvider>

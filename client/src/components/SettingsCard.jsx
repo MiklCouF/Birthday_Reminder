@@ -15,9 +15,9 @@ function SettingsCard() {
           <br />
           TODO :
           <br />
-          <ul>rajouter une modal pour anniversaire de mariage,</ul>
-          <br />
         </p>
+        <ul>rajouter une modal pour anniversaire de mariage,</ul>
+        <br />
       </div>
     </div>
   );
