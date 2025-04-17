@@ -2,29 +2,12 @@ import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { useUserData } from "../context/UserDataContext";
 
-function MonthBirthday({ shouldRerender }) {
+function MonthBirthday({ openModal }) {
   const { month } = useOutletContext();
   const { monthFriendData, isLoading } = useUserData();
+  if (isLoading) return <span className="loader"></span>;
 
   const [monthBirthday, setMonthBirthday] = useState({ data: [] });
-
-  // useEffect(() => {
-  //   fetch(`${import.meta.env.VITE_API_URL}/api/friend/month`, {
-  //     method: "GET",
-  //     credentials: "include", // Inclure les cookies
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log("Fetched data:", data);
-  //       setMonthBirthday(data);
-  //     })
-  //     .catch((error) => {
-  //       console.error(
-  //         "Une erreur s'est produite lors de la récupération des données:",
-  //         error
-  //       );
-  //     });
-  // }, [shouldRerender]);
 
   const monthBirthdayData = monthFriendData || [];
 
@@ -39,6 +22,11 @@ function MonthBirthday({ shouldRerender }) {
           el.birth_day
       )
     : [];
+
+  const handleEdit = (el) => {
+    console.log("log el", el);
+    openModal(el);
+  };
 
   return (
     <div className="add-data-core-user margin-x-auto">
@@ -65,7 +53,11 @@ function MonthBirthday({ shouldRerender }) {
                   dateColor = "";
                 }
                 return (
-                  <tr key={el.id} className={dateColor}>
+                  <tr
+                    key={el.id}
+                    className={dateColor}
+                    onClick={() => handleEdit(el)}
+                  >
                     <td className="monthMap">
                       {el.firstname} {el.lastname}
                     </td>

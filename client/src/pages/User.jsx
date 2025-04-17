@@ -68,6 +68,7 @@ function User() {
           <MonthBirthday
             className="component-user-page"
             shouldRerender={shouldRerender}
+            openModal={openModal}
           />
         </div>
         <div className="container-bottom-user">
