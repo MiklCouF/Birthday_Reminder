@@ -54,6 +54,11 @@ export const UserDataProvider = ({ children }) => {
     }
   };
 
+  const fetchFriends = () => {
+    fetchfriendData();
+    fetchfriendMonthData();
+  };
+
   useEffect(() => {
     fetchfriendData();
     fetchfriendMonthData();
@@ -68,6 +73,7 @@ export const UserDataProvider = ({ children }) => {
         setMonthFriendData,
         fetchfriendMonthData,
         fetchfriendData,
+        fetchFriends,
         isLoading,
       }}
     >

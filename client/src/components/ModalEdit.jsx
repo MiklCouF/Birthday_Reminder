@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import fetchWithRedirect from "../utils/fetchWithRedirect";
+import { useUserData } from "../context/UserDataContext.jsx";
 
 const ModalEdit = ({ isOpen, onClose, data, onSave }) => {
   if (!isOpen) return null;
@@ -13,6 +14,8 @@ const ModalEdit = ({ isOpen, onClose, data, onSave }) => {
     id: null,
   });
   const [showModal, setShowModal] = useState(false);
+
+  const { fetchFriends } = useUserData();
 
   async function getFriend(id) {
     try {
@@ -75,6 +78,7 @@ const ModalEdit = ({ isOpen, onClose, data, onSave }) => {
     ).then((response) => {
       if (response.ok) {
         toast.success("La personne a bien été éditée");
+        fetchFriends();
       } else {
         toast.error("Erreur, la personne n'a pas été éditée");
       }
@@ -89,6 +93,7 @@ const ModalEdit = ({ isOpen, onClose, data, onSave }) => {
       .then((response) => {
         if (response.ok) {
           toast.success("La personne a bien été retirée de la base de données");
+          fetchFriends();
         } else {
           toast.error("Erreur, la personne n'a pas été retirée");
         }

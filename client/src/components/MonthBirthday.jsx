@@ -1,29 +1,32 @@
 import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
+import { useUserData } from "../context/UserDataContext";
 
 function MonthBirthday({ shouldRerender }) {
   const { month } = useOutletContext();
+  const { monthFriendData, isLoading } = useUserData();
+
   const [monthBirthday, setMonthBirthday] = useState({ data: [] });
 
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/friend/month`, {
-      method: "GET",
-      credentials: "include", // Inclure les cookies
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Fetched data:", data);
-        setMonthBirthday(data);
-      })
-      .catch((error) => {
-        console.error(
-          "Une erreur s'est produite lors de la récupération des données:",
-          error
-        );
-      });
-  }, [shouldRerender]);
+  // useEffect(() => {
+  //   fetch(`${import.meta.env.VITE_API_URL}/api/friend/month`, {
+  //     method: "GET",
+  //     credentials: "include", // Inclure les cookies
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log("Fetched data:", data);
+  //       setMonthBirthday(data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(
+  //         "Une erreur s'est produite lors de la récupération des données:",
+  //         error
+  //       );
+  //     });
+  // }, [shouldRerender]);
 
-  const monthBirthdayData = monthBirthday || [];
+  const monthBirthdayData = monthFriendData || [];
 
   const monthBirthdayReady = Array.isArray(monthBirthdayData)
     ? monthBirthdayData.filter(

@@ -1,19 +1,12 @@
 import { useEffect, useState } from "react";
 import { useUserData } from "../context/UserDataContext";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import cancel from "../assets/cancel.png";
 import edit from "../assets/edit.svg";
 import valid from "../assets/check_green.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-function ReadAllFriends({ setShouldRerender, shouldRerender, openModal }) {
-  // État pour stocker l'ID de l'ami en cours d'édition
-  const [editingFriendId, setEditingFriendId] = useState(null);
-  // État pour stocker les données de l'ami en cours d'édition
-  const [editedFriend, setEditedFriend] = useState({});
-
+function ReadAllFriends({ openModal }) {
   const [friendList, setFriendList] = useState([]);
   const { friendData, isLoading } = useUserData();
 
@@ -47,8 +40,8 @@ function ReadAllFriends({ setShouldRerender, shouldRerender, openModal }) {
   return (
     <div className="add-data-core-user">
       <h2>Liste de tous les proches</h2>
-      <span class="loader"></span>
-      <span class="loader-delete">Deleting</span>
+      <span className="loader"></span>
+      <span className="loader-delete">Deleting</span>
       <div className="card-core">
         <div className="p-read-all-friends"></div>
         <input
