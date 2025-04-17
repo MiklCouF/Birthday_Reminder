@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import fetchWithRedirect from "../utils/fetchWithRedirect";
 import { useUserData } from "../context/UserDataContext.jsx";
 
-const ModalEdit = ({ isOpen, onClose, data, onSave }) => {
+const ModalEdit = ({ isOpen, onClose, data }) => {
   if (!isOpen) return null;
 
   const [formData, setFormData] = useState({
@@ -79,7 +79,7 @@ const ModalEdit = ({ isOpen, onClose, data, onSave }) => {
       if (response.ok) {
         toast.success("La personne a bien été éditée");
         fetchFriends();
-        openModal(false);
+        onClose();
       } else {
         toast.error("Erreur, la personne n'a pas été éditée");
       }
@@ -95,7 +95,7 @@ const ModalEdit = ({ isOpen, onClose, data, onSave }) => {
         if (response.ok) {
           toast.success("La personne a bien été retirée de la base de données");
           fetchFriends();
-          openModal(false);
+          onClose();
         } else {
           toast.error("Erreur, la personne n'a pas été retirée");
         }
