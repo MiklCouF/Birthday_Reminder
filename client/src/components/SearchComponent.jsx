@@ -69,6 +69,7 @@ const SearchComponent = () => {
     <div
       id="search-container"
       style={{
+        display: "flex",
         width: "200px",
         padding: "8px",
         boxSizing: "border-box",

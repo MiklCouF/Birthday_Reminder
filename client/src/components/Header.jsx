@@ -47,16 +47,6 @@ function Header({ setMonth }) {
       <header>
         <div className="header-div">
           <div className="skewed-header"></div>
-          <div className="search-bar">
-            {/* <input
-              className="search-bar"
-              type="text"
-              name="firstname"
-              placeholder="Rechercher ..."
-              // value={editedFriend.firstname}
-              // onChange={handleInputChange}
-            /> */}
-          </div>
           <SearchComponent />
           <button onClick={verify}>test verify</button>
           <NavLink to="/" className="url">

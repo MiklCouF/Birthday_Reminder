@@ -35,28 +35,3 @@
     color: black;
     border-radius: 12px;
 }
-
-.search-bar {
-    display: flex;
-    border-radius: 12px;
-    border: 0cap;
-    padding: 5px;
-    background-color: rgb(255, 5, 5);
-    align-items: center;
-
-     & svg {
-    margin:5px;
-    } 
-
-    & input {
-        border: 0cap;
-        background-color: transparent;
-        color: gray;
-        width: 100%;
-        outline: none;
-
-        & ul {
-            list-style: none;
-        }
-    }
-}
