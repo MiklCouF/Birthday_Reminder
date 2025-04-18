@@ -1,47 +1,53 @@
-// import { useContext } from "react";
 import { useState } from "react";
 import AddData from "../components/AddData";
 import MonthBirthday from "../components/MonthBirthday";
 import ReadAllFriends from "../components/ReadAllFriends";
 import { ToastContainer } from "react-toastify";
-// import { useUser } from "../context/UserProvider";
 import SettingsCard from "../components/SettingsCard";
 import { useOutletContext } from "react-router-dom";
+import { useUserData } from "../context/UserDataContext";
 
 function User() {
   const { openModal } = useOutletContext();
   // re-rendre un composant lors de l'ajout d'un friend
   const [shouldRerender, setShouldRerender] = useState(false);
-  async function fetchtest() {
-    console.log("fetchtest");
-    fetch(`${import.meta.env.VITE_API_URL}/api/send-email`, {
-      method: "GET", // Utilisation d'une requête GET pour envoyer l'email
-      // credentials: "include", // Inclure les cookies dans la requête
-    })
-      .then((response) => response.text()) // On récupère la réponse texte
-      .then((data) => {
-        alert(data); // Affiche la réponse (par exemple "Email envoyé avec succès")
-      })
-      .catch((error) => {
-        console.error("Erreur lors de l'envoi de l'email:", error);
-        alert("Une erreur est survenue.");
-      });
+
+  const { friendData, fetchFriends, isLoading } = useUserData();
+  if (isLoading) return <span className="loader"></span>;
+  if (!friendData) {
+    fetchFriends();
   }
-  async function fetchtest15() {
-    console.log("fetchtest15");
-    fetch(`${import.meta.env.VITE_API_URL}/api/test`, {
-      method: "GET", // Utilisation d'une requête GET pour envoyer l'email
-      // credentials: "include", // Inclure les cookies dans la requête
-    })
-      .then((response) => response.text()) // On récupère la réponse texte
-      .then((data) => {
-        alert(data); // Affiche la réponse (par exemple "Email envoyé avec succès")
-      })
-      .catch((error) => {
-        console.error("Erreur lors de l'envoi de l'email:", error);
-        alert("Une erreur est survenue.");
-      });
-  }
+
+  // async function fetchtest() {
+  //   console.log("fetchtest");
+  //   fetch(`${import.meta.env.VITE_API_URL}/api/send-email`, {
+  //     method: "GET", // Utilisation d'une requête GET pour envoyer l'email
+  //     // credentials: "include", // Inclure les cookies dans la requête
+  //   })
+  //     .then((response) => response.text()) // On récupère la réponse texte
+  //     .then((data) => {
+  //       alert(data); // Affiche la réponse (par exemple "Email envoyé avec succès")
+  //     })
+  //     .catch((error) => {
+  //       console.error("Erreur lors de l'envoi de l'email:", error);
+  //       alert("Une erreur est survenue.");
+  //     });
+  // }
+  // async function fetchtest15() {
+  //   console.log("fetchtest15");
+  //   fetch(`${import.meta.env.VITE_API_URL}/api/test`, {
+  //     method: "GET", // Utilisation d'une requête GET pour envoyer l'email
+  //     // credentials: "include", // Inclure les cookies dans la requête
+  //   })
+  //     .then((response) => response.text()) // On récupère la réponse texte
+  //     .then((data) => {
+  //       alert(data); // Affiche la réponse (par exemple "Email envoyé avec succès")
+  //     })
+  //     .catch((error) => {
+  //       console.error("Erreur lors de l'envoi de l'email:", error);
+  //       alert("Une erreur est survenue.");
+  //     });
+  // }
   const userString = localStorage.getItem("user");
   const user = JSON.parse(userString);
 
