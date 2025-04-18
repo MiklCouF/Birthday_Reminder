@@ -54,8 +54,8 @@ function AddData({ user, setShouldRerender, shouldRerender }) {
   return (
     <>
       <div className="add-data-core-user">
-        <h2>Ajout d'un proche</h2>
         <div className="card-core">
+          <h2 className="h2-add">Ajout d'un proche</h2>
           <form onSubmit={handleSubmit}>
             <input type="hidden" name="userId" value={user.id} />
             <p>Prénom:</p>
@@ -80,26 +80,29 @@ function AddData({ user, setShouldRerender, shouldRerender }) {
             <input type="date" id="dateSubscribe" name="birthday" required />
 
             <div className="toggle-container">
-              <p>Reçevoir un premier rappel 15jours avant</p>
-
-              <label className="switch">
-                <input
-                  type="checkbox"
-                  checked={isChecked === 1}
-                  onChange={() => setIsChecked(isChecked === 1 ? 0 : 1)}
-                  value={isChecked}
-                  id="reminder_15"
-                  name="reminder_15"
-                />
-                <span className="slider"></span>
-              </label>
-              <span className="toggle-label">{isChecked ? "Oui" : "Non"}</span>
+              <p>Recevoir un premier rappel 15 jours avant</p>
+              <div className="switch-container">
+                <label className="switch">
+                  <input
+                    type="checkbox"
+                    checked={isChecked === 1}
+                    onChange={() => setIsChecked(isChecked === 1 ? 0 : 1)}
+                    value={isChecked}
+                    id="reminder_15"
+                    name="reminder_15"
+                  />
+                  <span className="slider"></span>
+                </label>
+                <span className="toggle-label">
+                  {isChecked ? "Oui" : "Non"}
+                </span>
+              </div>
             </div>
             <button
               type="submit"
               value="Ajouter"
               id="subscribe"
-              className="subscribe"
+              className="button-primary"
             >
               Ajouter
             </button>

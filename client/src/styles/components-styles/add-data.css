@@ -4,6 +4,11 @@ cursor: pointer;
 
 }
 
+.h2-add {
+  margin-bottom: 20px;
+  margin-top: 6px;
+}
+
 .toggle-container {
     display: flex;
     flex-direction: column;
@@ -14,6 +19,11 @@ cursor: pointer;
     font-weight: bold;
     margin-top: 14px;
   }
+
+  .switch-container {
+    display: flex;
+width: 100%;
+gap: 12px;  }
   
   .switch {
     position: relative;
@@ -53,7 +63,7 @@ cursor: pointer;
   }
   
   input:checked + .slider {
-    background-color: #4CAF50;
+    background-color: var(--blue-bg-color);
   }
   
   input:checked + .slider:before {
