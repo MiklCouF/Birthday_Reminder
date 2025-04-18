@@ -7,6 +7,7 @@
 h2 {
   font-size: 1rem;
   font-weight: 300;
+  margin-bottom: 12px;
 }
 
 .quatre-cent-quatre {
@@ -33,4 +34,16 @@ h2 {
   display: inline-block;
   font-size: 16px;
   cursor: pointer;
+}
+
+.button-primary {
+  background-color: var(--blue-bg-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+
+  &:hover {
+    background-color: #0f4c7d;
+  }
 }
