@@ -40,17 +40,10 @@ function ReadAllFriends({ openModal }) {
   return (
     <div className="add-data-core-user">
       <h2>Liste de tous les proches</h2>
-      <span className="loader"></span>
-      <span className="loader-delete">Deleting</span>
+      {/* <span className="loader"></span> */}
+      {/* <span className="loader-delete">Deleting</span> */}
       <div className="card-core">
         <div className="p-read-all-friends"></div>
-        <input
-          className="search-bar"
-          type="text"
-          name="firstname"
-          // value={editedFriend.firstname}
-          // onChange={handleInputChange}
-        />
         <table className="table-current-month">
           <tbody>
             {friendListReady.length > 0 ? (
