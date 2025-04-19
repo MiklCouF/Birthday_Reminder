@@ -97,6 +97,25 @@ const SearchComponent = () => {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         style={{ border: "none", outline: "none", width: "100%" }}
+        onKeyDown={(e) => {
+          if (filteredResults.length === 0) return;
+          if (e.key === "ArrowDown") {
+            e.preventDefault();
+            setHighlightedIndex((prev) => (prev + 1) % filteredResults.length);
+          }
+          if (e.key === "ArrowUp") {
+            e.preventDefault();
+            setHighlightedIndex((prev) =>
+              prev <= 0 ? filteredResults.length - 1 : prev - 1
+            );
+          }
+          if (e.key === "Enter" && highlightedIndex >= 0) {
+            const person = filteredResults[highlightedIndex];
+            setQuery(`${person.firstname} ${person.lastname}`);
+            setFilteredResults([]);
+            scrollToItem(person.id);
+          }
+        }}
       />
 
       {query && filteredResults.length > 0 && (
@@ -119,7 +138,7 @@ const SearchComponent = () => {
             zIndex: 1000,
           }}
         >
-          {filteredResults.map((person) => (
+          {filteredResults.map((person, index) => (
             <li
               className="search-item"
               key={person.id}
@@ -129,12 +148,15 @@ const SearchComponent = () => {
                 cursor: "pointer",
                 fontSize: "14px",
                 fontWeight: "400",
+                backgroundColor:
+                  index === highlightedIndex ? "#f0f0f0" : "transparent",
               }}
               onClick={() => {
                 setQuery(`${person.firstname} ${person.lastname}`);
                 setFilteredResults([]);
                 scrollToItem(person.id);
               }}
+              onMouseEnter={() => setHighlightedIndex(index)}
             >
               {person.firstname} {person.lastname}
             </li>
