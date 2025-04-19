@@ -118,51 +118,51 @@ const SearchComponent = () => {
         }}
       />
 
-      {query && filteredResults.length > 0 && (
-        <ul
-          style={{
-            listStyle: "none", // pas de bullet
-            margin: 0,
-            padding: 0,
-            position: "absolute",
-            top: "100%",
-            left: "-1px",
-            right: "-1px",
-            background: "white",
-            border: "1px solid #ccc",
-            borderTop: "none",
-            borderRadius: "0 0 8px 8px",
-            // width: "100%",
-            maxHeight: "200px",
-            overflowY: "auto",
-            zIndex: 1000,
-          }}
-        >
-          {filteredResults.map((person, index) => (
-            <li
-              className="search-item"
-              key={person.id}
-              style={{
-                padding: "8px",
-                borderBottom: "1px solid #eee",
-                cursor: "pointer",
-                fontSize: "14px",
-                fontWeight: "400",
-                backgroundColor:
-                  index === highlightedIndex ? "#f0f0f0" : "transparent",
-              }}
-              onClick={() => {
-                setQuery(`${person.firstname} ${person.lastname}`);
-                setFilteredResults([]);
-                scrollToItem(person.id);
-              }}
-              onMouseEnter={() => setHighlightedIndex(index)}
-            >
-              {person.firstname} {person.lastname}
-            </li>
-          ))}
-        </ul>
-      )}
+      <ul
+        style={{
+          listStyle: "none",
+          margin: 0,
+          padding: 0,
+          position: "absolute",
+          top: "100%",
+          left: "-1px",
+          right: "-0.5%",
+          background: "white",
+          border: "1px solid #ccc",
+          borderTop: "none",
+          borderRadius: "0 0 8px 8px",
+          maxHeight: "200px",
+          overflowY: "auto",
+          zIndex: 1000,
+
+          // Transition styles
+          opacity: dropdownOpen ? 1 : 0,
+          transform: dropdownOpen ? "translateY(0)" : "translateY(-5px)",
+          pointerEvents: dropdownOpen ? "auto" : "none",
+          transition: "opacity 0.1s ease, transform 0.5s ease",
+        }}
+      >
+        {filteredResults.map((person, index) => (
+          <li
+            key={person.id}
+            style={{
+              padding: "8px 12px",
+              borderBottom: "1px solid #eee",
+              cursor: "pointer",
+              backgroundColor:
+                index === highlightedIndex ? "#f0f0f0" : "transparent",
+            }}
+            onClick={() => {
+              setQuery(`${person.firstname} ${person.lastname}`);
+              setFilteredResults([]);
+              scrollToItem(person.id);
+            }}
+            onMouseEnter={() => setHighlightedIndex(index)}
+          >
+            {person.firstname} {person.lastname}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
