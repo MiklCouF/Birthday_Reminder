@@ -6,8 +6,12 @@ const SearchComponent = () => {
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
+
+  const dropdownOpen = query && filteredResults.length > 0;
   const searchRef = useRef(null);
 
+  // Recupere les données du context friends
   useEffect(() => {
     if (friendData) {
       const friendDataReady = Array.isArray(friendData)
@@ -43,10 +47,14 @@ const SearchComponent = () => {
     }
   };
 
+  // Ferme la liste si on clique en dehors
   useEffect(() => {
     const handleClickOutside = (event) => {
+      console.log("%c⧭", "handleclickousite");
       if (searchRef.current && !searchRef.current.contains(event.target)) {
-        setFilteredResults([]); // Ferme la liste
+        console.log("%c⧭", "color: #607339", "condition remplis");
+        // setFilteredResults([]);
+        // setQuery(""); // Ferme la liste
       }
     };
 
@@ -59,14 +67,18 @@ const SearchComponent = () => {
   return (
     <div
       id="search-container"
+      ref={searchRef}
       style={{
         display: "flex",
         width: "200px",
         padding: "8px",
         boxSizing: "border-box",
-        borderRadius: "12px",
         border: "1px solid #ccc",
         background: "white",
+        position: "relative",
+        cursor: "text",
+        boxSizing: "border-box",
+        borderRadius: dropdownOpen ? "8px 8px 0 0" : "8px",
       }}
     >
       <svg
@@ -95,11 +107,13 @@ const SearchComponent = () => {
             padding: 0,
             position: "absolute",
             top: "100%",
-            left: 0,
-            right: 0,
+            left: "-1px",
+            right: "-1px",
             background: "white",
             border: "1px solid #ccc",
             borderTop: "none",
+            borderRadius: "0 0 8px 8px",
+            // width: "100%",
             maxHeight: "200px",
             overflowY: "auto",
             zIndex: 1000,
@@ -107,14 +121,17 @@ const SearchComponent = () => {
         >
           {filteredResults.map((person) => (
             <li
+              className="search-item"
               key={person.id}
               style={{
                 padding: "8px",
                 borderBottom: "1px solid #eee",
                 cursor: "pointer",
+                fontSize: "14px",
+                fontWeight: "400",
               }}
               onClick={() => {
-                setQuery(`${person.firstname} ${person.lastname}.`);
+                setQuery(`${person.firstname} ${person.lastname}`);
                 setFilteredResults([]);
                 scrollToItem(person.id);
               }}
