@@ -3,7 +3,6 @@ import { useUserData } from "../context/UserDataContext";
 
 const SearchComponent = () => {
   const { friendData } = useUserData();
-
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
@@ -12,20 +11,9 @@ const SearchComponent = () => {
   useEffect(() => {
     if (friendData) {
       const friendDataReady = Array.isArray(friendData)
-        ? friendData.filter(
-            (el) =>
-              el.id &&
-              el.firstname &&
-              el.lastname &&
-              el.age_this_year &&
-              el.birth_day_of_week_this_year &&
-              el.birth_day
-          )
+        ? friendData.filter((el) => el.id && el.firstname && el.lastname)
         : [];
-
       setData(friendDataReady);
-
-      console.log("%c⧭", "color: #00736b vccccccc");
     }
   }, [friendData]);
 
@@ -48,7 +36,7 @@ const SearchComponent = () => {
       // Applique la classe highlight temporairement
       target.classList.add("highlight");
 
-      // Retire la classe après 1s
+      // Retire la classe après 5s
       setTimeout(() => {
         target.classList.remove("highlight");
       }, 5000);
@@ -102,7 +90,7 @@ const SearchComponent = () => {
       {query && filteredResults.length > 0 && (
         <ul
           style={{
-            listStyle: "none", // ❌ pas de bullet
+            listStyle: "none", // pas de bullet
             margin: 0,
             padding: 0,
             position: "absolute",
