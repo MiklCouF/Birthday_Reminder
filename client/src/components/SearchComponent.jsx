@@ -1,30 +1,33 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
+import { useUserData } from "../context/UserDataContext";
 
 const SearchComponent = () => {
+  const { friendData } = useUserData();
+
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
   const searchRef = useRef(null);
-  // Fetch les données une seule fois
-  useEffect(() => {
-    async function importAllFriend() {
-      try {
-        const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/friend/`,
-          {
-            method: "GET",
-            credentials: "include",
-          }
-        );
-        const json = await response.json();
-        setData(json);
-      } catch (error) {
-        console.error("Erreur lors de la récupération des données:", error);
-      }
-    }
 
-    importAllFriend();
-  }, []);
+  useEffect(() => {
+    if (friendData) {
+      const friendDataReady = Array.isArray(friendData)
+        ? friendData.filter(
+            (el) =>
+              el.id &&
+              el.firstname &&
+              el.lastname &&
+              el.age_this_year &&
+              el.birth_day_of_week_this_year &&
+              el.birth_day
+          )
+        : [];
+
+      setData(friendDataReady);
+
+      console.log("%c⧭", "color: #00736b vccccccc");
+    }
+  }, [friendData]);
 
   // Filtrage à chaque frappe
   useEffect(() => {
