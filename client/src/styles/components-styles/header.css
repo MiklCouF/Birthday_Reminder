@@ -28,6 +28,11 @@ header {
 transform: skew(21deg);
 }
 
+
+.search-item:hover {
+  color: var(--blue-font-color);
+}
+
 .header-div {
 
   background-color:  var(--primary-bg-color);
