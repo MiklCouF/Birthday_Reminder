@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import SearchComponent from "./SearchComponent";
 
 function Header({ setMonth }) {
-  const userConnected = "Temporaire";
   const today = new Date();
   const monthsOfYear = [
     "janvier",
@@ -48,7 +47,7 @@ function Header({ setMonth }) {
         <div className="header-div">
           <div className="skewed-header"></div>
           <SearchComponent />
-          <button onClick={verify}>test verify</button>
+          {/* <button onClick={verify}>test verify</button> */}
           <NavLink to="/" className="url">
             <img
               height="30px"
@@ -60,7 +59,6 @@ function Header({ setMonth }) {
           </NavLink>
           <h4>{`${dayOfWeek} ${day} ${currentMonth}`}</h4>
           <NavLink to="/login" className="url">
-            <p>{userConnected}</p>
             <img
               src="src/assets/user_icon.svg"
               alt="utilisateur"
