@@ -3,13 +3,20 @@ import { useUserData } from "../context/UserDataContext";
 
 export default function AutocompleteLastnames() {
   const { friendData } = useUserData();
-  const lastnames = useMemo(
-    () =>
-      Array.isArray(friendData)
-        ? friendData.filter((el) => el.lastname).map((el) => el.lastname)
-        : [],
-    [friendData]
-  );
+  const lastnames = useMemo(() => {
+    if (!Array.isArray(friendData)) return [];
+    const uniqueMap = new Map();
+    for (const el of friendData) {
+      if (el.lastname) {
+        const lower = el.lastname.toLowerCase();
+        if (!uniqueMap.has(lower)) {
+          uniqueMap.set(lower, el.lastname); // on garde la version originale
+        }
+      }
+    }
+
+    return Array.from(uniqueMap.values());
+  }, [friendData]);
 
   const [query, setQuery] = useState("");
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
