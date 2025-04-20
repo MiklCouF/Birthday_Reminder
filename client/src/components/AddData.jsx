@@ -1,10 +1,13 @@
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
-import fetchWithRedirect from "../utils/fetchWithRedirect"; // Assurez-vous que le chemin est correct
+import fetchWithRedirect from "../utils/fetchWithRedirect";
+import { useUserData } from "../context/UserDataContext.jsx";
+import AutocompleteLastnames from "./AutocompleteLastnames";
 
-function AddData({ user, setShouldRerender, shouldRerender }) {
+function AddData({ user }) {
   const [isChecked, setIsChecked] = useState(0);
+  const { fetchFriends } = useUserData();
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -23,7 +26,7 @@ function AddData({ user, setShouldRerender, shouldRerender }) {
     })
       .then((res) => {
         if (res.ok) {
-          setShouldRerender(!shouldRerender);
+          fetchFriends();
           toast.success("La personne a bien été ajoutée");
         } else {
           toast.error("Erreur, la personne n'a pas été ajoutée");
@@ -68,14 +71,7 @@ function AddData({ user, setShouldRerender, shouldRerender }) {
             />
 
             <p>Nom:</p>
-            <input
-              type="text"
-              id="lastname"
-              name="lastname"
-              placeholder="Dubois"
-              required
-            />
-
+            <AutocompleteLastnames />
             <p>Date de naissance</p>
             <input type="date" id="dateSubscribe" name="birthday" required />
 
