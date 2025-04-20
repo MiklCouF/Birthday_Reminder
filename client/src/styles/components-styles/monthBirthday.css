@@ -5,6 +5,7 @@
 }
 
 .table-current-month {
+  display: block;
   text-align: left;
   overflow-wrap: break-word;
   & tr {
