@@ -1,8 +1,13 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { useUserData } from "../context/UserDataContext";
 
-export default function AutocompleteLastnames() {
+export default function AutocompleteLastnames({
+  value = "",
+  onChange = () => {},
+}) {
   const { friendData } = useUserData();
+
+  // Extraire et dédupliquer les lastnames (insensible à la casse)
   const lastnames = useMemo(() => {
     if (!Array.isArray(friendData)) return [];
     const uniqueMap = new Map();
@@ -10,21 +15,22 @@ export default function AutocompleteLastnames() {
       if (el.lastname) {
         const lower = el.lastname.toLowerCase();
         if (!uniqueMap.has(lower)) {
-          uniqueMap.set(lower, el.lastname); // on garde la version originale
+          uniqueMap.set(lower, el.lastname);
         }
       }
     }
-
     return Array.from(uniqueMap.values());
   }, [friendData]);
 
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(value);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
+  const [isOpen, setIsOpen] = useState(false);
+
   const inputRef = useRef(null);
   const containerRef = useRef(null);
   const suggestionRefs = useRef([]);
 
-  // liste filtrée + dropdown ouvert
+  // Filtrer les suggestions
   const filtered = useMemo(
     () =>
       query
@@ -34,28 +40,32 @@ export default function AutocompleteLastnames() {
         : [],
     [query, lastnames]
   );
-  const dropdownOpen = filtered.length > 0;
 
-  // click à l'extérieur → fermer
+  // Clic à l'extérieur ferme le dropdown
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (containerRef.current && !containerRef.current.contains(e.target)) {
+        setIsOpen(false);
         setHighlightedIndex(-1);
-        setQuery((q) => q); // on garde la saisie
-        // fermer :
-        setTimeout(() => setHighlightedIndex(-1), 0);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // gestion clavier dans l'input
+  // Sélection d'un item (click, Enter)
+  const handleSelect = (name) => {
+    setQuery(name);
+    onChange(name);
+    setIsOpen(false);
+    setHighlightedIndex(-1);
+  };
+
+  // Gestion du clavier sur l'input
   const onInputKeyDown = (e) => {
-    if (!dropdownOpen) {
-      if (e.key === "Tab" && filtered.length > 0) {
+    if (!isOpen) {
+      if (e.key === "Tab" && filtered.length) {
         e.preventDefault();
-        // focus sur le 1er item
         suggestionRefs.current[0]?.focus();
         setHighlightedIndex(0);
       }
@@ -65,33 +75,36 @@ export default function AutocompleteLastnames() {
     switch (e.key) {
       case "ArrowDown":
         e.preventDefault();
-        setHighlightedIndex((i) => (i < filtered.length - 1 ? i + 1 : 0));
-        suggestionRefs.current[
-          highlightedIndex < filtered.length - 1 ? highlightedIndex + 1 : 0
-        ]?.focus();
+        setHighlightedIndex((i) => {
+          const next = i < filtered.length - 1 ? i + 1 : 0;
+          suggestionRefs.current[next]?.focus();
+          return next;
+        });
         break;
 
       case "ArrowUp":
         e.preventDefault();
-        setHighlightedIndex((i) => (i > 0 ? i - 1 : filtered.length - 1));
-        suggestionRefs.current[
-          highlightedIndex > 0 ? highlightedIndex - 1 : filtered.length - 1
-        ]?.focus();
+        setHighlightedIndex((i) => {
+          const prev = i > 0 ? i - 1 : filtered.length - 1;
+          suggestionRefs.current[prev]?.focus();
+          return prev;
+        });
         break;
 
       case "Enter":
         e.preventDefault();
-        if (filtered.length > 0) {
-          setQuery(filtered[0]);
-          setHighlightedIndex(-1);
+        if (filtered.length) {
+          const idx = highlightedIndex >= 0 ? highlightedIndex : 0;
+          handleSelect(filtered[idx]);
         }
         break;
 
       case "Tab":
-        e.preventDefault();
-        // même logique que ArrowDown pour le 1er focus
-        suggestionRefs.current[0]?.focus();
-        setHighlightedIndex(0);
+        if (filtered.length) {
+          e.preventDefault();
+          suggestionRefs.current[0]?.focus();
+          setHighlightedIndex(0);
+        }
         break;
 
       default:
@@ -99,44 +112,68 @@ export default function AutocompleteLastnames() {
     }
   };
 
-  // gestion Tab / Shift+Tab dans les <li>
+  // Gestion du clavier sur les items <li>
   const onItemKeyDown = (e, idx) => {
     if (e.key === "Tab") {
-      e.preventDefault();
-      const nextIdx = e.shiftKey ? idx - 1 : idx + 1;
-      if (nextIdx >= 0 && nextIdx < filtered.length) {
-        suggestionRefs.current[nextIdx]?.focus();
-        setHighlightedIndex(nextIdx);
-      } else {
-        // sortir du dropdown
-        if (e.shiftKey) {
-          inputRef.current?.focus();
+      const lastIdx = filtered.length - 1;
+      // Shift+Tab pour revenir
+      if (e.shiftKey) {
+        if (idx === 0) {
+          setIsOpen(false);
           setHighlightedIndex(-1);
+          return; // laisser le tab fonctionner naturellement
         }
+        e.preventDefault();
+        const prev = idx - 1;
+        suggestionRefs.current[prev]?.focus();
+        setHighlightedIndex(prev);
+      } else {
+        // Tab pour avancer
+        if (idx === lastIdx) {
+          setIsOpen(false);
+          setHighlightedIndex(-1);
+          return; // laisser le tab avancer hors du dropdown
+        }
+        e.preventDefault();
+        const next = idx + 1;
+        suggestionRefs.current[next]?.focus();
+        setHighlightedIndex(next);
       }
+    }
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      const next = idx < filtered.length - 1 ? idx + 1 : 0;
+      suggestionRefs.current[next]?.focus();
+      setHighlightedIndex(next);
+    }
+
+    if (e.key === "ArrowUp") {
+      e.preventDefault();
+      const prev = idx > 0 ? idx - 1 : filtered.length - 1;
+      suggestionRefs.current[prev]?.focus();
+      setHighlightedIndex(prev);
+    }
+
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSelect(filtered[idx]);
     }
   };
 
   return (
-    <div
-      ref={containerRef}
-      style={{
-        position: "relative",
-        width: "200px",
-      }}
-    >
+    <div ref={containerRef} style={{ position: "relative", width: "200px" }}>
       <div
         style={{
           display: "flex",
           alignItems: "center",
           padding: "8px 12px",
           border: "1px solid #ccc",
-          borderRadius: dropdownOpen ? "8px 8px 0 0" : "8px",
+          borderRadius: isOpen ? "8px 8px 0 0" : "8px",
           background: "white",
         }}
         onClick={() => inputRef.current?.focus()}
       >
-        {/* flèche */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -154,23 +191,23 @@ export default function AutocompleteLastnames() {
         <input
           ref={inputRef}
           type="text"
+          id="lastname"
+          name="lastname"
           placeholder="Rechercher..."
           value={query}
+          onFocus={() => {
+            if (filtered.length > 0) setIsOpen(true);
+          }}
           onChange={(e) => {
             setQuery(e.target.value);
+            setIsOpen(true);
             setHighlightedIndex(-1);
           }}
           onKeyDown={onInputKeyDown}
-          style={{
-            flex: 1,
-            border: "none",
-            outline: "none",
-            fontSize: "14px",
-          }}
+          style={{ border: "none", outline: "none", fontSize: "14px" }}
         />
       </div>
 
-      {/* dropdown toujours dans le DOM pour transition */}
       <ul
         style={{
           listStyle: "none",
@@ -188,9 +225,9 @@ export default function AutocompleteLastnames() {
           overflowY: "auto",
           zIndex: 1000,
 
-          opacity: dropdownOpen ? 1 : 0,
-          transform: dropdownOpen ? "translateY(0)" : "translateY(-5px)",
-          pointerEvents: dropdownOpen ? "auto" : "none",
+          opacity: isOpen ? 1 : 0,
+          transform: isOpen ? "translateY(0)" : "translateY(-5px)",
+          pointerEvents: isOpen ? "auto" : "none",
           transition: "opacity 0.2s ease, transform 0.2s ease",
         }}
       >
@@ -206,10 +243,7 @@ export default function AutocompleteLastnames() {
               backgroundColor:
                 idx === highlightedIndex ? "#f0f0f0" : "transparent",
             }}
-            onClick={() => {
-              setQuery(name);
-              setHighlightedIndex(-1);
-            }}
+            onClick={() => handleSelect(name)}
             onKeyDown={(e) => onItemKeyDown(e, idx)}
             onMouseEnter={() => setHighlightedIndex(idx)}
           >
