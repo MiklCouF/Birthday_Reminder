@@ -59,7 +59,7 @@ function AddData({ user }) {
       <div className="add-data-core-user">
         <div className="card-core">
           <h2 className="h2-add">Ajout d'un proche</h2>
-          <form onSubmit={handleSubmit}>
+          <form autoComplete="off" onSubmit={handleSubmit}>
             <input type="hidden" name="userId" value={user.id} />
             <p>Prénom:</p>
             <input
