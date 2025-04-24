@@ -29,7 +29,7 @@ function MonthBirthday({ openModal }) {
   };
 
   return (
-    <div className="add-data-core-user margin-x-auto">
+    <div className="card-wrapper margin-x-auto">
       <h2>
         Anniversaire en{" "}
         <span>{month.charAt(0).toUpperCase() + month.slice(1)}</span>

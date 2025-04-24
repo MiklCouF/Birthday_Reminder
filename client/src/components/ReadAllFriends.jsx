@@ -38,7 +38,7 @@ function ReadAllFriends({ openModal }) {
   };
 
   return (
-    <div className="add-data-core-user">
+    <div className="card-wrapper">
       <h2>Liste de tous les proches</h2>
       {/* <span className="loader"></span> */}
       {/* <span className="loader-delete">Deleting</span> */}

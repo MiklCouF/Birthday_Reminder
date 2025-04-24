@@ -56,7 +56,7 @@ function AddData({ user }) {
 
   return (
     <>
-      <div className="add-data-core-user">
+      <div className="card-wrapper">
         <div className="card-core">
           <h2 className="h2-add">Ajout d'un proche</h2>
           <form autoComplete="off" onSubmit={handleSubmit}>

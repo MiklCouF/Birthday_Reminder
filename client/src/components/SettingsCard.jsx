@@ -1,6 +1,6 @@
 function SettingsCard() {
   return (
-    <div className="add-data-core-user">
+    <div className="card-wrapper">
       <div className="card-header">
         <h3>Settings</h3>
       </div>

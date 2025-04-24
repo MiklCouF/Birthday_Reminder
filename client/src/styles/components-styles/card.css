@@ -14,7 +14,7 @@
   /* Outside frame for card  */
 
   
-.add-data-core-user {
+.card-wrapper {
     height: fit-content;
     display: flex;
     flex-direction: column;
