@@ -1,0 +1,38 @@
+
+.card-core-user {
+    background-color: var(--white-bg-color);
+    padding: 40px;
+    border-radius: 12px;
+    align-items: center;
+  
+    & input {
+      flex-direction: row;
+    }
+  }
+
+
+  /* Outside frame for card  */
+
+  
+.add-data-core-user {
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    color: var(--dark-font-color);
+    /* To change with justify-content space-evenly , in css > main, for only page user. */
+    /* margin-left: 100px; */
+    /* end of the tempo fix */
+  
+    & h2 {
+      color: var(--dark-font-color);
+      font-weight: bold;
+    }
+  
+    & input {
+      margin: 10px;
+    }
+    & a {
+      color: white;
+    }
+  }
+  
