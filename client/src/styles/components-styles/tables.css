@@ -1,36 +1,40 @@
 table {
   width: 100%;
-  font-size: smaller;
-  border-collapse: collapse;
-text-align: center;
+  font-size: smaller; /* Ajout de la compatibilité avec les navigateurs */
+  border-collapse: collapse; /* Réduit l'espace entre les bordures */
+  text-align: center; /* Cette propriété peut être décalée vers th/td si besoin */
 }
 
 tr {
   border-bottom: 1px solid #dbd9d9;
-  display: flex;
-  align-items: center;
+}
 
-  &:hover {
-    background-color: #f4f2ee;
-    cursor: pointer;
-  }
+tr:hover {
+  background-color: #f4f2ee;
+  cursor: pointer;
+}
 
-  & td {
-    padding: 10px;
-    text-align: center;
-    overflow-wrap: break-word;
-    width: 100%;
-  }
+td {
+  padding: 10px;
+  text-align: center;
+  overflow-wrap: break-word; /* Gère le retour à la ligne des mots longs */
 }
 
 .text-align-right {
-  text-align: right;
+  text-align: right; /* Aligne le contenu à droite */
 }
 
 .text-align-left {
-  text-align: left;
+  text-align: left; /* Aligne le contenu à gauche */
 }
 
 .padding-left-15 {
-  padding-left: 15px;
+  padding-left: 15px; /* Décalage à gauche */
+}
+
+.column-firstname,
+.column-lastname,
+.column-birthday,
+.column-age {
+  width: 25%; /* Largeurs uniformes pour chaque colonne */
 }

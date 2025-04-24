@@ -45,12 +45,17 @@ function ReadAllFriends({ openModal }) {
       <div className="card-core">
         <div className="p-read-all-friends"></div>
         <table className="table-current-month">
+          <colgroup>
+            <col style={{ width: "25%" }} />
+            <col style={{ width: "25%" }} />
+            <col style={{ width: "25%" }} />
+            <col style={{ width: "25%" }} />
+          </colgroup>
           <thead>
             <tr>
               <th className="monthMap">Prénom</th>
               <th className="monthMap">Nom</th>
               <th className="padding-left-15">Date de naissance</th>
-              <th className="text-align-right">Anniversaire</th>
               <th className="text-align-right">Âge</th>
             </tr>
           </thead>
@@ -64,7 +69,6 @@ function ReadAllFriends({ openModal }) {
                 >
                   <td className="monthMap">{el.firstname}</td>
                   <td className="monthMap">{el.lastname}</td>
-                  <td className="padding-left-15">née le</td>
                   <td className="text-align-right">{el.formatted_birthday}</td>
                   <td className="text-align-right">{el.age_this_year} ans</td>
                 </tr>
