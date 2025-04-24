@@ -35,4 +35,15 @@
       color: white;
     }
   }
+
+  
+.card-core {
+    background-color: var(--white-bg-color);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 12px;
+    align-items: center;
+    border: solid #dbd9d9 1px;
+  }
   

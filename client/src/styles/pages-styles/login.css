@@ -41,21 +41,6 @@ form {
   }
 }
 
-.card-core {
-  background-color: var(--white-bg-color);
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  border-radius: 12px;
-  align-items: center;
-  border: solid #dbd9d9 1px;
-
-  & input {
-    padding-bottom: 3px;
-    margin-bottom: 30px;
-  }
-}
-
 .align-label-input {
   display: flex;
   flex-direction: row;
