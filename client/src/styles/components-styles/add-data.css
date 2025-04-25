@@ -2,8 +2,6 @@
 cursor: pointer;
 }
 
-
-
 .h2-add {
   margin-bottom: 20px;
   margin-top: 6px;
@@ -15,8 +13,8 @@ cursor: pointer;
     align-items: center;
     gap: 10px;
     font-family: Arial, sans-serif;
-    font-size: 16px;
-    font-weight: bold;
+    /* font-size: 16px; */
+    /* font-weight: bold; */
     margin-top: 14px;
   }
 

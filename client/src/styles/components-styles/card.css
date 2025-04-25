@@ -28,5 +28,6 @@
     border-radius: 12px;
     align-items: center;
     border: solid #dbd9d9 1px;
+    width: fit-content;
   }
   

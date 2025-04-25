@@ -1,18 +1,3 @@
-.monthMap {
-  display: flex;
-  align-items: baseline;
-  max-width: 140px;
-}
-
-.table-current-month {
-  display: block;
-  text-align: left;
-  overflow-wrap: break-word;
-  & tr {
-    text-align: left;
-  }
-}
-
 .cancel-icon {
   height: 24px;
   width: auto;

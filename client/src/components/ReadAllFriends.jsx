@@ -53,10 +53,10 @@ function ReadAllFriends({ openModal }) {
           </colgroup>
           <thead>
             <tr>
-              <th className="monthMap">Prénom</th>
-              <th className="monthMap">Nom</th>
-              <th className="padding-left-15">Date de naissance</th>
-              <th className="text-align-right">Âge</th>
+              <th>Prénom</th>
+              <th>Nom</th>
+              <th>Date de naissance</th>
+              <th>Âge</th>
             </tr>
           </thead>
           <tbody>
@@ -67,8 +67,8 @@ function ReadAllFriends({ openModal }) {
                   id={`friend-${el.id}`}
                   onClick={() => handleEdit(el)}
                 >
-                  <td className="monthMap">{el.firstname}</td>
-                  <td className="monthMap">{el.lastname}</td>
+                  <td className="text-align-left">{el.firstname}</td>
+                  <td className="text-align-left">{el.lastname}</td>
                   <td className="text-align-right">{el.formatted_birthday}</td>
                   <td className="text-align-right">{el.age_this_year} ans</td>
                 </tr>

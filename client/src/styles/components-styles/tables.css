@@ -20,16 +20,32 @@ td {
   overflow-wrap: break-word; /* Gère le retour à la ligne des mots longs */
 }
 
+.table-current-month {
+  display: block;
+  text-align: left;
+  overflow-wrap: break-word;
+  & tr {
+    text-align: left;
+  }
+  & th {
+    text-align: center;
+  }
+}
+
 .text-align-right {
-  text-align: right; /* Aligne le contenu à droite */
+  text-align: right;
 }
 
 .text-align-left {
-  text-align: left; /* Aligne le contenu à gauche */
+  text-align: left; 
 }
 
 .padding-left-15 {
-  padding-left: 15px; /* Décalage à gauche */
+  padding-left: 15px; 
+}
+
+.text-align-center {
+  text-align: center;
 }
 
 .column-firstname,
