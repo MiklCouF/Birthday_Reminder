@@ -2,7 +2,7 @@ table {
   width: 100%;
   font-size: smaller; /* Ajout de la compatibilité avec les navigateurs */
   border-collapse: collapse; /* Réduit l'espace entre les bordures */
-  text-align: center; /* Cette propriété peut être décalée vers th/td si besoin */
+  text-align: center; /* nettoyer avec les autres propriete identique */
 }
 
 tr {
@@ -17,13 +17,16 @@ tr:hover {
 td {
   padding: 10px;
   text-align: center;
-  overflow-wrap: break-word; /* Gère le retour à la ligne des mots longs */
-}
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+  }
 
 .table-current-month {
   display: block;
   text-align: left;
-  overflow-wrap: break-word;
+
   & tr {
     text-align: left;
   }
@@ -48,9 +51,3 @@ td {
   text-align: center;
 }
 
-.column-firstname,
-.column-lastname,
-.column-birthday,
-.column-age {
-  width: 25%; /* Largeurs uniformes pour chaque colonne */
-}
