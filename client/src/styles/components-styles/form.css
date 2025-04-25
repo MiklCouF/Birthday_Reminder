@@ -1,3 +1,29 @@
+.input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: solid #dbd9d9 1px;
+  margin: 10px;
+}
+.input:focus {
+  outline: none;
+  border: solid var(--blue-bg-color) 1px;
+}
+.input-error {
+  border: solid rgb(129, 0, 0) 1px;
+}
+.input-error:focus {
+  outline: none;
+  border: solid rgb(129, 0, 0) 1px;
+}
+.input-error::placeholder {
+  color: rgb(129, 0, 0);
+}
+.input-error:focus::placeholder {
+  color: rgb(129, 0, 0);
+}
+
+
 .error-form-register {
   color: rgb(129, 0, 0);
 }

@@ -1,18 +1,4 @@
-
-.card-core-user {
-    background-color: var(--white-bg-color);
-    padding: 40px;
-    border-radius: 12px;
-    align-items: center;
-  
-    & input {
-      flex-direction: row;
-    }
-  }
-
-
   /* Outside frame for card  */
-
   
 .card-wrapper {
     height: fit-content;

@@ -162,7 +162,7 @@ export default function AutocompleteLastnames({
   };
 
   return (
-    <div ref={containerRef} style={{ position: "relative", width: "200px" }}>
+    <div ref={containerRef} style={{ position: "relative" }}>
       <div
         style={{
           display: "flex",
@@ -179,7 +179,7 @@ export default function AutocompleteLastnames({
           type="text"
           id="lastname"
           name="lastname"
-          placeholder="Rechercher..."
+          placeholder="Dupont"
           value={query}
           onFocus={() => {
             if (filtered.length > 0) setIsOpen(true);
