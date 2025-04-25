@@ -164,13 +164,14 @@ export default function AutocompleteLastnames({
   return (
     <div ref={containerRef} style={{ position: "relative" }}>
       <div
+        className="input"
         style={{
-          display: "flex",
-          alignItems: "center",
-          padding: "8px 12px",
-          border: "1px solid #ccc",
+          //   display: "flex",
+          //   alignItems: "center",
+          //   padding: "8px 12px",
+          //   border: "1px solid #ccc",
           borderRadius: isOpen ? "8px 8px 0 0" : "8px",
-          background: "white",
+          // background: "white",
         }}
         onClick={() => inputRef.current?.focus()}
       >

@@ -61,19 +61,31 @@ function AddData({ user }) {
           <h2 className="h2-add">Ajout d'un proche</h2>
           <form autoComplete="off" onSubmit={handleSubmit}>
             <input type="hidden" name="userId" value={user.id} />
-            <p>Prénom:</p>
-            <input
-              type="text"
-              id="firstname"
-              name="firstname"
-              placeholder="Martin"
-              required
-            />
-
-            <p>Nom:</p>
-            <AutocompleteLastnames />
-            <p>Date de naissance</p>
-            <input type="date" id="dateSubscribe" name="birthday" required />
+            <label htmlFor="firstname">
+              <p className="label">Prénom:</p>
+              <input
+                type="text"
+                className="input"
+                id="firstname"
+                name="firstname"
+                placeholder="Martin"
+                required
+              />
+            </label>
+            <label htmlFor="lastname">
+              <p className="label">Nom de famille:</p>
+              <AutocompleteLastnames />
+            </label>
+            <label htmlFor="birthday">
+              <p className="label">Date de naissance</p>
+              <input
+                type="date"
+                className="input"
+                id="dateSubscribe"
+                name="birthday"
+                required
+              />
+            </label>
 
             <div className="toggle-container">
               <p>Recevoir un premier rappel 15 jours avant</p>
@@ -81,17 +93,16 @@ function AddData({ user }) {
                 <label className="switch">
                   <input
                     type="checkbox"
+                    className="input"
                     checked={isChecked === 1}
                     onChange={() => setIsChecked(isChecked === 1 ? 0 : 1)}
                     value={isChecked}
                     id="reminder_15"
                     name="reminder_15"
                   />
-                  <span className="slider"></span>
+                  <p className="slider"></p>
                 </label>
-                <span className="toggle-label">
-                  {isChecked ? "Oui" : "Non"}
-                </span>
+                <p className="toggle-label">{isChecked ? "Oui" : "Non"}</p>
               </div>
             </div>
             <button

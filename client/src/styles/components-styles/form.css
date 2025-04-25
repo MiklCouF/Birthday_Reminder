@@ -1,9 +1,12 @@
+.label {
+margin: 10px 0;
+}
+
 .input {
   width: 100%;
   padding: 10px;
   border-radius: 5px;
   border: solid #dbd9d9 1px;
-  margin: 10px;
 }
 .input:focus {
   outline: none;
@@ -23,7 +26,13 @@
   color: rgb(129, 0, 0);
 }
 
-
+.textinput {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  background-color: white;
+}
 .error-form-register {
   color: rgb(129, 0, 0);
 }

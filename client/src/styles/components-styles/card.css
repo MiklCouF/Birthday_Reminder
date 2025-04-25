@@ -13,10 +13,7 @@
       color: var(--dark-font-color);
       font-weight: bold;
     }
-  
-    & input {
-      margin: 10px;
-    }
+
     & a {
       color: white;
     }
