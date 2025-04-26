@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useUserData } from "../context/UserDataContext";
 import cancel from "../assets/cancel.png";
 import edit from "../assets/edit.svg";
@@ -9,6 +9,10 @@ import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 function ReadAllFriends({ openModal }) {
   const [friendList, setFriendList] = useState([]);
   const { friendData, isLoading } = useUserData();
+  const [sortConfig, setSortConfig] = useState({
+    key: null,
+    direction: "ascending",
+  });
 
   useEffect(() => {
     if (Array.isArray(friendData)) {
@@ -18,21 +22,72 @@ function ReadAllFriends({ openModal }) {
 
   if (isLoading) return <span className="loader"></span>;
 
-  const friendListData = friendList || [];
+  // Filtre et prépare la liste
+  const friendListReady = (friendList || []).filter(
+    (el) =>
+      el.id &&
+      el.firstname &&
+      el.lastname &&
+      el.formatted_birthday &&
+      el.age_this_year
+  );
 
-  const friendListReady = Array.isArray(friendListData)
-    ? friendListData.filter(
-        (el) =>
-          el.id &&
-          el.firstname &&
-          el.lastname &&
-          el.formatted_birthday &&
-          el.age_this_year
-      )
-    : [];
+  // Demande de tri par colonne
+  const requestSort = (key) => {
+    let direction = "ascending";
+    if (sortConfig.key === key && sortConfig.direction === "ascending") {
+      direction = "descending";
+    }
+    setSortConfig({ key, direction });
+  };
+
+  // Flèche de tri (⇅ par défaut, ▲ ou ▼ si tri actif)
+  const getArrow = (key) => {
+    if (sortConfig.key === key) {
+      return sortConfig.direction === "ascending" ? " ▲" : " ▼";
+    }
+    return " ⇅";
+  };
+
+  // Liste triée (mémoisée)
+  const sortedFriends = useMemo(() => {
+    const items = [...friendListReady];
+    if (!sortConfig.key) return items;
+
+    items.sort((a, b) => {
+      let aVal, bVal;
+      switch (sortConfig.key) {
+        case "firstname":
+          aVal = a.firstname.toLowerCase();
+          bVal = b.firstname.toLowerCase();
+          break;
+        case "lastname":
+          aVal = a.lastname.toLowerCase();
+          bVal = b.lastname.toLowerCase();
+          break;
+        case "birthday":
+          // Tri sur le mois de naissance (format "DD-MM-YYYY"), cible le mois uniquement
+          const [, aMonth] = a.formatted_birthday.split("-");
+          const [, bMonth] = b.formatted_birthday.split("-");
+          aVal = parseInt(aMonth, 10);
+          bVal = parseInt(bMonth, 10);
+          break;
+        case "age":
+          aVal = a.age_this_year;
+          bVal = b.age_this_year;
+          break;
+        default:
+          return 0;
+      }
+      if (aVal < bVal) return sortConfig.direction === "ascending" ? -1 : 1;
+      if (aVal > bVal) return sortConfig.direction === "ascending" ? 1 : -1;
+      return 0;
+    });
+    console.log("Sorted items:", items);
+    return items;
+  }, [friendListReady, sortConfig]);
 
   const handleEdit = (el) => {
-    console.log("log el", el);
     const formEdit = friendList.find((friend) => friend.id === el.id);
     openModal(formEdit);
   };
@@ -53,15 +108,24 @@ function ReadAllFriends({ openModal }) {
           </colgroup>
           <thead>
             <tr>
-              <th>Prénom</th>
-              <th>Nom</th>
-              <th>Date de naissance</th>
-              <th>Âge</th>
+              <th onClick={() => requestSort("firstname")}>
+                Prénom{getArrow("firstname")}
+              </th>
+              <th onClick={() => requestSort("lastname")}>
+                Nom{getArrow("lastname")}
+              </th>
+              <th
+                style={{ minWidth: "150px", cursor: "pointer" }}
+                onClick={() => requestSort("birthday")}
+              >
+                Date de naissance{getArrow("birthday")}
+              </th>
+              <th onClick={() => requestSort("age")}>Âge{getArrow("age")}</th>
             </tr>
           </thead>
           <tbody>
             {friendListReady.length > 0 ? (
-              friendListReady.map((el) => (
+              sortedFriends.map((el) => (
                 <tr
                   key={el.id}
                   id={`friend-${el.id}`}
