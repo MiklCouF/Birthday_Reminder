@@ -2,12 +2,7 @@
   
 .card-wrapper {
     height: fit-content;
-    display: flex;
-    flex-direction: column;
     color: var(--dark-font-color);
-    /* To change with justify-content space-evenly , in css > main, for only page user. */
-    /* margin-left: 100px; */
-    /* end of the tempo fix */
   
     & h2 {
       color: var(--dark-font-color);
@@ -17,9 +12,18 @@
     & a {
       color: white;
     }
+    @media (max-width: 480px) {
+        display: flex;
+        justify-content: center;
+      }
   }
 
-  
+  @media (max-width: 768px) {
+    .flex-column-mobile {
+      flex-direction: column;
+    }
+  }
+
 .card-core {
     background-color: var(--white-bg-color);
     display: flex;

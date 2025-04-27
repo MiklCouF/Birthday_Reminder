@@ -7,6 +7,11 @@ padding: 60px 200px;
   font-size: larger;
 
 }
+
+@media (max-width: 480px) {
+  padding-left: 16px;
+  padding-right: 16px;
+}
 }
 
 .main-container-user {
@@ -21,6 +26,10 @@ padding: 60px 200px;
   display: flex;
   justify-content: start;
   gap: 20px;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+  }
 }
 
 .container-bottom-user {

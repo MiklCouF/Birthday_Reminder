@@ -93,7 +93,7 @@ function ReadAllFriends({ openModal }) {
   };
 
   return (
-    <div className="card-wrapper">
+    <div className="card-wrapper flex-column-mobile">
       <h2>Liste de tous les proches</h2>
       {/* <span className="loader"></span> */}
       {/* <span className="loader-delete">Deleting</span> */}
